@@ -29,6 +29,9 @@ description: <precise trigger-focused description>
 ### Checkpoints
 Use only when the workflow is long/interruption-prone; otherwise state not required and why.
 
+## Autonomy
+State what this Skill may execute without asking. Stop only for a real blocker, a genuinely ambiguous strategic decision, destructive risk, or indispensable missing information.
+
 ## Outputs
 ### Required output artifacts
 
