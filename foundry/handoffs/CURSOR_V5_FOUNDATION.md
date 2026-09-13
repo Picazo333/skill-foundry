@@ -1,8 +1,8 @@
 # CURSOR V5 FOUNDATION
 
-Status: BUILD_COMPLETE for deterministic substrate hardening. No production Skill was built. Baseline was not modified. Canonical Foundry checkpoint was not edited.
+Status: RECONCILED after Antigravity merge. Deterministic substrate remains compatible with the now-canonical lifecycle. No production Skill was built. Baseline was not modified. Canonical Foundry checkpoint was not edited.
 
-Branch: `agent/cursor` (created/synced from latest `origin/main`)
+Branch: `agent/cursor` (synced to `origin/agent/cursor`, then `origin/main` integrated; already contained via PR #2)
 
 ## Mission
 One-time G8-style audit/hardening of V5 Foundry tooling against the V1 15-Skill precedent and the G0–G10 contract. Independent of Antigravity’s architecture audit.
@@ -91,11 +91,37 @@ Baseline not modified. 15-Skill suite remains intact.
 
 Additional targeted FAILs covered by unittest: EXTEND without `target_skill_id`; empty eval cases missing required sections; template Autonomy removed; missing registry/candidate schema reported rather than crash or silent PASS; missing registry `canonical_path`.
 
+## Reconciliation with Antigravity (`origin/main` @ `a757755`)
+
+Inspected after fast-forward of local `agent/cursor` to `origin/agent/cursor` and merge of `origin/main` (already up to date):
+- `foundry/handoffs/ANTIGRAVITY_V5_FOUNDATION.md`
+- `foundry/analysis/V1_CAPABILITY_COVERAGE.md`
+- `foundry/analysis/FOUNDATION_GAP_MAP.md`
+- `foundry/analysis/FOUNDRY_LIFECYCLE_AUDIT.md`
+- `foundry/analysis/FOUNDRY_EVAL_RESULTS.md`
+- `foundry/state/CHECKPOINT.md` (read only; Antigravity-owned)
+- Compact registry/taxonomy/ontology (unchanged by Antigravity; still 15 baseline entries, quality floor 13, lifecycle states 1:1 with `ALLOWED_STATES`)
+
+Compatibility verdict: **no contract/template/validator contradiction**. Required code fixes: **none**.
+
+Evidence:
+- Registry/taxonomy/ontology were not modified in the Antigravity merge. Cursor still validates `registry-entry.schema.json`, canonical paths, and taxonomy quality-floor headings.
+- G7 “19 mandatory sections” matches `SPEC_SECTIONS` in `tools/validate_foundry.py` and `APPROVED_SKILL_SPEC.template.md`.
+- G8 remains `catalog/_template/` + `validate_foundry.py`; Cursor’s Autonomy heading, manifest schema, and eval-case checks implement the mechanical package gate Antigravity mapped as `REUSE`.
+- G4 gap (distinguish `RESEARCH_SKIPPED` vs investigation) is covered by the existing G4 templates; not a meta-Skill. Aligns with Antigravity’s `REUSE` + skip-reason decision.
+- Proposed `sf-genesis-assistant` and `sf-foundry-orchestrator` stay **PROPOSED** only. Not packaged, not self-approved.
+- Lifecycle eval cases 01–05 are architecture evidence, not production Skills; validator correctly ignores them as catalog packages.
+
+Re-validation after reconciliation:
+- `py -3 tools/validate_foundry.py` → PASS
+- `py -3 -m unittest tests.test_validate_foundry -v` → 10 tests OK
+- `py -3 -X utf8 baseline/agentic-skill-suite-v1/scripts/validate_suite.py` → 15 Skills PASS
+
 ## Unresolved assumptions
-- Antigravity V5 foundation audit lives on `origin/agent/antigravity` and is not merged. This Cursor unit started from `origin/main` only, per independent bootstrap. After Antigravity merges, run `prompts/RECONCILE_CURSOR_AFTER_ANTIGRAVITY.md`.
+- `foundry/state/CHECKPOINT.md` still says Cursor reconciliation is pending the Antigravity merge. That merge is already on `main`. Cursor did not edit the checkpoint (collision rule). Antigravity should refresh it at G10 / next steward pass.
 - Running the baseline validator on Windows without UTF-8 mode will still crash inside unmodified V1 `read_text()`. That is a baseline encoding bug; Foundry now always reads UTF-8.
 - G4 templates exist for authors but are not in `REQUIRED_CORE`; an empty queue remains valid.
 - No `APPROVED_FOR_BUILD` spec and no `catalog/skills/` package exist yet; catalog checks are enforced by tests against cloned fixtures.
 
 ## Status
-Deterministic V5 substrate hardened and validated. Exact next action: human/GitHub review of `agent/cursor`, then merge order Antigravity first per collaboration protocol.
+Deterministic V5 substrate reconciled with canonical Antigravity audit. Exact next action: human/GitHub review and merge of `agent/cursor` to `main`.
