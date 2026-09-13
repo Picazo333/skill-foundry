@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brand Strategy — RUN_RESULT",
+  "type": "object",
+  "required": ["status", "summary", "artifacts", "unresolved", "handoff", "quality"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["COMPLETE", "PARTIAL", "BLOCKED"]
+    },
+    "summary": { "type": "string" },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "BRAND_STRATEGY.md",
+          "POSITIONING_SYSTEM.md",
+          "STRATEGIC_GUARDRAILS.md"
+        ]
+      },
+      "description": "On status COMPLETE, must contain all three."
+    },
+    "decisions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "The recommended positioning territory + rationale, and any constraint-driven calls made this run."
+    },
+    "unresolved": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Evidence gaps and assumptions flagged for validation (e.g. thin audience evidence)."
+    },
+    "handoff": {
+      "type": "object",
+      "properties": {
+        "next_skills": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "reason": { "type": "string" }
+      },
+      "description": "Normally both brand-verbal-identity and brand-visual-direction (parallel branch)."
+    },
+    "quality": {
+      "type": "object",
+      "properties": {
+        "passes_commoditization_test": { "type": "boolean" },
+        "differentiation_evidence_backed": { "type": "boolean" },
+        "discarded_alternatives_documented": { "type": "boolean" },
+        "guardrails_operational": { "type": "boolean" },
+        "no_execution_leakage": { "type": "boolean" }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "COMPLETE" } } },
+      "then": {
+        "properties": {
+          "artifacts": {
+            "type": "array",
+            "minItems": 3
+          }
+        }
+      }
+    }
+  ]
+}

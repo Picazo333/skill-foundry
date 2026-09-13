@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brand Verbal Identity — RUN_REQUEST",
+  "type": "object",
+  "required": ["objective", "source_artifacts", "mode"],
+  "properties": {
+    "objective": { "type": "string" },
+    "source_artifacts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Must include a path/reference to BRAND_STRATEGY.md. May also include existing copy, customer language, or compliance documents."
+    },
+    "known_context": { "type": "string" },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "e.g. 'regulated claims', 'no first-person plural', a limited channel list."
+    },
+    "desired_output": {
+      "type": "string",
+      "enum": ["full_verbal_system", "specific_artifact"],
+      "default": "full_verbal_system"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["QUICK", "STANDARD", "UPDATE"]
+    },
+    "prior_run": {
+      "type": "string",
+      "description": "Path to prior VERBAL_IDENTITY.md / checkpoint. Required when mode is UPDATE."
+    }
+  },
+  "if": {
+    "properties": { "mode": { "const": "UPDATE" } }
+  },
+  "then": {
+    "required": ["prior_run"]
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "id": "brand-identity-system",
+  "name": "Brand Identity System",
+  "version": "1.0.1",
+  "category": "brand",
+  "purpose": "Turn an approved visual direction into an operational identity system — logo usage rules, color tokens with exact values and computed contrast, a type scale/tokens, spacing/grid rules, and iconography/imagery rules — concrete enough to build a design-token file or brief a designer directly.",
+  "triggers": [
+    "BRAND_STRATEGY.md is locked and APPROVED_VISUAL_DIRECTION.md is the selected (not still-compared) visual direction",
+    "identity rules are needed before a brand book, design-token file, or component library can be built"
+  ],
+  "non_triggers": [
+    "inventing brand strategy",
+    "generating or comparing creative territories / producing APPROVED_VISUAL_DIRECTION.md itself",
+    "random logo ideation with no direction to systematize",
+    "assembling the narrative brand book document",
+    "building individual campaign assets or a content calendar"
+  ],
+  "minimum_inputs": [
+    "BRAND_STRATEGY.md",
+    "APPROVED_VISUAL_DIRECTION.md"
+  ],
+  "optional_inputs": [
+    "VISUAL_ANTI_PATTERNS.md",
+    "GENERATION_LANGUAGE.md",
+    "VERBAL_IDENTITY.md",
+    "existing logo assets / mark geometry",
+    "font licensing constraints",
+    "production channels in scope",
+    "prior IDENTITY_SYSTEM.md / DESIGN_TOKENS.json (mode: UPDATE)"
+  ],
+  "outputs": [
+    "IDENTITY_SYSTEM.md",
+    "DESIGN_TOKENS.json",
+    "APPLICATION_RULES.md"
+  ],
+  "dependencies": [
+    "brand-visual-direction"
+  ],
+  "handoffs_to": [
+    "brand-book-builder",
+    "creative-brief-generator",
+    "brand-quality-auditor"
+  ],
+  "quality_gates": [
+    "every rule in IDENTITY_SYSTEM.md is operational, not descriptive prose",
+    "APPLICATION_RULES.md covers at least five surfaces, or an explicit recorded channel limitation justifies fewer",
+    "every value in DESIGN_TOKENS.json matches IDENTITY_SYSTEM.md exactly",
+    "every approved text/UI color pairing carries a computed contrast ratio meeting its stated threshold",
+    "every documented exception/forbidden-combination has a stated reason"
+  ],
+  "stop_conditions": [
+    "all three required artifacts produced, consistency/scalability audit passes -> COMPLETE",
+    "BRAND_STRATEGY.md missing/unlocked or APPROVED_VISUAL_DIRECTION.md missing/not a single approved grammar -> BLOCKED, state exactly which artifact/element is needed",
+    "one or more grammar elements too vague to derive concrete rules from, even via references/ methods -> PARTIAL, name the specific gaps and recommend returning to brand-visual-direction",
+    "never continue past an invented value with no trace, a token/prose mismatch, an unverified contrast claim, or fewer than five covered surfaces presented as meeting the minimum"
+  ]
+}

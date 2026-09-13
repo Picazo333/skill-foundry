@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Research Architect — RUN_REQUEST",
+  "type": "object",
+  "required": ["objective", "mode"],
+  "properties": {
+    "objective": {
+      "type": "string",
+      "description": "Raw project/research problem statement."
+    },
+    "source_artifacts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "PROJECT_CANON.md, prior MASTER_RESEARCH_PROGRAM.md, prior CHECKPOINT.md, etc."
+    },
+    "known_context": { "type": "string" },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "desired_output": {
+      "type": "string",
+      "enum": ["full_architecture_package", "delta_only"],
+      "default": "full_architecture_package"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["STANDARD", "AUTONOMOUS", "UPDATE"],
+      "description": "STANDARD: stepwise with checkpoints. AUTONOMOUS: executes architecture rounds without 'continue?' prompts, still checkpoints, still stops before deep research. UPDATE: extend/re-weight an existing program."
+    },
+    "prior_run": {
+      "type": "string",
+      "description": "Path to prior MASTER_RESEARCH_PROGRAM.md / CHECKPOINT.md. Required when mode is UPDATE, or when resuming an interrupted AUTONOMOUS/STANDARD run."
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "mode": { "const": "UPDATE" } } },
+      "then": { "required": ["prior_run"] }
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "suite": "agentic-skill-suite",
+  "version": "1.0.1",
+  "status": "IMPLEMENTED",
+  "skills": [
+    { "order": 1, "id": "canonical-context-builder", "name": "Canonical Context Builder", "path": "skills/01-canonical-context-builder", "status": "COMPLETE" },
+    { "order": 2, "id": "research-architect", "name": "Research Architect", "path": "skills/02-research-architect", "status": "COMPLETE" },
+    { "order": 3, "id": "product-auditor", "name": "Product Auditor & Implementation Architect", "path": "skills/03-product-auditor", "status": "COMPLETE" },
+    { "order": 4, "id": "rapid-capture-triage", "name": "Rapid Capture & Triage", "path": "skills/04-rapid-capture-triage", "status": "COMPLETE" },
+    { "order": 5, "id": "ai-resource-router", "name": "AI Resource Router", "path": "skills/05-ai-resource-router", "status": "COMPLETE" },
+    { "order": 6, "id": "brand-discovery", "name": "Brand Discovery", "path": "skills/06-brand-discovery", "status": "COMPLETE" },
+    { "order": 7, "id": "brand-strategy", "name": "Brand Strategy", "path": "skills/07-brand-strategy", "status": "COMPLETE" },
+    { "order": 8, "id": "brand-verbal-identity", "name": "Brand Verbal Identity", "path": "skills/08-brand-verbal-identity", "status": "COMPLETE" },
+    { "order": 9, "id": "brand-visual-direction", "name": "Brand Visual Direction", "path": "skills/09-brand-visual-direction", "status": "COMPLETE" },
+    { "order": 10, "id": "brand-identity-system", "name": "Brand Identity System", "path": "skills/10-brand-identity-system", "status": "COMPLETE" },
+    { "order": 11, "id": "brand-book-builder", "name": "Brand Book Builder", "path": "skills/11-brand-book-builder", "status": "COMPLETE" },
+    { "order": 12, "id": "creative-brief-generator", "name": "Creative Brief Generator", "path": "skills/12-creative-brief-generator", "status": "COMPLETE" },
+    { "order": 13, "id": "brand-content-system", "name": "Brand Content System", "path": "skills/13-brand-content-system", "status": "COMPLETE" },
+    { "order": 14, "id": "brand-quality-auditor", "name": "Brand Quality Auditor", "path": "skills/14-brand-quality-auditor", "status": "COMPLETE" },
+    { "order": 15, "id": "brand-skill-orchestrator", "name": "Brand Skill Orchestrator", "path": "skills/15-brand-skill-orchestrator", "status": "COMPLETE" }
+  ],
+  "shared": {
+    "templates": "shared/templates/",
+    "policies": "shared/policies/",
+    "contracts": "shared/contracts/",
+    "adapters_contract": "shared/adapters/README.md"
+  },
+  "routing_graph": "routing-graph.json",
+  "validator": "scripts/validate_suite.py",
+  "integration_evals": "evals/integration/",
+  "final_report": "FINAL_REPORT.md"
+}

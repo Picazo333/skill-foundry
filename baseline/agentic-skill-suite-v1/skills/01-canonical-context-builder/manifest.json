@@ -1,0 +1,56 @@
+{
+  "id": "canonical-context-builder",
+  "name": "Canonical Context Builder",
+  "version": "1.0.1",
+  "category": "knowledge",
+  "purpose": "Reconstruct and maintain the single canonical truth of a project from fragmented conversations, files, renames, decisions and prior outputs.",
+  "triggers": [
+    "project has accumulated many chats/files/versions with no single source of truth",
+    "need a clean handoff to a new agent/conversation/collaborator",
+    "need to separate current decisions from deprecated proposals",
+    "need to update canon after a completed phase"
+  ],
+  "non_triggers": [
+    "generic summarization with no canonical-state requirement",
+    "researching facts outside supplied sources",
+    "replacing uncertain data with guesses",
+    "producing an implementation plan from canon"
+  ],
+  "minimum_inputs": [
+    "project materials or current canonical artifact",
+    "objective of the context build/update"
+  ],
+  "optional_inputs": [
+    "prior PROJECT_CANON.md",
+    "decision logs",
+    "changelogs",
+    "checkpoints",
+    "repo state"
+  ],
+  "outputs": [
+    "PROJECT_CANON.md",
+    "DECISION_REGISTER.md",
+    "OPEN_LOOPS.md",
+    "DEPRECATED_REGISTER.md",
+    "NEXT_START_PROMPT.md"
+  ],
+  "dependencies": [],
+  "handoffs_to": [
+    "research-architect",
+    "product-auditor",
+    "brand-discovery",
+    "brand-skill-orchestrator",
+    "rapid-capture-triage"
+  ],
+  "quality_gates": [
+    "no deprecated decision appears as current",
+    "no unsupported fact is invented",
+    "every unresolved contradiction remains visible",
+    "handoff references canonical artifacts, not conversational memory"
+  ],
+  "stop_conditions": [
+    "all five required artifacts produced and contradiction/staleness pass run -> COMPLETE",
+    "sources too sparse/contradictory for a minimal FACTS section -> BLOCKED, state what is needed",
+    "never present an unresolved conflict as resolved"
+  ]
+}

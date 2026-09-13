@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Resource Router — RUN_RESULT / DISPATCH_QUEUE",
+  "type": "object",
+  "required": ["status", "summary", "artifacts", "unresolved", "handoff", "quality"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["COMPLETE", "PARTIAL", "BLOCKED"]
+    },
+    "summary": { "type": "string" },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "ROUTING_PLAN.md",
+          "DISPATCH_QUEUE.json",
+          "PROMPTS/",
+          "CAPACITY_RISK.md"
+        ]
+      },
+      "description": "On status COMPLETE, must contain all four."
+    },
+    "decisions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "High-impact routing calls and why."
+    },
+    "unresolved": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Unroutable tasks, unknown capacity fields, ties not confidently broken."
+    },
+    "handoff": {
+      "type": "object",
+      "properties": {
+        "next_skill": { "type": "string" },
+        "reason": { "type": "string" }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "properties": {
+        "no_domain_work_performed": { "type": "boolean" },
+        "no_fabricated_capacity_data": { "type": "boolean" },
+        "capability_fit_beat_quota_burning": { "type": "boolean" },
+        "prompts_task_specific": { "type": "boolean" }
+      }
+    },
+    "dispatch_queue": {
+      "type": "array",
+      "description": "Machine-readable form of ROUTING_PLAN.md / DISPATCH_QUEUE.json.",
+      "items": {
+        "type": "object",
+        "required": ["task_id", "queue", "primary_tool"],
+        "properties": {
+          "task_id": { "type": "string" },
+          "queue": {
+            "type": "string",
+            "enum": ["use_now", "next", "reserve", "unroutable"]
+          },
+          "primary_tool": { "type": ["string", "null"] },
+          "fallback_tool": { "type": ["string", "null"] },
+          "rationale": { "type": "string" },
+          "prompt_file": { "type": ["string", "null"] },
+          "unroutable_reason": { "type": ["string", "null"] }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "COMPLETE" } } },
+      "then": {
+        "properties": {
+          "artifacts": {
+            "type": "array",
+            "minItems": 4
+          }
+        }
+      }
+    }
+  ]
+}

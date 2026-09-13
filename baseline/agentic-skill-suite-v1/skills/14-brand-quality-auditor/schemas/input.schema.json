@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brand Quality Auditor — RUN_REQUEST",
+  "type": "object",
+  "required": ["objective", "source_artifacts", "mode"],
+  "properties": {
+    "objective": { "type": "string" },
+    "source_artifacts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Must include both the artifact to audit and the brand canon artifact(s) to audit against. A run with no canon reference is malformed input, not a valid audit request."
+    },
+    "known_context": { "type": "string" },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "desired_output": {
+      "type": "string",
+      "enum": ["full_audit", "delta_only", "specific_artifact"],
+      "default": "full_audit"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["STANDARD", "AUDIT", "UPDATE"]
+    },
+    "prior_run": {
+      "type": "string",
+      "description": "Path to prior DRIFT_REGISTER.md or BRAND_QA_REPORT.md/checkpoint. Required when mode is UPDATE."
+    },
+    "canon_refs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Explicit pointers to the approved canon sections/artifacts (strategy, verbal identity, visual identity) relevant to this artifact. If empty or missing entirely, the run must return BLOCKED at the canon gate (SKILL.md step 1)."
+    }
+  },
+  "if": {
+    "properties": { "mode": { "const": "UPDATE" } }
+  },
+  "then": {
+    "required": ["prior_run"]
+  }
+}

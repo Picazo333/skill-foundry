@@ -1,0 +1,53 @@
+{
+  "id": "rapid-capture-triage",
+  "name": "Rapid Capture & Triage",
+  "version": "1.0.1",
+  "category": "operations",
+  "purpose": "Convert fast, chaotic voice-note/text capture into structured project/process/task/idea/backlog/supervision/doubt updates while preserving ambiguity and minimizing formatting work.",
+  "triggers": [
+    "user dictates or dumps many updates quickly",
+    "task/project priorities need reconciling from natural language against a known snapshot",
+    "a preview is needed before writing to a JSON/PM-tool update",
+    "notes-app-speed capture must become structured input for another system"
+  ],
+  "non_triggers": [
+    "long-term canonical synthesis across historical files/decisions",
+    "executing the captured tasks",
+    "inventing a priority, project assignment, owner, or due date not stated or implied",
+    "auditing an existing product/process for quality"
+  ],
+  "minimum_inputs": [
+    "raw capture (transcript, dictation, fragmented notes)"
+  ],
+  "optional_inputs": [
+    "current task/project snapshot",
+    "category taxonomy",
+    "existing JSON state to patch",
+    "canonical context"
+  ],
+  "outputs": [
+    "CAPTURE_PREVIEW.md",
+    "STRUCTURED_DELTA.json",
+    "AMBIGUITIES.md",
+    "APPLY_INSTRUCTIONS.md"
+  ],
+  "dependencies": [],
+  "handoffs_to": [
+    "canonical-context-builder",
+    "ai-resource-router",
+    "product-auditor"
+  ],
+  "quality_gates": [
+    "no silent deletion of an unmentioned item",
+    "recurrent vs. supervision are never conflated",
+    "duplicate detection is actually performed whenever a snapshot is supplied",
+    "STRUCTURED_DELTA.json matches CAPTURE_PREVIEW.md exactly",
+    "every genuine ambiguity in the source capture survives into AMBIGUITIES.md"
+  ],
+  "stop_conditions": [
+    "all four required artifacts produced and consistency check passes -> COMPLETE",
+    "capture usable but part unclassifiable given supplied context -> PARTIAL, state what input is needed",
+    "no usable raw capture supplied -> BLOCKED",
+    "never emit a delta that disagrees with its own preview, never present a genuinely ambiguous fragment as confidently classified"
+  ]
+}

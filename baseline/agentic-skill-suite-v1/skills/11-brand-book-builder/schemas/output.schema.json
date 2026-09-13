@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brand Book Builder — RUN_RESULT",
+  "type": "object",
+  "required": ["status", "summary", "artifacts", "unresolved", "handoff", "quality"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["COMPLETE", "PARTIAL", "BLOCKED"]
+    },
+    "summary": { "type": "string" },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "BRAND_BOOK.md",
+          "BRAND_BOOK_OUTLINE.md",
+          "BRAND_BOOK_ASSET_CHECKLIST.md"
+        ]
+      },
+      "description": "On status COMPLETE or PARTIAL, must contain all three."
+    },
+    "decisions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "e.g. depth chosen and why, dedup decisions."
+    },
+    "unresolved": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Coherence gaps, thin upstream artifacts, missing examples. Non-empty whenever step 6's coherence check finds anything, even on status COMPLETE."
+    },
+    "handoff": {
+      "type": "object",
+      "properties": {
+        "next_skill": { "type": "string" },
+        "reason": { "type": "string" }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "properties": {
+        "all_rules_traced_to_source": { "type": "boolean" },
+        "no_unflagged_contradictions": { "type": "boolean" },
+        "coherence_check_run": { "type": "boolean" },
+        "asset_checklist_complete": { "type": "boolean" },
+        "usability_test_passed": { "type": "boolean" }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "COMPLETE" } } },
+      "then": {
+        "properties": {
+          "artifacts": { "type": "array", "minItems": 3 },
+          "quality": {
+            "properties": {
+              "coherence_check_run": { "const": true }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "status": { "const": "PARTIAL" } } },
+      "then": {
+        "properties": {
+          "artifacts": { "type": "array", "minItems": 3 },
+          "unresolved": { "type": "array", "minItems": 1 }
+        }
+      }
+    }
+  ]
+}

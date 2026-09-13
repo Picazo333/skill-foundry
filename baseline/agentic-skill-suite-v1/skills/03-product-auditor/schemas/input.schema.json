@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Product Auditor — RUN_REQUEST",
+  "type": "object",
+  "required": ["objective", "mode"],
+  "properties": {
+    "objective": { "type": "string" },
+    "source_artifacts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Repo path/URL, app build, screenshots, issue list, and (QA mode) the diff/PR/build to verify."
+    },
+    "known_context": {
+      "type": "string",
+      "description": "PROJECT_CANON.md excerpt or prior PRODUCT_AUDIT.md summary, if available."
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "desired_output": {
+      "type": "string",
+      "enum": ["full_artifact_set", "specific_artifact"],
+      "default": "full_artifact_set"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["AUDIT", "QA"],
+      "description": "AUDIT: inspect and produce a plan, never implement. QA: verify delivered work against a prior plan, never fix."
+    },
+    "prior_run": {
+      "type": "string",
+      "description": "Path to prior IMPLEMENTATION_PLAN.md / REGRESSION_MATRIX.md / PRODUCT_AUDIT.md. Required when mode is QA."
+    }
+  },
+  "if": {
+    "properties": { "mode": { "const": "QA" } }
+  },
+  "then": {
+    "required": ["prior_run"]
+  }
+}

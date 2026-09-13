@@ -1,0 +1,79 @@
+version: 0.3
+status: canonical_operational_v5
+priority_tiers:
+  S: transversal_high_frequency
+  A: high_value
+  B: specialized
+  Future: premature_or_dependency_missing
+capability_class:
+  - worker
+  - orchestrator
+  - router
+  - auditor
+  - utility
+scope:
+  - transversal
+  - domain
+  - vertical
+  - meta
+skill_decision:
+  - REUSE
+  - EXTEND
+  - MODE
+  - DEPENDENT_SKILL
+  - NEW_SKILL
+  - NO_SKILL
+genesis_stage:
+  - G0_INTAKE
+  - G1_WORKFLOW_RECONSTRUCTION
+  - G2_CAPABILITY_MINING
+  - G3_OVERLAP_ANALYSIS
+  - G4_CONDITIONAL_RESEARCH
+  - G5_ARCHITECTURE_PROPOSAL
+  - G6_HUMAN_DECISION
+  - G7_SURGICAL_SPEC
+  - G8_BUILD
+  - G9_AUDIT
+  - G10_PUBLISH
+lifecycle:
+  - INTAKE
+  - WORKFLOW_MAPPED
+  - CAPABILITIES_MINED
+  - OVERLAP_ANALYZED
+  - RESEARCHING
+  - RESEARCH_SKIPPED
+  - PROPOSED
+  - AWAITING_HUMAN_DECISION
+  - APPROVED_FOR_BUILD
+  - BUILDING
+  - BUILD_COMPLETE
+  - AUDITING
+  - REWORK
+  - PASS
+  - READY_FOR_MERGE
+  - PUBLISHED
+  - CLOSED_REUSE
+  - CLOSED_NO_SKILL
+  - REJECTED
+  - BLOCKED
+portability_model:
+  canonical_core: SKILL.md
+  adapters: thin_platform_wrappers
+quality_floor:
+  required:
+    - identity
+    - trigger
+    - non_trigger
+    - inputs
+    - context_policy
+    - procedure
+    - autonomy
+    - outputs
+    - quality_gates
+    - failure_modes
+    - stop_conditions
+    - handoffs
+    - evals
+  conditional:
+    - checkpoints
+    - schemas

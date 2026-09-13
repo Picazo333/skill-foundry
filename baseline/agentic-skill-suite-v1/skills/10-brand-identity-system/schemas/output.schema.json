@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brand Identity System — RUN_RESULT",
+  "type": "object",
+  "required": ["status", "summary", "artifacts", "unresolved", "handoff", "quality"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["COMPLETE", "PARTIAL", "BLOCKED"]
+    },
+    "summary": { "type": "string" },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "IDENTITY_SYSTEM.md",
+          "DESIGN_TOKENS.json",
+          "APPLICATION_RULES.md"
+        ]
+      },
+      "description": "On status COMPLETE, must contain all three."
+    },
+    "decisions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "e.g. architecture choices, color-role assignments, contrast trade-offs taken."
+    },
+    "unresolved": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "handoff": {
+      "type": "object",
+      "properties": {
+        "next_skill": { "type": "string" },
+        "reason": { "type": "string" }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "properties": {
+        "tokens_match_prose": { "type": "boolean" },
+        "contrast_checks_computed": { "type": "boolean" },
+        "surfaces_covered": { "type": "integer", "minimum": 0 },
+        "grammar_elements_translated": { "type": "boolean" },
+        "logo_size_clearspace_derived": { "type": "boolean" }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "COMPLETE" } } },
+      "then": {
+        "properties": {
+          "artifacts": {
+            "type": "array",
+            "minItems": 3
+          },
+          "quality": {
+            "type": "object",
+            "properties": {
+              "tokens_match_prose": { "const": true },
+              "contrast_checks_computed": { "const": true },
+              "surfaces_covered": { "minimum": 5 },
+              "grammar_elements_translated": { "const": true }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

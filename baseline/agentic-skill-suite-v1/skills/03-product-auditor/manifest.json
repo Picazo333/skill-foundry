@@ -1,0 +1,58 @@
+{
+  "id": "product-auditor",
+  "name": "Product Auditor & Implementation Architect",
+  "version": "1.0.1",
+  "category": "product",
+  "purpose": "Inspect an existing app/repo/product, verify issues and opportunities against evidence, and produce an implementation plan precise enough for an execution agent without implementing during audit mode.",
+  "triggers": [
+    "user dictates UX bugs/features while navigating an app",
+    "need an Astra-style product audit",
+    "need an agent-ready implementation plan for an existing product",
+    "need QA of delivered work against a prior implementation plan"
+  ],
+  "non_triggers": [
+    "writing or editing production code",
+    "generic feature ideation with no current-state inspection",
+    "replacing an approved design direction without evidence",
+    "building canonical source of truth from scratch"
+  ],
+  "minimum_inputs": [
+    "repo/app/artifacts to inspect (AUDIT) or delivered work to verify (QA)",
+    "audit objective (AUDIT) or prior IMPLEMENTATION_PLAN.md + REGRESSION_MATRIX.md (QA)"
+  ],
+  "optional_inputs": [
+    "PROJECT_CANON.md",
+    "screenshots",
+    "raw issue list",
+    "prior PRODUCT_AUDIT.md",
+    "JSON/data model",
+    "mobile build"
+  ],
+  "outputs": [
+    "PRODUCT_AUDIT.md",
+    "IMPLEMENTATION_PLAN.md",
+    "REGRESSION_MATRIX.md",
+    "QA_CONTRACT.md",
+    "HANDOFF_PROMPT.md"
+  ],
+  "dependencies": [],
+  "handoffs_to": [
+    "ai-resource-router",
+    "canonical-context-builder"
+  ],
+  "quality_gates": [
+    "no product code/config/data written or edited during AUDIT mode",
+    "no product code/config/data fixed during QA mode, only verified",
+    "every finding tagged confirmed or suspected",
+    "every implementation plan item has affected components, do-not-touch list, tests, acceptance criteria",
+    "every data-shape change has explicit migration + rollback note",
+    "regression matrix addresses mobile parity explicitly",
+    "no approved existing feature silently removed or altered"
+  ],
+  "stop_conditions": [
+    "AUDIT: all five artifacts produced, every finding classified, handoff to ai-resource-router, no code written -> COMPLETE",
+    "QA: all five artifacts produced/updated, every plan item has a cited-evidence verdict -> COMPLETE",
+    "cannot access app/repo, or QA prior_run artifacts missing -> BLOCKED, state what is needed",
+    "never write/edit product code in AUDIT mode; never fix instead of report in QA mode; never present a suspected issue as confirmed; never silently drop a reported item"
+  ]
+}

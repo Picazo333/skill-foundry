@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Skill Foundry Candidate",
+  "type": "object",
+  "required": ["id", "title", "status"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "status": {
+      "type": "string",
+      "enum": ["INTAKE", "WORKFLOW_MAPPED", "CAPABILITIES_MINED", "OVERLAP_ANALYZED", "RESEARCHING", "RESEARCH_SKIPPED", "PROPOSED", "AWAITING_HUMAN_DECISION", "APPROVED_FOR_BUILD", "BUILDING", "BUILD_COMPLETE", "AUDITING", "REWORK", "PASS", "READY_FOR_MERGE", "PUBLISHED", "CLOSED_REUSE", "CLOSED_NO_SKILL", "REJECTED", "BLOCKED"]
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["capability", "treatment"],
+        "properties": {
+          "capability": {"type": "string", "minLength": 1},
+          "treatment": {"type": "string", "enum": ["REUSE", "EXTEND", "MODE", "DEPENDENT_SKILL", "NEW_SKILL", "NO_SKILL"]},
+          "target_skill_id": {"type": ["string", "null"]}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

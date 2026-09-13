@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Rapid Capture & Triage — RUN_RESULT",
+  "type": "object",
+  "required": ["status", "summary", "artifacts", "unresolved", "handoff", "quality"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["COMPLETE", "PARTIAL", "BLOCKED"]
+    },
+    "summary": { "type": "string" },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "CAPTURE_PREVIEW.md",
+          "STRUCTURED_DELTA.json",
+          "AMBIGUITIES.md",
+          "APPLY_INSTRUCTIONS.md"
+        ]
+      },
+      "description": "On status COMPLETE, must contain all four."
+    },
+    "decisions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Explicit changes applied this run (renames/moves/removes actually captured)."
+    },
+    "unresolved": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Every ambiguity also present in AMBIGUITIES.md."
+    },
+    "handoff": {
+      "type": "object",
+      "properties": {
+        "next_skill": { "type": "string" },
+        "reason": { "type": "string" }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "properties": {
+        "no_silent_deletion": { "type": "boolean" },
+        "recurrent_supervision_not_conflated": { "type": "boolean" },
+        "duplicate_detection_performed": { "type": "boolean" },
+        "delta_matches_preview": { "type": "boolean" },
+        "ambiguity_preserved": { "type": "boolean" }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "COMPLETE" } } },
+      "then": {
+        "properties": {
+          "artifacts": {
+            "type": "array",
+            "minItems": 4
+          },
+          "quality": {
+            "properties": {
+              "delta_matches_preview": { "const": true },
+              "ambiguity_preserved": { "const": true }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

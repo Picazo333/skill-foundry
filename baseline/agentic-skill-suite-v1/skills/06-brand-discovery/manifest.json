@@ -1,0 +1,54 @@
+{
+  "id": "brand-discovery",
+  "name": "Brand Discovery",
+  "version": "1.0.1",
+  "category": "brand",
+  "purpose": "Turn fragmented founder/client/business information into a canonical brand discovery brief separating facts, claims, aspirations, hypotheses and non-negotiables, mapping references/anti-references by underlying quality.",
+  "triggers": [
+    "starting or repositioning a brand with no canonical discovery brief yet",
+    "client/founder discovery data exists (interviews, materials, analytics, competitor notes) and needs a single trustworthy foundation",
+    "brand-strategy needs a foundation and none exists yet or the existing one is stale"
+  ],
+  "non_triggers": [
+    "final positioning or a chosen brand strategy",
+    "logo design or any visual identity/visual-system decision",
+    "generic moodboard generation disconnected from stated references",
+    "general project canon unrelated to brand (use canonical-context-builder)",
+    "deep external market/competitor research beyond supplied material (use research-architect)"
+  ],
+  "minimum_inputs": [
+    "raw client/project/business context: what the business does, who it serves, why discovery is happening now"
+  ],
+  "optional_inputs": [
+    "founder/stakeholder interviews",
+    "analytics",
+    "competitor notes",
+    "existing identity/brand materials",
+    "named references and anti-references",
+    "prior PROJECT_CANON.md",
+    "prior BRAND_DISCOVERY_BRIEF.md / DISCOVERY_GAPS.md (mode: UPDATE)"
+  ],
+  "outputs": [
+    "BRAND_DISCOVERY_BRIEF.md",
+    "DISCOVERY_GAPS.md",
+    "REFERENCE_MAP.md"
+  ],
+  "dependencies": [],
+  "handoffs_to": [
+    "brand-strategy",
+    "research-architect",
+    "canonical-context-builder"
+  ],
+  "quality_gates": [
+    "facts/claims/aspirations/hypotheses/non-negotiables separated and source-attributed",
+    "anti-references captured, not just references",
+    "business objective explicit",
+    "no premature design/strategy/positioning content",
+    "discovery gap list is decision-relevant only (materiality filter applied)"
+  ],
+  "stop_conditions": [
+    "all three required artifacts produced, every statement classified, contradictions/gaps logged not resolved -> COMPLETE",
+    "source material too sparse for even business/offer/customer basics -> BLOCKED, state exactly what additional material is needed, still emit minimal brief + gaps",
+    "never state a positioning decision, resolve a contradiction on its own authority, or present a claim/aspiration as verified fact"
+  ]
+}

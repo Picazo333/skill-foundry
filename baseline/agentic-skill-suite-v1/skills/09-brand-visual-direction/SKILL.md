@@ -1,0 +1,288 @@
+---
+name: brand-visual-direction
+description: Translates a locked brand strategy into 3-5 materially distinct creative territories and a single selected visual grammar (mood, color logic, typography logic, imagery language) before identity assets are systematized; use once strategy is locked and art direction is needed, not for producing the final brand book/logo or decorative moodboarding with no strategic rationale.
+---
+
+# Brand Visual Direction
+
+> Canonical skill definition. Adapters in `adapters/` are thin wrappers over
+> this file — they may not change purpose, procedure, outputs, quality gates
+> or stop conditions. See `/PORTABILITY.md` and `/shared/adapters/README.md`.
+
+## Identity
+- **ID:** `brand-visual-direction`
+- **Category:** brand
+- **Version:** `1.0.0`
+- **Purpose:** Translate a locked brand strategy into 3–5 materially
+  distinct creative territories, then a single selected visual grammar
+  (mood, color logic, typography logic, imagery language, compositional
+  principles) that traces back to strategy — direction, not final assets.
+
+## Trigger
+Use this skill when:
+- `BRAND_STRATEGY.md` exists and is locked (positioning, promise,
+  differentiation are settled).
+- Art direction / moodboard logic is needed before identity assets are
+  built.
+- There is a real risk of landing on generic, category-default, or
+  AI-slop visual output and the project needs deliberate divergence from
+  that default.
+
+## Non-trigger
+Do not use this skill for:
+- Producing the final brand book, logo, or asset library — that is
+  `brand-identity-system` (consumes this skill's output).
+- Decorative moodboarding with no strategic rationale — a Pinterest board
+  is not a territory; every choice here must trace to `BRAND_STRATEGY.md`.
+- Writing positioning, promise, or differentiation — that is
+  `brand-strategy`, upstream of this skill.
+- Generating a single "nice looking" image with no comparative
+  territories — this skill's value is the comparison, not one output.
+
+## Context policy
+- **REQUIRED_CONTEXT:** `BRAND_STRATEGY.md`.
+- **OPTIONAL_CONTEXT:** `POSITIONING_SYSTEM.md`, `STRATEGIC_GUARDRAILS.md`
+  (both from `brand-strategy`), visual references, anti-references,
+  existing identity assets, media/production constraints, prior rejected
+  territories (for `mode: UPDATE`).
+- **DO_NOT_LOAD_BY_DEFAULT:** the full brand-discovery or brand-strategy
+  working conversation; unrelated brands' visual canon; stock "inspiration"
+  boards with no sourcing rationale — these bias territory generation
+  toward whatever was scrolled last instead of what the strategy demands.
+
+Prefer canonical artifacts over conversational memory (`/ARCHITECTURE.md`).
+
+## Inputs
+
+### Minimum inputs
+- `BRAND_STRATEGY.md` — must contain positioning, promise, differentiation,
+  audience, and (ideally) guardrails. If strategy is not locked, stop
+  (see Stop conditions).
+
+### Optional inputs
+- `POSITIONING_SYSTEM.md`, `STRATEGIC_GUARDRAILS.md`
+- Visual references (moodboard images, named artists/movements/artifacts)
+  and explicit anti-references ("not this")
+- Existing identity assets (for a repositioning/evolution, not a
+  from-zero build)
+- Media/production constraints (e.g. "must work as a 15px favicon and a
+  40ft billboard", "no motion budget", "print-only")
+- Prior rejected territories and stated rejection reasons (`mode: UPDATE`)
+
+### RUN_REQUEST envelope
+```yaml
+RUN_REQUEST:
+  objective:            # e.g. "generate territories from strategy" | "revise territories after rejection"
+  source_artifacts:      # [BRAND_STRATEGY.md, POSITIONING_SYSTEM.md, ...]
+  known_context:         # references, anti-references, constraints not in strategy
+  constraints:           # e.g. "print-only", "no motion", "must extend to 6 sub-brands"
+  desired_output:        # full_territory_set | selected_direction_only | generation_language_only
+  mode: STANDARD          # QUICK (3 territories, faster scoring) | STANDARD (3-5 territories, full procedure)
+                           # | DEEP (5 territories, deeper reference-to-principle mapping, wider cliché sweep)
+                           # | UPDATE (revise given rejection feedback against prior territories)
+  prior_run:              # path to prior VISUAL_TERRITORIES.md / APPROVED_VISUAL_DIRECTION.md, if mode: UPDATE
+```
+
+## Procedure
+Numbered, executable steps. Each step must produce a concrete artifact
+fragment — not a description of "AI best practices."
+
+1. **Extract visual implications, not adjectives.** For each strategic
+   attribute in `BRAND_STRATEGY.md` (positioning, promise, differentiation,
+   audience, category frame, guardrails), derive a visual *tension* or
+   *behavior* it implies — never a direct adjective→object lookup (e.g.
+   "trustworthy" does not resolve to "blue"; "precise" does not resolve to
+   "thin sans-serif + whitespace"). Write each as: `<strategic attribute>
+   → <visual tension/behavior it demands> → <what it rules out>`. See
+   `references/territory-generation-framework.md` for the method and
+   worked derivations.
+
+2. **Generate 3–5 territories that diverge on structure, not just skin.**
+   For each territory, define a position on all 8 axes: composition,
+   materiality, type logic, color behavior, image language, motion,
+   density, and UI/system implications. A territory is not valid until
+   all 8 axes are set. Territory count by mode: QUICK = 3, STANDARD = 3–5,
+   DEEP = 5.
+
+3. **Run the divergence audit before scoring.** Compare every pair of
+   territories across the 8 axes. If any two territories agree on more
+   than 3 of 8 axes, or both territories independently land on a
+   generic-AI-slop default (see step 4), they are not materially distinct.
+   Discard or rebuild the weaker one: re-anchor it to the *opposite* pole
+   on at least 3 axes from the territory it collided with, re-deriving
+   those axis choices from step 1's tensions (not from an unused color).
+   Do not proceed to scoring with fewer than 3 territories that each pass
+   this audit — this is the primary defense against false variety
+   (palette-swapped copies of one idea presented as options).
+
+4. **Identify category clichés and AI-slop risks per territory.** Check
+   each territory against `references/ai-slop-and-cliche-checklist.md`
+   (gradient-mesh blobs, glassmorphism-by-default, generic abstract
+   line-art figures, purple-to-blue "innovation" gradients, indiscriminate
+   rounded-2xl-plus-drop-shadow, stock "diverse hands on laptop" imagery,
+   and category-specific defaults such as "finance = navy + serif
+   trust-signaling" or "wellness = sage green + hand-lettering"). Flag any
+   territory that leans on 2+ checklist items without a strategic reason
+   overriding the flag; note the flag in the territory's write-up rather
+   than silently dropping the territory.
+
+5. **Map any supplied references to underlying principles.** For each
+   visual reference or named influence (art movement, artifact, discipline
+   — e.g. "radiotomography," "illuminated manuscripts," "brutalist
+   signage"), extract the structural principle it contributes (translucency
+   through layering, scan-line rhythm, rag-edge irregularity, load-bearing
+   negative space) and attribute that principle to the relevant territory
+   axis. Never copy the reference's literal palette or subject matter
+   wholesale — the principle transfers, the surface does not.
+
+6. **Score every surviving territory.** Score on 5 criteria — differentiation
+   (from competitors and from the other territories), strategic fit (traces
+   to which specific strategy attributes), extensibility (works across
+   media/formats/scale without breaking), production feasibility (buildable
+   with realistic budget/skill), and cross-media behavior (favicon through
+   billboard, static and in motion if motion is in scope). Use
+   `references/territory-scoring-criteria.md`. Score 1–5 with one sentence
+   of rationale per criterion — no unscored or unjustified score.
+
+7. **Select or recommend a direction; preserve the rest.** Recommend the
+   highest-scoring territory that also has no unresolved cliché flag from
+   step 4 (or a flag with an explicit strategic override recorded). If the
+   requester has final say, present the recommendation plus the ranked
+   runner-up with the score delta stated. Every discarded territory is
+   preserved in `VISUAL_TERRITORIES.md` with its scores and status
+   (`discarded` / `runner-up`) — never deleted, so it is not re-pitched
+   blind later.
+
+8. **Define the canonical visual grammar and anti-patterns.** From the
+   selected territory, write `APPROVED_VISUAL_DIRECTION.md` (the grammar:
+   mood, color logic — not just hex codes but the *rule* for when/how color
+   is used — typography logic, imagery style, compositional principles,
+   motion principles if in scope) and `VISUAL_ANTI_PATTERNS.md` (explicit
+   "never do this" list: rejected territories' defining traits, category
+   clichés flagged in step 4, and any anti-references supplied as input).
+
+9. **Produce promptable generation language.** Write `GENERATION_LANGUAGE.md`
+   as reusable *principles* a designer, image-generation model, or another
+   agent can apply to any new asset — never a one-off scene description
+   ("a photo of a woman using a laptop in soft light"). Each entry states a
+   generative rule and 1–2 example applications, so it produces consistent
+   output across unrelated prompts, not one memorable output once.
+
+10. **Stop** when `APPROVED_VISUAL_DIRECTION.md` traces every grammar
+    element to a named strategy attribute or territory-scoring result, and
+    `VISUAL_ANTI_PATTERNS.md` gives a downstream skill or generator enough
+    to reject an off-direction asset without re-consulting this skill.
+
+### Checkpoints
+For `DEEP` mode or large multi-sub-brand scopes, checkpoint after step 3
+(territories built and divergence-audited, before scoring) and after step 7
+(direction selected, before grammar/anti-pattern/generation-language
+write-up). Record which territories survived the divergence audit, their
+scores, and the selection rationale, so a resumed run does not regenerate
+territories from scratch.
+
+## Outputs
+
+### Required output artifacts
+- `VISUAL_TERRITORIES.md` — all surviving territories (3–5) with full
+  8-axis definitions, cliché flags, scores, and status (selected /
+  runner-up / discarded).
+- `APPROVED_VISUAL_DIRECTION.md` — the canonical visual grammar of the
+  selected territory, with each element traced to strategy.
+- `VISUAL_ANTI_PATTERNS.md` — explicit forbidden moves: category clichés,
+  rejected-territory traits, supplied anti-references.
+- `GENERATION_LANGUAGE.md` — promptable, principle-level generation
+  language for briefing designers/generators/agents.
+
+### RUN_RESULT envelope
+```yaml
+RUN_RESULT:
+  status:      # COMPLETE | PARTIAL | BLOCKED
+  summary:
+  artifacts:   # [VISUAL_TERRITORIES.md, APPROVED_VISUAL_DIRECTION.md, VISUAL_ANTI_PATTERNS.md, GENERATION_LANGUAGE.md]
+  decisions:   # selected territory + why, cliché overrides taken
+  unresolved:  # e.g. requester tie-break needed between top 2 territories
+  handoff:     # recommended next skill + why
+  quality:     # gate results, incl. divergence-audit pass/fail
+```
+
+### Output schema
+See `schemas/output.schema.json`.
+
+## Handoffs
+- → `brand-identity-system` — primary handoff: passes
+  `APPROVED_VISUAL_DIRECTION.md`, `VISUAL_ANTI_PATTERNS.md`, and
+  `GENERATION_LANGUAGE.md` as the grammar to systematize into logo,
+  color/type specs, and asset templates. Also passes `BRAND_STRATEGY.md`
+  through unchanged (do not make the next skill re-derive strategic
+  rationale from this skill's artifacts alone).
+- → `creative-brief-generator` — when a specific campaign/asset brief is
+  needed from the approved direction before full systemization.
+- → `brand-quality-auditor` — when an existing/in-flight asset needs to be
+  checked against `APPROVED_VISUAL_DIRECTION.md` and
+  `VISUAL_ANTI_PATTERNS.md` rather than a new direction being built.
+
+## Failure modes
+- **False variety: territories are palette-swaps of one idea.** Detect:
+  divergence audit (step 3) finds territories agreeing on 4+ of 8 axes, or
+  all territories share the same composition/materiality/image-language
+  choice with only color changed. Fix: rebuild the colliding territory by
+  re-anchoring at least 3 axes to the opposite pole, re-derived from step
+  1's tensions — never by choosing a new accent color alone.
+- **Adjective-literalism.** Detect: a grammar element traces to "the
+  strategy says X, so we used the category-default visual for X" with no
+  intermediate reasoning. Fix: re-run step 1's derivation chain for that
+  attribute; if it still resolves to the category default, that default
+  must be the *deliberate, argued* choice, not the unexamined one.
+- **Generic AI-aesthetic default.** Detect: territory matches 2+ items on
+  `references/ai-slop-and-cliche-checklist.md` with no strategic override
+  recorded. Fix: flag per step 4; either argue the override explicitly or
+  rebuild that axis.
+- **Selected direction doesn't trace to strategy.** Detect:
+  `APPROVED_VISUAL_DIRECTION.md` contains a grammar rule with no cited
+  strategy attribute or score justification. Fix: add the trace or drop
+  the rule.
+- **Direction only covers hero imagery.** Detect: grammar is silent on
+  type logic, density, or UI/system implications (axes 3, 7, 8 from step
+  2). Fix: complete all 8 axes before marking `APPROVED_VISUAL_DIRECTION.md`
+  final.
+- **Discarded territories silently vanish.** Detect: `VISUAL_TERRITORIES.md`
+  shows fewer territories than were generated, or a discarded one has no
+  stated reason. Fix: every generated territory that survived the
+  divergence audit stays in the file with its status and score.
+
+## Quality gates
+Skill must satisfy `/QUALITY_GATES.md` skill-level gates 1–10, plus:
+- Every pair of surviving territories passes the divergence audit
+  (disagrees on 4+ of 8 axes, or the collision was resolved per step 3).
+- Every element of `APPROVED_VISUAL_DIRECTION.md` traces to a named
+  strategy attribute or a stated score rationale.
+- `VISUAL_ANTI_PATTERNS.md` is non-empty and includes at minimum the
+  flagged clichés from step 4.
+- `GENERATION_LANGUAGE.md` entries are principle-level (reusable across
+  unrelated assets), not single scene descriptions.
+- The grammar addresses composition, type, color, imagery, and at least
+  one of density/motion/UI — not hero-imagery-only.
+
+## Stop conditions
+- Normal completion: all four required artifacts produced, divergence
+  audit passed, selected direction traced to strategy, `status: COMPLETE`.
+- Blocked (insufficient input): `BRAND_STRATEGY.md` is missing, unlocked,
+  or lacks enough of positioning/promise/differentiation to derive visual
+  tensions from → `status: BLOCKED`, state exactly which strategy elements
+  are needed before territories can be generated.
+- Blocked (irreducible convergence): after two rebuild attempts in step 3,
+  fewer than 3 territories pass the divergence audit → `status: PARTIAL`,
+  surface the collision explicitly in `unresolved` rather than presenting
+  fewer, converged options as if they were the requested 3–5.
+- Never continue past presenting cosmetically different territories as
+  materially distinct, or a grammar rule with no strategic trace, as final.
+
+## Examples
+See `examples/` for worked input → output pairs (radiotomography-inspired
+finance product, Doré/codex-inspired personal OS, rose/ivory dental
+identity).
+
+## Evals
+See `evals/` — 3 core scenarios + 1 edge/failure case, per
+`/shared/templates/EVAL_TEMPLATE.md`.

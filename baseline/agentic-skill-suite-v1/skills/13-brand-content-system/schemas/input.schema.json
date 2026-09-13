@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brand Content System — RUN_REQUEST",
+  "type": "object",
+  "required": ["objective", "source_artifacts", "mode"],
+  "properties": {
+    "objective": { "type": "string" },
+    "source_artifacts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Must resolve to approved brand strategy + verbal identity, e.g. ['BRAND_STRATEGY.md', 'VERBAL_IDENTITY.md'] or ['BRAND_BOOK.md']."
+    },
+    "known_context": {
+      "type": "object",
+      "properties": {
+        "offer_funnel": { "type": "string" },
+        "channels_in_use": { "type": "array", "items": { "type": "string" } },
+        "production_capacity": { "type": "string" },
+        "vertical_constraints": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "desired_output": {
+      "type": "string",
+      "enum": ["full_system", "specific_artifact"],
+      "default": "full_system"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["STANDARD", "UPDATE", "AUDIT"]
+    },
+    "prior_run": {
+      "type": "string",
+      "description": "Path to prior CONTENT_SYSTEM.md, required when mode is UPDATE."
+    }
+  },
+  "if": {
+    "properties": { "mode": { "const": "UPDATE" } }
+  },
+  "then": {
+    "required": ["prior_run"]
+  }
+}

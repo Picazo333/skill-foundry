@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Suite Checkpoint",
+  "type": "object",
+  "required": ["phase", "completed", "next_exact_action"],
+  "properties": {
+    "phase": {"type": "string"},
+    "completed": {"type": "array"},
+    "partially_completed": {"type": "array"},
+    "files_created": {"type": "array"},
+    "tests_passed": {"type": "array"},
+    "tests_failed": {"type": "array"},
+    "known_issues": {"type": "array"},
+    "decisions_locked": {"type": "array"},
+    "next_exact_action": {"type": "string"},
+    "resume_command": {"type": "string"}
+  }
+}

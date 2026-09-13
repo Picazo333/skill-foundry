@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brand Visual Direction — RUN_RESULT",
+  "type": "object",
+  "required": ["status", "summary", "artifacts", "unresolved", "handoff", "quality"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["COMPLETE", "PARTIAL", "BLOCKED"]
+    },
+    "summary": { "type": "string" },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "VISUAL_TERRITORIES.md",
+          "APPROVED_VISUAL_DIRECTION.md",
+          "VISUAL_ANTI_PATTERNS.md",
+          "GENERATION_LANGUAGE.md"
+        ]
+      },
+      "description": "On status COMPLETE, must contain all four."
+    },
+    "decisions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "e.g. selected territory + why, cliché-flag overrides taken."
+    },
+    "unresolved": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "handoff": {
+      "type": "object",
+      "properties": {
+        "next_skill": { "type": "string" },
+        "reason": { "type": "string" }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "properties": {
+        "divergence_audit_passed": { "type": "boolean" },
+        "territory_count": { "type": "integer", "minimum": 0 },
+        "grammar_traced_to_strategy": { "type": "boolean" },
+        "cliche_flags_resolved": { "type": "boolean" }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "COMPLETE" } } },
+      "then": {
+        "properties": {
+          "artifacts": {
+            "type": "array",
+            "minItems": 4
+          }
+        }
+      }
+    }
+  ]
+}

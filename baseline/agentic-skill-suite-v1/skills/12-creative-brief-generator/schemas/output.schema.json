@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Creative Brief Generator — RUN_RESULT",
+  "type": "object",
+  "required": ["status", "summary", "artifacts", "unresolved", "handoff", "quality"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["COMPLETE", "PARTIAL", "BLOCKED"]
+    },
+    "summary": { "type": "string" },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "CREATIVE_BRIEF.md",
+          "ASSET_REQUIREMENTS.md",
+          "PRODUCTION_HANDOFF.md"
+        ]
+      },
+      "description": "On status COMPLETE, must contain all three."
+    },
+    "decisions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Message/priority calls made this run, including any rejected alternative message."
+    },
+    "unresolved": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Open flags: canon conflicts, missing assets, ambiguous priority. A request/canon conflict must appear here, never be silently resolved."
+    },
+    "handoff": {
+      "type": "object",
+      "properties": {
+        "next_skill": { "type": "string" },
+        "reason": { "type": "string" }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "properties": {
+        "mandatories_canon_traceable": { "type": "boolean" },
+        "single_key_message": { "type": "boolean" },
+        "acceptance_criteria_checkable": { "type": "boolean" },
+        "no_unsupported_claims": { "type": "boolean" },
+        "canon_conflicts_flagged_not_resolved": { "type": "boolean" }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "COMPLETE" } } },
+      "then": {
+        "properties": {
+          "artifacts": {
+            "type": "array",
+            "minItems": 3
+          }
+        }
+      }
+    }
+  ]
+}

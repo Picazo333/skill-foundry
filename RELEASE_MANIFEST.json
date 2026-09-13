@@ -1,0 +1,27 @@
+{
+  "release": "Skill Foundry Clean Start Audited",
+  "type": "full_repository_release",
+  "canonical_source": "FOUNDRY_CANON.md",
+  "canonical_source_preserved_verbatim": true,
+  "baseline": "AGENTIC_SKILL_SUITE_V1",
+  "baseline_file_count": 498,
+  "baseline_modified": false,
+  "normal_workflow": "foundry/workflows/SF-WF-001_SKILL_GENESIS.md",
+  "bootstrap_workflow": "foundry/workflows/SF-WF-002_BOOTSTRAP_V5.md",
+  "human_gate": "G6",
+  "outer_folder_in_zip": false,
+  "initial_prompts": [
+    "prompts/START_ANTIGRAVITY.md",
+    "prompts/START_CURSOR.md"
+  ],
+  "steady_state_prompts": [
+    "prompts/NEW_WORKFLOW_ANTIGRAVITY.md",
+    "prompts/AFTER_HUMAN_DECISION_ANTIGRAVITY.md",
+    "prompts/BUILD_APPROVED_CURSOR.md",
+    "prompts/AUDIT_CURSOR_BUILD_ANTIGRAVITY.md",
+    "prompts/REWORK_CURSOR.md",
+    "prompts/PUBLISH_AFTER_PASS_ANTIGRAVITY.md"
+  ],
+  "setup": "remote_first_two_clones_zero_terminal",
+  "start_here": "00_START_HERE.md"
+}

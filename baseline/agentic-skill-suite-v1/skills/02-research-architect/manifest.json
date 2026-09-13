@@ -1,0 +1,59 @@
+{
+  "id": "research-architect",
+  "name": "Research Architect",
+  "version": "1.0.1",
+  "category": "research",
+  "purpose": "Transform a raw idea/problem into an exhaustive, decision-oriented research architecture — a weighted, interconnected domain map and validated iteration program — before deep research; stops before executing the research itself.",
+  "triggers": [
+    "new business/market/product where correct research questions are not known",
+    "complex audit/strategy program requiring broad systematic domain discovery",
+    "user wants a 200+ iteration research architecture / exhaustive scope mapping"
+  ],
+  "non_triggers": [
+    "single factual lookup",
+    "narrow already-scoped comparison",
+    "deep research execution itself (live searches, sourced findings, answered questions)",
+    "simple technical fix",
+    "building/updating project canon from existing materials"
+  ],
+  "minimum_inputs": [
+    "raw project/research objective"
+  ],
+  "optional_inputs": [
+    "PROJECT_CANON.md",
+    "prior MASTER_RESEARCH_PROGRAM.md / CHECKPOINT.md",
+    "constraints",
+    "known evidence"
+  ],
+  "outputs": [
+    "PROJECT_RESEARCH_BRIEF.md",
+    "MASTER_RESEARCH_PROGRAM.md",
+    "DOMAIN_MAP.md",
+    "COVERAGE_DEBT.md",
+    "GAP_LEDGER.md",
+    "CHECKPOINT.md",
+    "EXECUTOR_START_PROMPT.md"
+  ],
+  "dependencies": [],
+  "handoffs_to": [
+    "canonical-context-builder",
+    "ai-resource-router"
+  ],
+  "quality_gates": [
+    "150+ valid scope-expansion iterations, each passing the material-delta/novelty test",
+    "50+ valid domain-polishing/consolidation iterations, each passing the material-delta/novelty test",
+    "key-area weighting drives iteration allocation, not blind equal distribution",
+    "Coverage Debt reflects state at Phase 3 close, revisited not snapshotted once",
+    "contradiction ledger, white-space ledger and primary-evidence triggers all present and none silently dropped",
+    "workflow-first automation/AI lens applied per applicable domain",
+    "canonical domain map is interconnected, not a flat list",
+    "all 10 final QA passes run and logged in order before packaging",
+    "stops before deep research execution in every mode, including AUTONOMOUS"
+  ],
+  "stop_conditions": [
+    "all 7 required artifacts produced, iteration minimums met, 10 QA passes complete -> COMPLETE",
+    "objective too ambiguous for even a master decision question -> BLOCKED, state what is needed",
+    "interrupted mid-run -> PARTIAL, CHECKPOINT.md holds exact resume state",
+    "never continue past the executor-ready package into deep research execution, in any mode"
+  ]
+}

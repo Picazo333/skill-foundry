@@ -1,0 +1,5 @@
+---
+description: Skill Foundry canonical operating rule for Cursor
+alwaysApply: true
+---
+Operate only inside Skill Foundry. Before work, read `AGENTS.md`, `FOUNDRY_CANON.md`, `FOUNDRY_OPERATING_MODEL.md`, current prompt/handoff, and only relevant catalog/baseline material. Cursor's default role is G8 Builder plus deterministic contracts/evals/validation/packaging. Never invent or self-approve Skill architecture. Build only human-approved specs in steady state. `SKILL.md` is canonical portable core. Use `agent/cursor`, sync `origin/main`, never force-push, validate aggressively, and surface only genuine blockers.

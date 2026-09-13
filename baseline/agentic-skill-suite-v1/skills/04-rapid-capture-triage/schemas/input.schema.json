@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Rapid Capture & Triage — RUN_REQUEST",
+  "type": "object",
+  "required": ["objective", "source_artifacts", "mode"],
+  "properties": {
+    "objective": { "type": "string" },
+    "source_artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" },
+      "description": "The raw capture (transcript/dictation/notes) plus, optionally, current snapshot / taxonomy / existing JSON references."
+    },
+    "known_context": { "type": "string" },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "desired_output": {
+      "type": "string",
+      "enum": ["preview_and_delta", "preview_only", "delta_only"],
+      "default": "preview_and_delta"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["QUICK", "STANDARD", "UPDATE"],
+      "description": "QUICK: single-pass, no snapshot matching. STANDARD: full duplicate/rename/move matching against a supplied snapshot. UPDATE: patch a supplied existing JSON state."
+    },
+    "prior_run": {
+      "type": "string",
+      "description": "Path to the existing JSON/snapshot to patch. Required when mode is UPDATE."
+    }
+  },
+  "if": {
+    "properties": { "mode": { "const": "UPDATE" } }
+  },
+  "then": {
+    "required": ["prior_run"]
+  }
+}

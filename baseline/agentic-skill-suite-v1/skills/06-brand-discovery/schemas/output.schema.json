@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brand Discovery — RUN_RESULT",
+  "type": "object",
+  "required": ["status", "summary", "artifacts", "unresolved", "handoff", "quality"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["COMPLETE", "PARTIAL", "BLOCKED"]
+    },
+    "summary": { "type": "string" },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "BRAND_DISCOVERY_BRIEF.md",
+          "DISCOVERY_GAPS.md",
+          "REFERENCE_MAP.md"
+        ]
+      },
+      "description": "On status COMPLETE, must contain all three."
+    },
+    "decisions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Expected empty or 'N/A, discovery only' — this skill does not decide positioning/strategy."
+    },
+    "unresolved": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Contradictions (step 5) and material gaps (DISCOVERY_GAPS.md), explicit."
+    },
+    "handoff": {
+      "type": "object",
+      "properties": {
+        "next_skill": { "type": "string" },
+        "reason": { "type": "string" }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "properties": {
+        "buckets_separated": { "type": "boolean" },
+        "anti_references_captured": { "type": "boolean" },
+        "business_objective_explicit": { "type": "boolean" },
+        "no_premature_design_or_strategy": { "type": "boolean" },
+        "gap_list_materiality_filtered": { "type": "boolean" }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "COMPLETE" } } },
+      "then": {
+        "properties": {
+          "artifacts": {
+            "type": "array",
+            "minItems": 3
+          }
+        }
+      }
+    }
+  ]
+}

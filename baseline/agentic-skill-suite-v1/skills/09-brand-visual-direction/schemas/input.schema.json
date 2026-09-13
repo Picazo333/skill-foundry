@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brand Visual Direction — RUN_REQUEST",
+  "type": "object",
+  "required": ["objective", "source_artifacts", "mode"],
+  "properties": {
+    "objective": { "type": "string" },
+    "source_artifacts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Must include BRAND_STRATEGY.md (or a path to it)."
+    },
+    "known_context": {
+      "type": "string",
+      "description": "Visual references, anti-references, prior rejected territories."
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "e.g. \"print-only\", \"no motion budget\", \"must extend to 6 sub-brands\"."
+    },
+    "desired_output": {
+      "type": "string",
+      "enum": ["full_territory_set", "selected_direction_only", "generation_language_only"],
+      "default": "full_territory_set"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["QUICK", "STANDARD", "DEEP", "UPDATE"]
+    },
+    "prior_run": {
+      "type": "string",
+      "description": "Path to prior VISUAL_TERRITORIES.md / APPROVED_VISUAL_DIRECTION.md. Required when mode is UPDATE."
+    }
+  },
+  "if": {
+    "properties": { "mode": { "const": "UPDATE" } }
+  },
+  "then": {
+    "required": ["prior_run"]
+  }
+}

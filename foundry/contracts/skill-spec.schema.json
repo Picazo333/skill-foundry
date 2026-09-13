@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Skill Foundry Approved Spec Frontmatter",
+  "type": "object",
+  "required": ["status", "candidate_id", "skill_id", "change_kind"],
+  "properties": {
+    "status": {"const": "APPROVED_FOR_BUILD"},
+    "candidate_id": {"type": "string", "minLength": 1},
+    "skill_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "change_kind": {"type": "string", "enum": ["EXTEND", "MODE", "DEPENDENT_SKILL", "NEW_SKILL"]},
+    "target_skill_id": {"type": ["string", "null"]}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"change_kind": {"enum": ["EXTEND", "MODE", "DEPENDENT_SKILL"]}}},
+      "then": {"required": ["target_skill_id"], "properties": {"target_skill_id": {"type": "string", "minLength": 1}}}
+    }
+  ],
+  "additionalProperties": true
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brand Discovery — RUN_REQUEST",
+  "type": "object",
+  "required": ["objective", "source_artifacts", "mode"],
+  "properties": {
+    "objective": { "type": "string" },
+    "source_artifacts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Raw context, interviews, analytics, competitor notes, existing brand materials, named references/anti-references."
+    },
+    "known_context": {
+      "type": "string",
+      "description": "Prior PROJECT_CANON.md or prior discovery brief content, if any."
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "desired_output": {
+      "type": "string",
+      "enum": ["full_discovery_set", "gap_list_only", "reference_map_only"],
+      "default": "full_discovery_set"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["STANDARD", "UPDATE", "QUICK"]
+    },
+    "prior_run": {
+      "type": "string",
+      "description": "Path to prior BRAND_DISCOVERY_BRIEF.md or checkpoint. Required when mode is UPDATE."
+    }
+  },
+  "if": {
+    "properties": { "mode": { "const": "UPDATE" } }
+  },
+  "then": {
+    "required": ["prior_run"]
+  }
+}

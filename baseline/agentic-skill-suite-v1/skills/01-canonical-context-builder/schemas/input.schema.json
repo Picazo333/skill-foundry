@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Canonical Context Builder — RUN_REQUEST",
+  "type": "object",
+  "required": ["objective", "mode"],
+  "properties": {
+    "objective": { "type": "string" },
+    "source_artifacts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Paths/references to project materials or the current canonical artifact."
+    },
+    "known_context": { "type": "string" },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "desired_output": {
+      "type": "string",
+      "enum": ["full_canon_set", "delta_only", "specific_artifact"],
+      "default": "full_canon_set"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["STANDARD", "UPDATE"]
+    },
+    "prior_run": {
+      "type": "string",
+      "description": "Path to prior PROJECT_CANON.md or checkpoint. Required when mode is UPDATE."
+    }
+  },
+  "if": {
+    "properties": { "mode": { "const": "UPDATE" } }
+  },
+  "then": {
+    "required": ["prior_run"]
+  }
+}

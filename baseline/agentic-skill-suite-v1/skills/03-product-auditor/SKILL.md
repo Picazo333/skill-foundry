@@ -1,0 +1,274 @@
+---
+name: product-auditor
+description: Inspects an existing app, repo or product, verifies issues and opportunities against evidence, and produces an implementation plan precise enough for an execution agent, without writing or editing production code itself; use for an audit or QA of delivered work against a prior plan, not for generic feature ideation with no current-state inspection.
+---
+
+# Product Auditor & Implementation Architect
+
+> Canonical skill definition. Adapters in `adapters/` are thin wrappers over
+> this file — they may not change purpose, procedure, outputs, quality gates
+> or stop conditions. See `/PORTABILITY.md` and `/shared/adapters/README.md`.
+
+## Identity
+- **ID:** `product-auditor`
+- **Category:** product
+- **Version:** `1.0.0`
+- **Purpose:** Inspect an existing app/repo/product, verify issues and
+  opportunities against evidence, and produce an implementation plan precise
+  enough for an execution agent to build from — without implementing during
+  audit mode.
+
+## Trigger
+Use this skill when:
+- A user is dictating UX bugs/features while navigating a live app
+  ("Astra-style" walkthrough audit).
+- A precise, agent-ready implementation plan is needed for an existing
+  product/app before handing work to an execution agent.
+- Delivered work from an execution agent needs to be verified against a
+  prior `IMPLEMENTATION_PLAN.md` (`mode: QA`).
+
+## Non-trigger
+Do not use this skill for:
+- Writing or editing production code — in `mode: AUDIT` this skill produces
+  a plan and stops; in `mode: QA` it verifies, it does not fix. Route actual
+  implementation to `ai-resource-router` → an execution agent.
+- Generic feature ideation with no current-state inspection — that has no
+  evidence to audit against; do canonical/brand discovery work instead.
+- Replacing an approved design direction on aesthetic preference alone,
+  with no reproduced bug, contradicted requirement, or canon conflict as
+  evidence.
+- Building the product's canonical source of truth from scratch — that is
+  `canonical-context-builder`, which this skill consumes and hands back to.
+
+## Context policy
+- **REQUIRED_CONTEXT:**
+  - `mode: AUDIT` — access to the current product/app/repo (routes, states,
+    relevant data), and the audit objective (what triggered the audit: a
+    dictated bug list, a feature request, a scheduled QA pass).
+  - `mode: QA` — the prior `IMPLEMENTATION_PLAN.md` and `REGRESSION_MATRIX.md`
+    it is auditing against, plus access to the delivered work (diff, build,
+    or deployed app) to verify against them.
+- **OPTIONAL_CONTEXT:** `PROJECT_CANON.md`, screenshots, a raw issue list,
+  a prior audit (`PRODUCT_AUDIT.md`), a JSON/data model, a mobile build.
+- **DO_NOT_LOAD_BY_DEFAULT:** the full conversation history once source
+  artifacts exist; unrelated repos/products; other skills' canon (brand
+  canon, unrelated project canon) unless the audit objective explicitly
+  concerns cross-product parity.
+
+Prefer canonical artifacts (`PROJECT_CANON.md`, prior `PRODUCT_AUDIT.md`,
+prior `IMPLEMENTATION_PLAN.md`) over conversational memory
+(`/ARCHITECTURE.md`).
+
+## Inputs
+
+### Minimum inputs
+- Repo/app/artifacts to inspect (AUDIT) or delivered work to verify (QA).
+- The audit objective (AUDIT) or the prior plan being QA'd against (QA).
+
+### Optional inputs
+- `PROJECT_CANON.md`
+- Screenshots
+- Raw issue list
+- Prior `PRODUCT_AUDIT.md`
+- JSON/data model
+- Mobile build
+
+### RUN_REQUEST envelope
+```yaml
+RUN_REQUEST:
+  objective:            # e.g. "audit dictated UX bugs on checkout flow" | "QA phase-2 delivery against plan"
+  source_artifacts:      # repo path/URL, app build, screenshots, issue list, diff/PR to verify
+  known_context:          # PROJECT_CANON.md excerpt, prior audit summary, if available
+  constraints:            # e.g. "desktop only this pass", "no schema changes allowed"
+  desired_output:         # full_artifact_set | specific_artifact
+  mode: AUDIT              # AUDIT (inspect + plan, never implement) | QA (verify delivered work against prior plan)
+  prior_run:               # path to prior IMPLEMENTATION_PLAN.md / REGRESSION_MATRIX.md / PRODUCT_AUDIT.md — required when mode is QA
+```
+
+## Procedure
+
+### Phase A — inspection (both modes)
+1. **Inspect current state.** Walk the product across routes, states and
+   relevant data (or, in `mode: QA`, walk the specific routes/states the
+   prior plan's `REGRESSION_MATRIX.md` and acceptance criteria named).
+   Record what was actually observed, not assumed.
+2. **Reproduce or verify.** For every reported issue, attempt to reproduce
+   it against the running app/repo. Tag each finding `confirmed` (reproduced
+   or directly evidenced in code/data) or `suspected` (plausible but not
+   independently verified) — never blend the two into a single undifferentiated
+   list.
+3. **Compare against canon and prior work.** Check current behavior against
+   `PROJECT_CANON.md` (if supplied) and any prior `PRODUCT_AUDIT.md` or
+   `IMPLEMENTATION_PLAN.md`. Note contradictions between current behavior and
+   locked decisions, and note anything a prior audit already flagged as
+   fixed but that inspection shows is still broken.
+4. **Classify findings.** Bucket each finding as: regression, missing
+   feature, redundant/dead UI, data-integrity risk, mobile/desktop parity
+   gap, or simplification opportunity.
+
+### Phase B1 — AUDIT mode (produce the plan, do not implement)
+5. **Prioritize.** Assign each approved finding a severity (P0–P3, see
+   `references/severity-and-priority-scoring.md`) and a complexity estimate.
+   Split into: implement-now, backlog, discard (with a one-line reason for
+   discard — silently dropping a reported issue is a failure mode, not a
+   simplification).
+6. **Specify each implement-now change.** For every item going into
+   `IMPLEMENTATION_PLAN.md`, specify: the problem, the target behavior,
+   affected components/data/routes, dependencies on other plan items, risks,
+   what must NOT be touched (protected existing behavior), the tests that
+   prove it, and the acceptance criteria. Use
+   `references/agent-ready-plan-structure.md` — an executor must not need to
+   re-interpret product intent.
+7. **Sequence for safety.** Order implementation items to protect data
+   safety first (migrations/data-shape changes before dependent UI changes)
+   and to avoid rework (shared-dependency items before the items that build
+   on them). Any data migration gets its own explicit step with a rollback
+   note.
+8. **Define parity and no-regression tests.** Populate
+   `REGRESSION_MATRIX.md` with the desktop/mobile parity checks and
+   no-regression checks that must hold after implementation — derived from
+   what Phase A actually found working, not a generic checklist.
+9. **Generate the handoff and stop.** Write `HANDOFF_PROMPT.md` for the next
+   execution step (typically via `ai-resource-router`). **Do not write or
+   edit any product code, config, or data in this mode — even if the
+   objective or a mid-run request asks for a fix.** If asked to implement
+   mid-run, restate the boundary and continue producing the plan instead.
+
+### Phase B2 — QA mode (verify, do not fix)
+5. **Load the plan being audited.** Read the `IMPLEMENTATION_PLAN.md` and
+   `REGRESSION_MATRIX.md` named in `prior_run`. These are the acceptance
+   contract — QA mode does not re-derive new intent, it checks delivery
+   against what was specified.
+6. **Verify each plan item.** For every `IMPLEMENTATION_PLAN.md` item, mark
+   it `done` (acceptance criteria met, evidenced), `partial` (some but not
+   all acceptance criteria met — specify exactly which are missing), or
+   `not done`. Cite the evidence (route walked, test run, code inspected)
+   for each verdict — a verdict with no evidence is not a valid QA finding.
+7. **Run the regression matrix.** Execute/verify every check in
+   `REGRESSION_MATRIX.md`; record pass/fail per check, per platform
+   (desktop/mobile) where applicable.
+8. **Classify new findings.** Anything found during QA that was not in the
+   original plan (a new regression the delivered work introduced, scope the
+   executor added unasked) is classified the same way as Phase A step 4 and
+   flows into a follow-up `IMPLEMENTATION_PLAN.md` covering only the
+   not-done/partial items and any newly found regressions — never silently
+   folded into "done".
+9. **Generate the handoff and stop.** Write `HANDOFF_PROMPT.md` recommending
+   next steps: back to an execution agent (via `ai-resource-router`) for
+   remaining/regression items, or to `canonical-context-builder` to fold
+   confirmed-complete decisions into canon. **Do not fix any not-done or
+   partial item in this mode** — QA reports status, it does not implement.
+
+### Checkpoints
+For a multi-route/multi-screen audit, checkpoint after Phase A step 4
+(inspection + classification complete, before prioritization/verification),
+recording the finding count by confirmed/suspected and by category, so a
+resumed run does not re-walk routes already inspected.
+
+## Outputs
+
+### Required output artifacts
+- `PRODUCT_AUDIT.md` — findings from Phase A: confirmed vs. suspected,
+  classified, with evidence. In QA mode this becomes the verification
+  report (per-item verdicts + evidence).
+- `IMPLEMENTATION_PLAN.md` — the agent-ready spec for implement-now items
+  (AUDIT mode), or the follow-up plan for not-done/partial/newly-found items
+  (QA mode).
+- `REGRESSION_MATRIX.md` — desktop/mobile parity and no-regression checks
+  (AUDIT mode: defined; QA mode: executed with pass/fail results).
+- `QA_CONTRACT.md` — the acceptance contract an execution agent and QA are
+  both bound to: exactly what "done" means for each plan item.
+- `HANDOFF_PROMPT.md` — the next-step handoff, self-sufficient from
+  artifacts alone.
+
+### RUN_RESULT envelope
+```yaml
+RUN_RESULT:
+  status:      # COMPLETE | PARTIAL | BLOCKED
+  summary:
+  artifacts:   # subset/all of the five required artifacts
+  decisions:   # e.g. items approved as implement-now, or verdicts locked in QA
+  unresolved:  # suspected-but-unconfirmed issues, backlog items, open QA questions
+  handoff:     # recommended next skill + why
+  quality:     # gate results, see schemas/output.schema.json
+```
+
+### Output schema
+See `schemas/output.schema.json`.
+
+## Handoffs
+- → `ai-resource-router` — to select the execution agent/model and dispatch
+  `IMPLEMENTATION_PLAN.md` + `QA_CONTRACT.md` for building (from AUDIT mode)
+  or for fixing remaining items (from QA mode).
+- → `canonical-context-builder` — after QA confirms items done, to fold the
+  now-verified decisions/state into canon (`mode: UPDATE`).
+
+## Failure modes
+- **Implementing during AUDIT mode.** Detect: any product code, config, or
+  data file was created/edited during a run with `mode: AUDIT`. Fix: this is
+  a hard stop-condition violation — revert the run's intent to plan-only,
+  never ship the edit. This is the suite's load-bearing gate
+  (`QUALITY_GATES.md` #6); no objective or mid-run request overrides it.
+- **Fixing during QA mode.** Detect: a QA run's output includes a code
+  change rather than a verdict. Fix: convert the intended fix into a
+  follow-up `IMPLEMENTATION_PLAN.md` item instead of applying it.
+- **Blending confirmed and suspected findings.** Detect: `PRODUCT_AUDIT.md`
+  states a suspected issue as fact. Fix: tag explicitly; unconfirmed items
+  never enter `IMPLEMENTATION_PLAN.md` as implement-now without a
+  reproduction step first.
+- **Silently discarding a reported issue.** Detect: an item from the
+  original issue list/dictation has no trace in any output artifact. Fix:
+  every input finding lands in implement-now, backlog, or discard (with
+  reason) — never disappears.
+- **Vague plan items an executor must reinterpret.** Detect: a plan item
+  lacks acceptance criteria, affected components, or a "do not touch" list.
+  Fix: apply `references/agent-ready-plan-structure.md` before finalizing.
+- **Implicit or missing data migrations.** Detect: a plan item changes a
+  data shape without a named migration step and rollback note. Fix: add an
+  explicit migration step before the dependent UI/behavior item in the
+  sequence.
+- **Mobile parity left implicit.** Detect: `REGRESSION_MATRIX.md` has no
+  mobile-specific row for a change that touches shared UI. Fix: add explicit
+  desktop/mobile rows; if the product has no mobile surface, state that
+  explicitly rather than omitting the section.
+- **QA verdicts without evidence.** Detect: a `done`/`not done` verdict in
+  QA mode cites no route walked, test run, or code inspected. Fix: mark it
+  `unable to verify` and list what's needed, rather than guessing a verdict.
+
+## Quality gates
+Must satisfy `/QUALITY_GATES.md` skill-level gates 1–10, plus:
+- **No product code/config/data written or edited during `mode: AUDIT`**
+  (suite-level gate `QUALITY_GATES.md` #6 — the single most important gate
+  for this skill).
+- No product code/config/data fixed during `mode: QA` — only verified.
+- Every `PRODUCT_AUDIT.md` finding is tagged confirmed or suspected.
+- Every `IMPLEMENTATION_PLAN.md` item has affected components, a "do not
+  touch" list, tests, and acceptance criteria.
+- Every data-shape change has an explicit migration + rollback note.
+- `REGRESSION_MATRIX.md` addresses mobile parity explicitly (present or
+  explicitly not-applicable).
+- No approved existing feature is silently removed or altered by a plan
+  item without that being the item's stated, approved purpose.
+
+## Stop conditions
+- Normal completion (AUDIT): all five artifacts produced, every finding
+  classified, `HANDOFF_PROMPT.md` points to `ai-resource-router`,
+  `status: COMPLETE`, no code written.
+- Normal completion (QA): all five artifacts produced/updated, every plan
+  item has a cited-evidence verdict, `status: COMPLETE`.
+- Blocked: cannot access the app/repo, or (QA mode) the prior
+  `IMPLEMENTATION_PLAN.md`/`REGRESSION_MATRIX.md` referenced in `prior_run`
+  is missing → `status: BLOCKED`, state exactly what access/artifact is
+  needed.
+- Never continue past: writing/editing product code in AUDIT mode; fixing
+  an item instead of reporting its verdict in QA mode; presenting a
+  suspected issue as confirmed; silently dropping a reported item.
+
+## Examples
+See `examples/` for one worked input → output pair per required eval
+scenario (local-first app audit, responsive brand-site audit, QA against a
+prior plan).
+
+## Evals
+See `evals/` — 3 core scenarios (per `SPEC.md`) + 1 edge/failure case, using
+`/shared/templates/EVAL_TEMPLATE.md`.

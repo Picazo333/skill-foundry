@@ -1,0 +1,61 @@
+{
+  "id": "brand-book-builder",
+  "name": "Brand Book Builder",
+  "version": "1.0.1",
+  "category": "brand",
+  "purpose": "Compile validated verbal identity and visual/identity system canon into one coherent, usable brand manual - without reopening upstream decisions or inventing rules to fill compilation gaps.",
+  "triggers": [
+    "both verbal identity artifacts and identity system artifacts exist for the same brand",
+    "a client-facing or operational brand book/manual is needed",
+    "the brand workflow has reached the point where verbal and visual identity both feed a single compiled artifact"
+  ],
+  "non_triggers": [
+    "brand discovery, strategy, voice, or visual-system derivation",
+    "fixing a poor or thin upstream artifact by inventing better rules while compiling",
+    "auditing existing production copy/design against canon",
+    "only one of verbal or visual canon exists for the brand"
+  ],
+  "minimum_inputs": [
+    "VERBAL_IDENTITY.md",
+    "MESSAGE_HIERARCHY.md",
+    "VOICE_EXAMPLES.md",
+    "IDENTITY_SYSTEM.md",
+    "DESIGN_TOKENS.json",
+    "APPLICATION_RULES.md"
+  ],
+  "optional_inputs": [
+    "BRAND_STRATEGY.md",
+    "intended book audience",
+    "format constraints",
+    "existing example assets/photography"
+  ],
+  "outputs": [
+    "BRAND_BOOK.md",
+    "BRAND_BOOK_OUTLINE.md",
+    "BRAND_BOOK_ASSET_CHECKLIST.md"
+  ],
+  "dependencies": [
+    "brand-verbal-identity",
+    "brand-identity-system"
+  ],
+  "handoffs_to": [
+    "creative-brief-generator",
+    "brand-content-system",
+    "brand-quality-auditor",
+    "brand-verbal-identity",
+    "brand-identity-system"
+  ],
+  "quality_gates": [
+    "every rule in BRAND_BOOK.md traces to one of the 6 source artifacts, none invented",
+    "no two sections state contradictory rules without an explicit flagged note",
+    "the verbal/visual coherence check has run and findings are stated in RUN_RESULT.unresolved",
+    "BRAND_BOOK_ASSET_CHECKLIST.md lists every missing example and every coherence gap",
+    "the book passes the usability test without requiring upstream chat context"
+  ],
+  "stop_conditions": [
+    "all three required artifacts produced, coherence check run, usability test passed -> COMPLETE",
+    "one or more of the 6 required upstream artifacts missing -> BLOCKED, name which artifact(s) and owning skill",
+    "coherence gap serious enough to misrepresent the brand as aligned -> PARTIAL, book still produced with gap flagged",
+    "never present a coherence gap as resolved or publish an untraceable rule"
+  ]
+}

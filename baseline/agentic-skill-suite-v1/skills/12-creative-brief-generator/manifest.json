@@ -1,0 +1,57 @@
+{
+  "id": "creative-brief-generator",
+  "name": "Creative Brief Generator",
+  "version": "1.0.1",
+  "category": "brand",
+  "purpose": "Translate brand canon plus a specific business objective into an execution-ready brief for web, campaign, social, video, deck, packaging or generated media.",
+  "triggers": [
+    "concrete creative deliverable needed (a named asset, not generic ideas)",
+    "brand canon exists (at minimum strategy + verbal identity)",
+    "next step is handoff to a production agent/designer/copywriter/team"
+  ],
+  "non_triggers": [
+    "defining or revising brand strategy, positioning or voice",
+    "generic ideation without a concrete objective",
+    "producing final assets (copy/layouts/renders) by default",
+    "QA of an already-produced asset against canon"
+  ],
+  "minimum_inputs": [
+    "brand canon (strategy + verbal identity minimum; + visual identity for visual deliverables)",
+    "deliverable objective"
+  ],
+  "optional_inputs": [
+    "channel",
+    "audience",
+    "offer",
+    "CTA",
+    "constraints (budget/legal/technical/deadline)",
+    "references",
+    "deadline",
+    "content brief from brand-content-system"
+  ],
+  "outputs": [
+    "CREATIVE_BRIEF.md",
+    "ASSET_REQUIREMENTS.md",
+    "PRODUCTION_HANDOFF.md"
+  ],
+  "dependencies": [
+    "brand-book-builder"
+  ],
+  "handoffs_to": [
+    "brand-quality-auditor",
+    "brand-content-system"
+  ],
+  "quality_gates": [
+    "every brand mandatory cites the canon section it came from",
+    "exactly one key message and one CTA per deliverable",
+    "every acceptance criterion is checkable by brand-quality-auditor",
+    "no claim appears without a canon or approved-offer source",
+    "a detected canon conflict is visible in unresolved, never silently resolved"
+  ],
+  "stop_conditions": [
+    "all three required artifacts produced, single resolved message, canon-traceable mandatories, QA-checkable acceptance criteria -> COMPLETE",
+    "canon does not cover the deliverable's required layer, or no canon supplied -> BLOCKED, name the missing canon artifact",
+    "request conflicts with a locked canon constraint canon does not unambiguously resolve -> flag in unresolved, do not silently pick a side",
+    "never present two conflicting key messages, an unsupported claim, or a canon conflict as resolved when it wasn't"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "<skill-id>",
+  "name": "<Skill Name>",
+  "version": "1.0.0",
+  "category": "<category>",
+  "purpose": "<purpose>",
+  "triggers": [],
+  "non_triggers": [],
+  "minimum_inputs": [],
+  "optional_inputs": [],
+  "outputs": [],
+  "dependencies": [],
+  "handoffs_to": [],
+  "quality_gates": [],
+  "stop_conditions": []
+}

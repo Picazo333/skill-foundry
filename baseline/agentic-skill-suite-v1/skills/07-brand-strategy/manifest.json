@@ -1,0 +1,53 @@
+{
+  "id": "brand-strategy",
+  "name": "Brand Strategy",
+  "version": "1.0.1",
+  "category": "brand",
+  "purpose": "Convert discovery and evidence into a defensible strategy: category, audience, positioning, promise, value proposition, differentiation, proof and guardrails.",
+  "triggers": [
+    "a BRAND_DISCOVERY_BRIEF.md exists and is adequate",
+    "positioning is needed before identity (verbal or visual) work",
+    "repositioning an existing brand"
+  ],
+  "non_triggers": [
+    "writing the brand book / verbal system",
+    "choosing fonts, colors, or visual system",
+    "generating social posts or production content",
+    "building the discovery brief itself from raw research"
+  ],
+  "minimum_inputs": [
+    "BRAND_DISCOVERY_BRIEF.md"
+  ],
+  "optional_inputs": [
+    "research findings",
+    "competitor map",
+    "voice-of-customer (VoC) evidence",
+    "business model documentation",
+    "prior BRAND_STRATEGY.md / POSITIONING_SYSTEM.md (mode: UPDATE)"
+  ],
+  "outputs": [
+    "BRAND_STRATEGY.md",
+    "POSITIONING_SYSTEM.md",
+    "STRATEGIC_GUARDRAILS.md"
+  ],
+  "dependencies": [
+    "brand-discovery"
+  ],
+  "handoffs_to": [
+    "brand-verbal-identity",
+    "brand-visual-direction",
+    "brand-skill-orchestrator"
+  ],
+  "quality_gates": [
+    "positioning is not generic (passes commoditization swap test)",
+    "differentiation connects to evidence, not invention",
+    "discarded alternatives documented with specific reasons",
+    "guardrails are operational, not mood words",
+    "no visual- or verbal-execution leakage into strategy artifacts"
+  ],
+  "stop_conditions": [
+    "all three artifacts produced, commoditization test passed, discarded territories documented -> COMPLETE",
+    "discovery brief lacks audience evidence/competitive frame/distinguishing fact -> BLOCKED, state what's missing, recommend re-running brand-discovery",
+    "never ship a position that fails the commoditization swap test or invents unsupported differentiation"
+  ]
+}

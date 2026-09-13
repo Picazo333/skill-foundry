@@ -1,0 +1,34 @@
+{
+  "delta_id": "<capture-run-id>",
+  "generated_from": "CAPTURE_PREVIEW.md",
+  "run_date": "<date>",
+  "mode": "QUICK | STANDARD | UPDATE",
+  "base_snapshot": "<path to snapshot/JSON this delta was matched against, or null>",
+  "operations": [
+    {
+      "op": "create | rename | move | remove | update | preserve",
+      "type": "project | process | task | recurrent | supervision | doubt | idea | backlog",
+      "target_id": "<existing item id if matched, null if new>",
+      "target_path": "<parent path, e.g. project/process this belongs under>",
+      "fields": {
+        "name": "<new or unchanged name>",
+        "description": "<only if the capture stated one>",
+        "priority": "<only if explicitly stated; omit rather than infer>",
+        "due": "<only if explicitly stated; omit rather than infer>"
+      },
+      "previous_fields": {
+        "name": "<prior value, for rename/update ops only>"
+      },
+      "source_fragment": "<verbatim text this operation traces to>",
+      "capture_order": 0,
+      "confidence": "explicit | inferred_from_match",
+      "duplicate_of": null
+    }
+  ],
+  "unresolved_ref": "AMBIGUITIES.md",
+  "consistency_check": {
+    "every_operation_has_preview_line": true,
+    "no_operation_touches_ambiguous_item": true,
+    "no_unmentioned_field_altered": true
+  }
+}

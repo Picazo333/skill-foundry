@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Portable Skill Manifest",
+  "type": "object",
+  "required": ["id", "name", "version", "category", "purpose", "triggers", "non_triggers", "outputs"],
+  "properties": {
+    "id": {"type": "string"},
+    "name": {"type": "string"},
+    "version": {"type": "string"},
+    "category": {"type": "string"},
+    "purpose": {"type": "string"},
+    "triggers": {"type": "array", "items": {"type": "string"}},
+    "non_triggers": {"type": "array", "items": {"type": "string"}},
+    "minimum_inputs": {"type": "array", "items": {"type": "string"}},
+    "optional_inputs": {"type": "array", "items": {"type": "string"}},
+    "outputs": {"type": "array", "items": {"type": "string"}},
+    "dependencies": {"type": "array", "items": {"type": "string"}},
+    "handoffs_to": {"type": "array", "items": {"type": "string"}},
+    "quality_gates": {"type": "array", "items": {"type": "string"}},
+    "stop_conditions": {"type": "array", "items": {"type": "string"}}
+  }
+}

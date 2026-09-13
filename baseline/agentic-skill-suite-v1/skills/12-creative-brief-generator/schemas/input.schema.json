@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Creative Brief Generator — RUN_REQUEST",
+  "type": "object",
+  "required": ["objective", "source_artifacts", "mode"],
+  "properties": {
+    "objective": {
+      "type": "string",
+      "description": "The deliverable and the business/communication goal it serves, e.g. 'landing page hero for Q3 pricing launch'."
+    },
+    "source_artifacts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Brand canon: BRAND_BOOK.md, or STRATEGY.md + VERBAL_IDENTITY.md (+ VISUAL_IDENTITY.md for visual deliverables), optionally plus CONTENT_PILLARS.md or a content brief from brand-content-system."
+    },
+    "known_context": {
+      "type": "object",
+      "properties": {
+        "deliverable_type": { "type": "string" },
+        "channel": { "type": "string" },
+        "audience": { "type": "string" },
+        "offer": { "type": "string" },
+        "cta": { "type": "string" },
+        "references": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "e.g. budget cap, legal/compliance rule, technical limitation, hard deadline."
+    },
+    "desired_output": {
+      "type": "string",
+      "enum": ["full_brief_set", "specific_artifact"],
+      "default": "full_brief_set"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["QUICK", "STANDARD", "UPDATE"]
+    },
+    "prior_run": {
+      "type": "string",
+      "description": "Path to prior CREATIVE_BRIEF.md set. Required when mode is UPDATE."
+    }
+  },
+  "if": {
+    "properties": { "mode": { "const": "UPDATE" } }
+  },
+  "then": {
+    "required": ["prior_run"]
+  }
+}

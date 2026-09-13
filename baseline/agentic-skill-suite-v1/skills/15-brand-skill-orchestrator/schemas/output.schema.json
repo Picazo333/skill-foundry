@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brand Skill Orchestrator — RUN_RESULT",
+  "type": "object",
+  "required": ["status", "summary", "artifacts", "unresolved", "handoff", "quality"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["COMPLETE", "PARTIAL", "BLOCKED"]
+    },
+    "summary": { "type": "string" },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "BRAND_WORKFLOW_STATE.md",
+          "NEXT_SKILL_RUN.json",
+          "HANDOFF_PACKAGES/",
+          "COMPLETION_REPORT.md"
+        ]
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "unresolved": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "handoff": {
+      "type": "object",
+      "properties": {
+        "next_skill": {
+          "type": "string",
+          "enum": [
+            "brand-discovery", "brand-strategy", "brand-verbal-identity",
+            "brand-visual-direction", "brand-identity-system",
+            "brand-book-builder", "creative-brief-generator",
+            "brand-content-system", "brand-quality-auditor",
+            "research-architect", "ai-resource-router",
+            "canonical-context-builder", "none"
+          ]
+        },
+        "reason": { "type": "string" },
+        "run_request": { "type": "object" }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "properties": {
+        "no_stage_rerun_without_cause": { "type": "boolean" },
+        "no_domain_work_performed": { "type": "boolean" },
+        "resumable_from_workflow_state_alone": { "type": "boolean" }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "COMPLETE" } } },
+      "then": {
+        "properties": {
+          "artifacts": {
+            "contains": { "const": "COMPLETION_REPORT.md" }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "status": { "const": "PARTIAL" } } },
+      "then": {
+        "properties": {
+          "artifacts": {
+            "contains": { "const": "NEXT_SKILL_RUN.json" }
+          }
+        }
+      }
+    }
+  ]
+}

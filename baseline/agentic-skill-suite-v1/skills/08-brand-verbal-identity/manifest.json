@@ -1,0 +1,53 @@
+{
+  "id": "brand-verbal-identity",
+  "name": "Brand Verbal Identity",
+  "version": "1.0.1",
+  "category": "brand",
+  "purpose": "Convert a locked brand strategy into an operational verbal identity system - behavioral voice principles, tone modulation, vocabulary rules, message hierarchy, and DO/DON'T examples - not merely a list of adjectives.",
+  "triggers": [
+    "BRAND_STRATEGY.md exists with a locked positioning statement and value proposition",
+    "multiple writers/agents/channels need repeatable voice and copy consistency",
+    "brand workflow has reached the strategy to verbal/visual fork"
+  ],
+  "non_triggers": [
+    "long-form content strategy or editorial calendar execution",
+    "final visual system (color, type, imagery, layout)",
+    "one-off copy request with no reusable need",
+    "no BRAND_STRATEGY.md exists yet"
+  ],
+  "minimum_inputs": [
+    "BRAND_STRATEGY.md with a locked positioning statement and value proposition"
+  ],
+  "optional_inputs": [
+    "existing copy samples",
+    "customer language (reviews, transcripts, verbatims)",
+    "compliance/legal/regulatory constraints",
+    "target channel list"
+  ],
+  "outputs": [
+    "VERBAL_IDENTITY.md",
+    "MESSAGE_HIERARCHY.md",
+    "VOICE_EXAMPLES.md"
+  ],
+  "dependencies": [
+    "brand-strategy"
+  ],
+  "handoffs_to": [
+    "brand-book-builder",
+    "brand-content-system",
+    "creative-brief-generator",
+    "brand-quality-auditor"
+  ],
+  "quality_gates": [
+    "every voice principle is behavioral and traces to a BRAND_STRATEGY.md line",
+    "every voice principle has at least one DO and one DON'T example",
+    "prohibited-claims section present whenever compliance constraints apply",
+    "every message pillar maps 1:1 to a strategy differentiator or proof point",
+    "voice is not dependent on founder imitation"
+  ],
+  "stop_conditions": [
+    "all three required artifacts produced and 4+ channel stress test run -> COMPLETE",
+    "BRAND_STRATEGY.md missing positioning/value proposition/audience/differentiator -> BLOCKED, state what is missing",
+    "never publish adjective-only voice with no DO/DON'T pairing and no traceable strategy link"
+  ]
+}

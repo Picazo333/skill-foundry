@@ -1,0 +1,91 @@
+{
+  "$schema": "https://coupleskills.internal/design-tokens.schema.json",
+  "_meta": {
+    "brand": "[Brand Name]",
+    "sourceDirection": "APPROVED_VISUAL_DIRECTION.md",
+    "generatedBy": "brand-identity-system",
+    "version": "1.0.0"
+  },
+  "color": {
+    "brand": {
+      "primary": { "value": "#______", "type": "color", "description": "[usage rule]" },
+      "accent": { "value": "#______", "type": "color", "description": "[usage rule]" }
+    },
+    "neutral": {
+      "50": { "value": "#______", "type": "color" },
+      "100": { "value": "#______", "type": "color" },
+      "300": { "value": "#______", "type": "color" },
+      "500": { "value": "#______", "type": "color" },
+      "700": { "value": "#______", "type": "color" },
+      "900": { "value": "#______", "type": "color" }
+    },
+    "semantic": {
+      "success": { "value": "#______", "type": "color" },
+      "warning": { "value": "#______", "type": "color" },
+      "error": { "value": "#______", "type": "color" },
+      "info": { "value": "#______", "type": "color" }
+    }
+  },
+  "type": {
+    "family": {
+      "primary": { "value": "[Font, fallback stack]", "type": "fontFamily" },
+      "fallback": { "value": "[system-ui stack]", "type": "fontFamily" }
+    },
+    "scale": {
+      "100": { "fontSize": { "value": "0px", "type": "dimension" }, "lineHeight": { "value": "0", "type": "number" }, "fontWeight": { "value": 400, "type": "fontWeight" } },
+      "200": { "fontSize": { "value": "0px", "type": "dimension" }, "lineHeight": { "value": "0", "type": "number" }, "fontWeight": { "value": 400, "type": "fontWeight" } },
+      "300": { "fontSize": { "value": "0px", "type": "dimension" }, "lineHeight": { "value": "0", "type": "number" }, "fontWeight": { "value": 400, "type": "fontWeight" } },
+      "400": { "fontSize": { "value": "0px", "type": "dimension" }, "lineHeight": { "value": "0", "type": "number" }, "fontWeight": { "value": 600, "type": "fontWeight" } },
+      "500": { "fontSize": { "value": "0px", "type": "dimension" }, "lineHeight": { "value": "0", "type": "number" }, "fontWeight": { "value": 600, "type": "fontWeight" } },
+      "600": { "fontSize": { "value": "0px", "type": "dimension" }, "lineHeight": { "value": "0", "type": "number" }, "fontWeight": { "value": 700, "type": "fontWeight" } },
+      "700": { "fontSize": { "value": "0px", "type": "dimension" }, "lineHeight": { "value": "0", "type": "number" }, "fontWeight": { "value": 700, "type": "fontWeight" } },
+      "800": { "fontSize": { "value": "0px", "type": "dimension" }, "lineHeight": { "value": "0", "type": "number" }, "fontWeight": { "value": 700, "type": "fontWeight" } }
+    }
+  },
+  "space": {
+    "1": { "value": "0px", "type": "dimension" },
+    "2": { "value": "0px", "type": "dimension" },
+    "3": { "value": "0px", "type": "dimension" },
+    "4": { "value": "0px", "type": "dimension" },
+    "5": { "value": "0px", "type": "dimension" },
+    "6": { "value": "0px", "type": "dimension" },
+    "7": { "value": "0px", "type": "dimension" },
+    "8": { "value": "0px", "type": "dimension" }
+  },
+  "radius": {
+    "sm": { "value": "0px", "type": "dimension" },
+    "md": { "value": "0px", "type": "dimension" },
+    "lg": { "value": "0px", "type": "dimension" },
+    "full": { "value": "9999px", "type": "dimension" }
+  },
+  "border": {
+    "width": {
+      "hairline": { "value": "0px", "type": "dimension" },
+      "default": { "value": "0px", "type": "dimension" },
+      "heavy": { "value": "0px", "type": "dimension" }
+    }
+  },
+  "motion": {
+    "duration": {
+      "fast": { "value": "0ms", "type": "duration" },
+      "base": { "value": "0ms", "type": "duration" },
+      "slow": { "value": "0ms", "type": "duration" }
+    },
+    "easing": {
+      "standard": { "value": "cubic-bezier(0,0,0,0)", "type": "cubicBezier" }
+    }
+  },
+  "icon": {
+    "grid": { "value": "0px", "type": "dimension" },
+    "strokeWidth": { "value": "0px", "type": "dimension" }
+  },
+  "logo": {
+    "clearSpace": {
+      "unit": { "value": "0px", "type": "dimension", "description": "1X, X = [defining feature]" }
+    },
+    "minSize": {
+      "digital": { "value": "0px", "type": "dimension" },
+      "print": { "value": "0mm", "type": "dimension" }
+    }
+  }
+}

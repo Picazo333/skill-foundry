@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Research Architect — RUN_RESULT",
+  "type": "object",
+  "required": ["status", "summary", "artifacts", "unresolved", "handoff", "quality"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["COMPLETE", "PARTIAL", "BLOCKED"]
+    },
+    "summary": { "type": "string" },
+    "mode": {
+      "type": "string",
+      "enum": ["STANDARD", "AUTONOMOUS", "UPDATE"]
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "PROJECT_RESEARCH_BRIEF.md",
+          "MASTER_RESEARCH_PROGRAM.md",
+          "DOMAIN_MAP.md",
+          "COVERAGE_DEBT.md",
+          "GAP_LEDGER.md",
+          "CHECKPOINT.md",
+          "EXECUTOR_START_PROMPT.md"
+        ]
+      },
+      "description": "On status COMPLETE, must contain all seven."
+    },
+    "decisions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "unresolved": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Open contradictions, white-space items, remaining coverage debt."
+    },
+    "handoff": {
+      "type": "object",
+      "properties": {
+        "next_skill": { "type": "string" },
+        "reason": { "type": "string" }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "required": ["iteration_counts", "coverage_debt_open", "ten_pass_qa_complete", "stopped_before_execution"],
+      "properties": {
+        "iteration_counts": {
+          "type": "object",
+          "required": ["scope_expansion", "domain_polishing", "total_valid"],
+          "properties": {
+            "scope_expansion": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Valid (post-material-delta-test) scope-expansion iterations. Must be >= 150 for status COMPLETE."
+            },
+            "domain_polishing": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Valid domain-polishing/consolidation iterations. Must be >= 50 for status COMPLETE."
+            },
+            "total_valid": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "scope_expansion + domain_polishing. Must be >= 200 for status COMPLETE."
+            },
+            "discarded_no_material_delta": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Iterations attempted but discarded for failing the material-delta/novelty test; not counted toward minimums."
+            }
+          }
+        },
+        "coverage_debt_open": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Count of domains still under-explored relative to Phase 1 weight at packaging time."
+        },
+        "key_area_weighting_applied": { "type": "boolean" },
+        "domain_map_interconnected": { "type": "boolean" },
+        "ten_pass_qa_complete": { "type": "boolean" },
+        "stopped_before_execution": {
+          "type": "boolean",
+          "const": true,
+          "description": "Always true; this skill never performs deep research execution."
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "COMPLETE" } } },
+      "then": {
+        "properties": {
+          "artifacts": { "type": "array", "minItems": 7 },
+          "quality": {
+            "type": "object",
+            "properties": {
+              "iteration_counts": {
+                "type": "object",
+                "properties": {
+                  "scope_expansion": { "minimum": 150 },
+                  "domain_polishing": { "minimum": 50 },
+                  "total_valid": { "minimum": 200 }
+                }
+              },
+              "ten_pass_qa_complete": { "const": true }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "id": "brand-skill-orchestrator",
+  "name": "Brand Skill Orchestrator",
+  "version": "1.0.1",
+  "category": "brand-orchestration",
+  "purpose": "Route a brand project through only the necessary skills, in the correct order, using existing artifacts and approvals; prevent restarts, duplicated work and manual coordination.",
+  "triggers": [
+    "multi-stage brand project needs coordinated routing",
+    "existing partial brand system needs continuation without restarting finished stages",
+    "multiple people/agents/tools collaborating on one brand project need a single source of truth for what's next"
+  ],
+  "non_triggers": [
+    "doing deep brand strategy, verbal, visual, identity, book, brief, content or QA work itself",
+    "a single-skill request with no multi-stage coordination need",
+    "forcing every project through every stage regardless of objective"
+  ],
+  "minimum_inputs": [
+    "brand project objective",
+    "available artifacts (list of what exists, with paths/versions if known)"
+  ],
+  "optional_inputs": [
+    "PROJECT_CANON.md",
+    "approval states per artifact",
+    "tool/capacity availability",
+    "deadlines"
+  ],
+  "outputs": [
+    "BRAND_WORKFLOW_STATE.md",
+    "NEXT_SKILL_RUN.json",
+    "HANDOFF_PACKAGES/",
+    "COMPLETION_REPORT.md"
+  ],
+  "dependencies": [
+    "canonical-context-builder",
+    "research-architect",
+    "product-auditor",
+    "rapid-capture-triage",
+    "ai-resource-router",
+    "brand-discovery",
+    "brand-strategy",
+    "brand-verbal-identity",
+    "brand-visual-direction",
+    "brand-identity-system",
+    "brand-book-builder",
+    "creative-brief-generator",
+    "brand-content-system",
+    "brand-quality-auditor"
+  ],
+  "handoffs_to": [
+    "brand-discovery",
+    "brand-strategy",
+    "brand-verbal-identity",
+    "brand-visual-direction",
+    "brand-identity-system",
+    "brand-book-builder",
+    "creative-brief-generator",
+    "brand-content-system",
+    "brand-quality-auditor",
+    "research-architect",
+    "ai-resource-router",
+    "canonical-context-builder"
+  ],
+  "quality_gates": [
+    "never reruns a completed stage without cause",
+    "never substitutes orchestration for domain work",
+    "uses artifact versions/approval states, not assumptions",
+    "approval gates are explicit",
+    "partial projects resume cleanly from BRAND_WORKFLOW_STATE.md alone",
+    "no circular orchestration loop"
+  ],
+  "stop_conditions": [
+    "stated objective fulfilled -> COMPLETE with COMPLETION_REPORT.md",
+    "more routing remains -> PARTIAL with NEXT_SKILL_RUN.json populated",
+    "unresolvable conflict needing a human decision -> BLOCKED, state exactly what decision is needed",
+    "never route forward past an unresolved coherence gap or missing canon a downstream skill would flag"
+  ]
+}

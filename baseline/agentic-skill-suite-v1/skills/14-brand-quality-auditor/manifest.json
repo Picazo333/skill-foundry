@@ -1,0 +1,51 @@
+{
+  "id": "brand-quality-auditor",
+  "name": "Brand Quality Auditor",
+  "version": "1.0.1",
+  "category": "brand",
+  "purpose": "Audit a delivered creative/content artifact against explicit brand canon (strategy, verbal identity, visual identity) to detect drift, regression and AI-slop, producing a traceable PASS/FIX/POLISH/DEFER verdict per canon rule.",
+  "triggers": [
+    "delivered or in-progress brand output needs QA before/after ship",
+    "need to compare an implementation against approved canon to detect drift",
+    "a brand workflow gate requires a pass/fail check before the artifact proceeds"
+  ],
+  "non_triggers": [
+    "creating brand canon when none exists",
+    "subjective aesthetic critique with no stated criteria",
+    "replacing or reopening approved upstream strategy"
+  ],
+  "minimum_inputs": [
+    "artifact to audit",
+    "brand canon (strategy, verbal identity, and/or visual identity) covering the artifact's relevant dimensions"
+  ],
+  "optional_inputs": [
+    "specific audit objective",
+    "target channel",
+    "prior audit / DRIFT_REGISTER.md",
+    "known/pre-approved exceptions"
+  ],
+  "outputs": [
+    "BRAND_QA_REPORT.md",
+    "FIX_LIST.md",
+    "DRIFT_REGISTER.md"
+  ],
+  "dependencies": [],
+  "handoffs_to": [
+    "brand-book-builder",
+    "creative-brief-generator",
+    "product-auditor"
+  ],
+  "quality_gates": [
+    "requires explicit canon; returns BLOCKED rather than grading against implicit/assumed standards",
+    "every finding traces to a specific canon rule citation",
+    "no aesthetic fiat: unbacked reviewer preference excluded from graded findings",
+    "fix list is prioritized and minimal",
+    "approved strategy is never casually reopened inside an audit",
+    "AI-slop detection is operationalized with concrete examples"
+  ],
+  "stop_conditions": [
+    "canon gate passed, all applicable rules checked/classified, all three artifacts produced -> COMPLETE",
+    "required canon missing, unapproved, or too vague to check claims against -> BLOCKED, state exactly what canon is needed",
+    "never present a finding with no canon citation, or a strategic disagreement as an audit finding"
+  ]
+}

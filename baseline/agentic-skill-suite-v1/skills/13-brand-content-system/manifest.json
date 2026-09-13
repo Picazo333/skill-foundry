@@ -1,0 +1,58 @@
+{
+  "id": "brand-content-system",
+  "name": "Brand Content System",
+  "version": "1.0.1",
+  "category": "brand",
+  "purpose": "Turn approved brand canon into a repeatable content operating system — pillars traced to strategy, format/channel rules, production cadence and reusable templates — for ongoing content production.",
+  "triggers": [
+    "ongoing/recurring content production is needed, not a single deliverable",
+    "brand strategy and verbal identity (or a compiled brand book) already exist and are approved",
+    "a team needs a structure that keeps producing on-strategy content repeatably"
+  ],
+  "non_triggers": [
+    "a single social caption, post, or one-off creative deliverable",
+    "defining brand positioning, promise or audience",
+    "a plain editorial calendar with no pillar/format/measurement logic behind it",
+    "auditing existing content against canon"
+  ],
+  "minimum_inputs": [
+    "BRAND_STRATEGY.md (or BRAND_BOOK.md covering strategy)",
+    "VERBAL_IDENTITY.md (or BRAND_BOOK.md covering voice)"
+  ],
+  "optional_inputs": [
+    "channel analytics / performance history",
+    "competitor or creator research",
+    "offer/funnel definition",
+    "production constraints (team size, cadence capacity, budget, tooling)",
+    "regulatory/compliance constraints for the vertical"
+  ],
+  "outputs": [
+    "CONTENT_SYSTEM.md",
+    "CONTENT_PILLARS.md",
+    "FORMAT_LIBRARY.md",
+    "CONTENT_PIPELINE.md",
+    "MEASUREMENT_MODEL.md"
+  ],
+  "dependencies": [
+    "brand-strategy",
+    "brand-verbal-identity",
+    "brand-book-builder"
+  ],
+  "handoffs_to": [
+    "creative-brief-generator",
+    "brand-quality-auditor",
+    "ai-resource-router"
+  ],
+  "quality_gates": [
+    "every pillar traces to a named line in brand strategy or verbal identity",
+    "every format is repeatable and has a per-channel variant where more than one channel is in scope",
+    "cadence is arithmetic-backed or explicitly flagged capacity_unknown",
+    "measurement model never presents a reach/view/impression metric as a revenue or conversion signal",
+    "CTA/funnel logic is explicit per pillar, not implied"
+  ],
+  "stop_conditions": [
+    "all five required artifacts produced, every pillar traced to strategy, cadence resolved or flagged -> COMPLETE",
+    "brand strategy/verbal identity missing or still draft/unapproved -> BLOCKED, name exactly what must be approved/supplied first",
+    "never present pillars as a generic content checklist detachable from this brand's strategy"
+  ]
+}

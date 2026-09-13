@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brand Book Builder — RUN_REQUEST",
+  "type": "object",
+  "required": ["objective", "source_artifacts", "mode"],
+  "properties": {
+    "objective": { "type": "string" },
+    "source_artifacts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 6,
+      "description": "Must include paths/references to all 6 required canon artifacts: VERBAL_IDENTITY.md, MESSAGE_HIERARCHY.md, VOICE_EXAMPLES.md, IDENTITY_SYSTEM.md, DESIGN_TOKENS.json, APPLICATION_RULES.md. May also include BRAND_STRATEGY.md and example assets."
+    },
+    "known_context": {
+      "type": "string",
+      "description": "Intended audience (internal / agency / client-facing), format constraints, if not derivable from source_artifacts."
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "e.g. 'executive depth only', 'print-ready, 20 pages max'."
+    },
+    "desired_output": {
+      "type": "string",
+      "enum": ["full_book", "outline_only", "asset_checklist_only"],
+      "default": "full_book"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["QUICK", "STANDARD", "AUDIT", "UPDATE"]
+    },
+    "prior_run": {
+      "type": "string",
+      "description": "Path to prior BRAND_BOOK.md or checkpoint. Required when mode is UPDATE."
+    }
+  },
+  "if": {
+    "properties": { "mode": { "const": "UPDATE" } }
+  },
+  "then": {
+    "required": ["prior_run"]
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "id": "ai-resource-router",
+  "name": "AI Resource Router",
+  "version": "1.0.1",
+  "category": "ai-operations",
+  "purpose": "Choose the best AI/tool for a task using capability fit, available quota, reset urgency, cost/opportunity, context needs and execution mode; output a dispatch plan and prompt.",
+  "triggers": [
+    "more than one AI subscription/tool/account is available and it is unclear which should take which task",
+    "a quota reset, extra-reset expiry, or renewal boundary is approaching",
+    "a batch of tasks needs to be assigned across tools before work starts",
+    "a daily/weekly AI deployment plan is needed"
+  ],
+  "non_triggers": [
+    "abstract tool benchmarking with no actual task to route",
+    "producing quota/cost/reset data that was not supplied",
+    "doing the routed domain work itself instead of producing a dispatch prompt",
+    "deep implementation planning, exhaustive research, or multi-skill workflow sequencing"
+  ],
+  "minimum_inputs": [
+    "tasks/projects to route",
+    "available tool/capacity snapshot"
+  ],
+  "optional_inputs": [
+    "reset times",
+    "extra resets and expiry",
+    "costs",
+    "renewal status",
+    "project/task urgency",
+    "tool strength notes",
+    "context constraints"
+  ],
+  "outputs": [
+    "ROUTING_PLAN.md",
+    "DISPATCH_QUEUE.json",
+    "PROMPTS/",
+    "CAPACITY_RISK.md"
+  ],
+  "dependencies": [],
+  "handoffs_to": [
+    "product-auditor",
+    "research-architect",
+    "brand-skill-orchestrator"
+  ],
+  "quality_gates": [
+    "routes but does not execute unrelated domain work",
+    "weekly/monthly capacity prioritized over irrelevant short windows when appropriate",
+    "extra-reset expiry considered wherever supplied",
+    "no fabricated quota/reset/cost data",
+    "capability fit beats token/quota burning",
+    "every dispatch prompt is task-specific, not generic"
+  ],
+  "stop_conditions": [
+    "all tasks routed or explicitly listed unroutable, all four artifacts produced -> COMPLETE",
+    "no capacity data exists for any available tool -> BLOCKED, state what snapshot is needed",
+    "some tasks routed, others blocked on missing data -> PARTIAL, list which and why",
+    "never continue past the dispatch plan into performing the routed work itself"
+  ]
+}

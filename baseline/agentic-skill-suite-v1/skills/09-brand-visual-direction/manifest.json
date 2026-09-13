@@ -1,0 +1,57 @@
+{
+  "id": "brand-visual-direction",
+  "name": "Brand Visual Direction",
+  "version": "1.0.1",
+  "category": "brand",
+  "purpose": "Translate a locked brand strategy into 3-5 materially distinct creative territories and a single selected visual grammar (mood, color logic, typography logic, imagery language, compositional principles) before identity assets are systematized.",
+  "triggers": [
+    "BRAND_STRATEGY.md exists and is locked",
+    "art direction / moodboard logic is needed before identity assets are built",
+    "real risk of landing on generic, category-default, or AI-slop visual output"
+  ],
+  "non_triggers": [
+    "producing the final brand book, logo, or asset library",
+    "decorative moodboarding with no strategic rationale",
+    "writing positioning, promise, or differentiation",
+    "generating a single image with no comparative territories"
+  ],
+  "minimum_inputs": [
+    "BRAND_STRATEGY.md"
+  ],
+  "optional_inputs": [
+    "POSITIONING_SYSTEM.md",
+    "STRATEGIC_GUARDRAILS.md",
+    "visual references",
+    "anti-references",
+    "existing identity assets",
+    "media/production constraints",
+    "prior rejected territories (mode: UPDATE)"
+  ],
+  "outputs": [
+    "VISUAL_TERRITORIES.md",
+    "APPROVED_VISUAL_DIRECTION.md",
+    "VISUAL_ANTI_PATTERNS.md",
+    "GENERATION_LANGUAGE.md"
+  ],
+  "dependencies": [
+    "brand-strategy"
+  ],
+  "handoffs_to": [
+    "brand-identity-system",
+    "creative-brief-generator",
+    "brand-quality-auditor"
+  ],
+  "quality_gates": [
+    "every pair of surviving territories passes the divergence audit (disagrees on 4+ of 8 axes)",
+    "every element of APPROVED_VISUAL_DIRECTION.md traces to a named strategy attribute or score rationale",
+    "VISUAL_ANTI_PATTERNS.md is non-empty and includes flagged clichés",
+    "GENERATION_LANGUAGE.md entries are principle-level, not single scene descriptions",
+    "grammar addresses composition, type, color, imagery, and density/motion/UI"
+  ],
+  "stop_conditions": [
+    "all four required artifacts produced, divergence audit passed, direction traced to strategy -> COMPLETE",
+    "BRAND_STRATEGY.md missing/unlocked/insufficient -> BLOCKED, state what strategy elements are needed",
+    "fewer than 3 territories pass divergence audit after two rebuild attempts -> PARTIAL, surface the collision explicitly",
+    "never present cosmetically different territories as materially distinct, or an untraced grammar rule as final"
+  ]
+}

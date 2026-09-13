@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Resource Router — RUN_REQUEST",
+  "type": "object",
+  "required": ["objective", "mode", "tasks", "tools"],
+  "properties": {
+    "objective": { "type": "string" },
+    "source_artifacts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Canonical docs the tasks reference (plans, canon, briefs) — referenced by path, not inlined."
+    },
+    "known_context": { "type": "string" },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "e.g. 'no more than 2 simultaneous agents', 'tool X context-window <= 32k'."
+    },
+    "desired_output": {
+      "type": "string",
+      "enum": ["full_routing_set", "queue_only", "single_task_dispatch"],
+      "default": "full_routing_set"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["QUICK", "STANDARD", "AUDIT"]
+    },
+    "prior_run": {
+      "type": "string",
+      "description": "Path to prior ROUTING_PLAN.md / CAPACITY_RISK.md. Required when mode is AUDIT."
+    },
+    "tasks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "definition_of_done"],
+        "properties": {
+          "id": { "type": "string" },
+          "type": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["research", "synthesis", "code", "audit", "agentic", "creative", "long_context", "qa"]
+            },
+            "minItems": 1
+          },
+          "definition_of_done": { "type": "string" },
+          "hard_requirements": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "e.g. required tool/file access, minimum context length, must-run-unattended."
+          },
+          "urgency": { "type": "string" }
+        }
+      }
+    },
+    "tools": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": { "type": "string" },
+          "provider": { "type": "string" },
+          "strengths": { "type": "array", "items": { "type": "string" } },
+          "reset_at": { "type": ["string", "null"] },
+          "extra_resets": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "amount": { "type": "string" },
+                "expires_at": { "type": "string" }
+              }
+            }
+          },
+          "cost": { "type": ["string", "null"] },
+          "renewal_status": {
+            "type": "string",
+            "enum": ["renewing", "lapsing", "trial_ending", "unknown"]
+          },
+          "known_capacity": { "type": ["string", "null"] },
+          "unknown_fields": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Fields not supplied for this tool — must not be fabricated."
+          }
+        }
+      }
+    }
+  },
+  "if": {
+    "properties": { "mode": { "const": "AUDIT" } }
+  },
+  "then": {
+    "required": ["prior_run"]
+  }
+}

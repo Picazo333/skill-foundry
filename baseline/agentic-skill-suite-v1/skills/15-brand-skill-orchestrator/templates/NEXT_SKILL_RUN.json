@@ -1,0 +1,12 @@
+{
+  "next_skill": "<skill-id, or null if objective is complete>",
+  "reason": "<one line: why this skill, why now>",
+  "run_request": {
+    "objective": "<carried into the routed skill's own RUN_REQUEST.objective>",
+    "source_artifacts": [],
+    "known_context": "",
+    "constraints": [],
+    "mode": "STANDARD"
+  },
+  "handoff_package_path": "HANDOFF_PACKAGES/<skill-id>/"
+}

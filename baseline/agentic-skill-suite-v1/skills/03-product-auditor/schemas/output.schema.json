@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Product Auditor — RUN_RESULT",
+  "type": "object",
+  "required": ["status", "summary", "artifacts", "unresolved", "handoff", "quality"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["COMPLETE", "PARTIAL", "BLOCKED"]
+    },
+    "summary": { "type": "string" },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "PRODUCT_AUDIT.md",
+          "IMPLEMENTATION_PLAN.md",
+          "REGRESSION_MATRIX.md",
+          "QA_CONTRACT.md",
+          "HANDOFF_PROMPT.md"
+        ]
+      },
+      "description": "On status COMPLETE, must contain all five."
+    },
+    "decisions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Items approved as implement-now (AUDIT) or verdicts locked in (QA)."
+    },
+    "unresolved": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Suspected-but-unconfirmed issues, backlog items, or open QA questions."
+    },
+    "handoff": {
+      "type": "object",
+      "properties": {
+        "next_skill": {
+          "type": "string",
+          "enum": ["ai-resource-router", "canonical-context-builder"]
+        },
+        "reason": { "type": "string" }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "properties": {
+        "no_product_code_written_in_audit_mode": { "type": "boolean" },
+        "no_fixes_applied_in_qa_mode": { "type": "boolean" },
+        "confirmed_vs_suspected_separated": { "type": "boolean" },
+        "plan_items_agent_ready": { "type": "boolean" },
+        "migrations_explicit": { "type": "boolean" },
+        "mobile_parity_addressed": { "type": "boolean" },
+        "approved_features_protected": { "type": "boolean" }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "COMPLETE" } } },
+      "then": {
+        "properties": {
+          "artifacts": {
+            "type": "array",
+            "minItems": 5
+          }
+        }
+      }
+    }
+  ]
+}

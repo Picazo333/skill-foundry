@@ -1,0 +1,15 @@
+{
+  "generated_by": "ai-resource-router",
+  "objective": "<objective from RUN_REQUEST>",
+  "dispatch_queue": [
+    {
+      "task_id": "<task id>",
+      "queue": "use_now",
+      "primary_tool": "<tool id>",
+      "fallback_tool": null,
+      "rationale": "<capability-fit + opportunity-pressure summary>",
+      "prompt_file": "PROMPTS/<task_id>.md",
+      "unroutable_reason": null
+    }
+  ]
+}

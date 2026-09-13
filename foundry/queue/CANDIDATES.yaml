@@ -1,0 +1,5 @@
+queue_version: 0.3
+notes:
+  - Empty is valid before the human submits the first real workflow.
+  - Foundation audit/hardening is defined by SF-WF-002_BOOTSTRAP_V5 and does not depend on this queue.
+candidates: []

@@ -1,0 +1,346 @@
+{
+  "generated_from": "skills/*/manifest.json (handoffs_to)",
+  "edge_types": {
+    "forward": "primary/documented pipeline advance (per WORKFLOW_MAP.md)",
+    "feedback": "return to an earlier stage for remediation or canon update; permitted to form a cycle",
+    "conditional": "optional/lateral branch \u2014 router-mediated (ai-resource-router, brand-skill-orchestrator) or a documented \"when X\" alternate path that is not the primary next stage"
+  },
+  "edges": [
+    {
+      "from": "canonical-context-builder",
+      "to": "research-architect",
+      "type": "conditional",
+      "purpose": "context"
+    },
+    {
+      "from": "canonical-context-builder",
+      "to": "product-auditor",
+      "type": "conditional",
+      "purpose": "context"
+    },
+    {
+      "from": "canonical-context-builder",
+      "to": "rapid-capture-triage",
+      "type": "feedback",
+      "purpose": "structure new raw input before folding into canon"
+    },
+    {
+      "from": "canonical-context-builder",
+      "to": "brand-discovery",
+      "type": "conditional",
+      "purpose": "context"
+    },
+    {
+      "from": "canonical-context-builder",
+      "to": "brand-skill-orchestrator",
+      "type": "conditional",
+      "purpose": "multi-stage brand routing after canon refresh"
+    },
+    {
+      "from": "research-architect",
+      "to": "canonical-context-builder",
+      "type": "feedback",
+      "purpose": "research architecture update"
+    },
+    {
+      "from": "research-architect",
+      "to": "ai-resource-router",
+      "type": "conditional",
+      "purpose": "primary-evidence dispatch"
+    },
+    {
+      "from": "product-auditor",
+      "to": "canonical-context-builder",
+      "type": "feedback",
+      "purpose": "fold QA-confirmed changes into canon"
+    },
+    {
+      "from": "product-auditor",
+      "to": "ai-resource-router",
+      "type": "conditional",
+      "purpose": "implementation dispatch"
+    },
+    {
+      "from": "rapid-capture-triage",
+      "to": "canonical-context-builder",
+      "type": "forward",
+      "purpose": "normalize/update"
+    },
+    {
+      "from": "rapid-capture-triage",
+      "to": "product-auditor",
+      "type": "conditional",
+      "purpose": "captured fragment describes product/process work directly"
+    },
+    {
+      "from": "rapid-capture-triage",
+      "to": "ai-resource-router",
+      "type": "conditional",
+      "purpose": "dispatch resolved delta"
+    },
+    {
+      "from": "ai-resource-router",
+      "to": "research-architect",
+      "type": "conditional",
+      "purpose": "routed task is open-ended research"
+    },
+    {
+      "from": "ai-resource-router",
+      "to": "product-auditor",
+      "type": "conditional",
+      "purpose": "routed task is itself an audit"
+    },
+    {
+      "from": "ai-resource-router",
+      "to": "brand-skill-orchestrator",
+      "type": "conditional",
+      "purpose": "task batch spans multi-stage brand work"
+    },
+    {
+      "from": "brand-discovery",
+      "to": "canonical-context-builder",
+      "type": "feedback",
+      "purpose": "discovery surfaces project-level canon update"
+    },
+    {
+      "from": "brand-discovery",
+      "to": "research-architect",
+      "type": "conditional",
+      "purpose": "discovery gap needs primary research"
+    },
+    {
+      "from": "brand-discovery",
+      "to": "brand-strategy",
+      "type": "forward",
+      "purpose": "discovery brief"
+    },
+    {
+      "from": "brand-strategy",
+      "to": "brand-verbal-identity",
+      "type": "forward",
+      "purpose": "strategy"
+    },
+    {
+      "from": "brand-strategy",
+      "to": "brand-visual-direction",
+      "type": "forward",
+      "purpose": "strategy"
+    },
+    {
+      "from": "brand-strategy",
+      "to": "brand-skill-orchestrator",
+      "type": "conditional",
+      "purpose": "routed multi-stage brand project"
+    },
+    {
+      "from": "brand-verbal-identity",
+      "to": "brand-book-builder",
+      "type": "forward",
+      "purpose": "verbal canon"
+    },
+    {
+      "from": "brand-verbal-identity",
+      "to": "creative-brief-generator",
+      "type": "conditional",
+      "purpose": "specific brief needs verbal identity directly"
+    },
+    {
+      "from": "brand-verbal-identity",
+      "to": "brand-content-system",
+      "type": "conditional",
+      "purpose": "apply voice directly to content system"
+    },
+    {
+      "from": "brand-verbal-identity",
+      "to": "brand-quality-auditor",
+      "type": "conditional",
+      "purpose": "audit existing copy against verbal canon"
+    },
+    {
+      "from": "brand-visual-direction",
+      "to": "brand-identity-system",
+      "type": "forward",
+      "purpose": "visual direction"
+    },
+    {
+      "from": "brand-visual-direction",
+      "to": "creative-brief-generator",
+      "type": "conditional",
+      "purpose": "specific brief needs visual direction directly"
+    },
+    {
+      "from": "brand-visual-direction",
+      "to": "brand-quality-auditor",
+      "type": "conditional",
+      "purpose": "audit in-flight asset against visual direction"
+    },
+    {
+      "from": "brand-identity-system",
+      "to": "brand-book-builder",
+      "type": "forward",
+      "purpose": "identity canon"
+    },
+    {
+      "from": "brand-identity-system",
+      "to": "creative-brief-generator",
+      "type": "conditional",
+      "purpose": "specific brief needs identity system directly"
+    },
+    {
+      "from": "brand-identity-system",
+      "to": "brand-quality-auditor",
+      "type": "conditional",
+      "purpose": "audit in-flight asset against identity system"
+    },
+    {
+      "from": "brand-book-builder",
+      "to": "brand-verbal-identity",
+      "type": "feedback",
+      "purpose": "reopen verbal identity per step-1 gate failure"
+    },
+    {
+      "from": "brand-book-builder",
+      "to": "brand-identity-system",
+      "type": "feedback",
+      "purpose": "reopen identity system per step-1 gate failure"
+    },
+    {
+      "from": "brand-book-builder",
+      "to": "creative-brief-generator",
+      "type": "forward",
+      "purpose": "canon"
+    },
+    {
+      "from": "brand-book-builder",
+      "to": "brand-content-system",
+      "type": "forward",
+      "purpose": "canon"
+    },
+    {
+      "from": "brand-book-builder",
+      "to": "brand-quality-auditor",
+      "type": "conditional",
+      "purpose": "audit book coherence before production use"
+    },
+    {
+      "from": "creative-brief-generator",
+      "to": "brand-content-system",
+      "type": "conditional",
+      "purpose": "request is one instance of a repeatable content need"
+    },
+    {
+      "from": "creative-brief-generator",
+      "to": "brand-quality-auditor",
+      "type": "forward",
+      "purpose": "production QA"
+    },
+    {
+      "from": "brand-content-system",
+      "to": "ai-resource-router",
+      "type": "conditional",
+      "purpose": "production needs model/tool dispatch"
+    },
+    {
+      "from": "brand-content-system",
+      "to": "creative-brief-generator",
+      "type": "conditional",
+      "purpose": "content brief"
+    },
+    {
+      "from": "brand-content-system",
+      "to": "brand-quality-auditor",
+      "type": "forward",
+      "purpose": "content QA"
+    },
+    {
+      "from": "brand-quality-auditor",
+      "to": "product-auditor",
+      "type": "feedback",
+      "purpose": "artifact under audit is actually a product/app, not brand creative"
+    },
+    {
+      "from": "brand-quality-auditor",
+      "to": "brand-book-builder",
+      "type": "feedback",
+      "purpose": "canon itself needs a fix, not just the artifact"
+    },
+    {
+      "from": "brand-quality-auditor",
+      "to": "creative-brief-generator",
+      "type": "feedback",
+      "purpose": "fix list implies the artifact needs rebriefing"
+    },
+    {
+      "from": "brand-skill-orchestrator",
+      "to": "canonical-context-builder",
+      "type": "feedback",
+      "purpose": "cross-cutting canon needs updating"
+    },
+    {
+      "from": "brand-skill-orchestrator",
+      "to": "research-architect",
+      "type": "conditional",
+      "purpose": "conditional research"
+    },
+    {
+      "from": "brand-skill-orchestrator",
+      "to": "ai-resource-router",
+      "type": "conditional",
+      "purpose": "conditional resource routing"
+    },
+    {
+      "from": "brand-skill-orchestrator",
+      "to": "brand-discovery",
+      "type": "conditional",
+      "purpose": "stage detection routes to discovery"
+    },
+    {
+      "from": "brand-skill-orchestrator",
+      "to": "brand-strategy",
+      "type": "conditional",
+      "purpose": "stage detection routes to strategy"
+    },
+    {
+      "from": "brand-skill-orchestrator",
+      "to": "brand-verbal-identity",
+      "type": "conditional",
+      "purpose": "stage detection routes to verbal identity"
+    },
+    {
+      "from": "brand-skill-orchestrator",
+      "to": "brand-visual-direction",
+      "type": "conditional",
+      "purpose": "stage detection routes to visual direction"
+    },
+    {
+      "from": "brand-skill-orchestrator",
+      "to": "brand-identity-system",
+      "type": "conditional",
+      "purpose": "stage detection routes to identity system"
+    },
+    {
+      "from": "brand-skill-orchestrator",
+      "to": "brand-book-builder",
+      "type": "conditional",
+      "purpose": "stage detection routes to book builder"
+    },
+    {
+      "from": "brand-skill-orchestrator",
+      "to": "creative-brief-generator",
+      "type": "conditional",
+      "purpose": "stage detection routes to creative brief"
+    },
+    {
+      "from": "brand-skill-orchestrator",
+      "to": "brand-content-system",
+      "type": "conditional",
+      "purpose": "stage detection routes to content system"
+    },
+    {
+      "from": "brand-skill-orchestrator",
+      "to": "brand-quality-auditor",
+      "type": "conditional",
+      "purpose": "stage detection routes to quality audit"
+    }
+  ]
+}

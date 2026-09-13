@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Skill Foundry Registry Entry",
+  "type": "object",
+  "required": ["id", "name", "family", "status", "purpose", "canonical_path"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "name": {"type": "string", "minLength": 1},
+    "family": {"type": "string", "minLength": 1},
+    "status": {"type": "string", "enum": ["published_baseline", "published", "deprecated"]},
+    "purpose": {"type": "string", "minLength": 1},
+    "canonical_path": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

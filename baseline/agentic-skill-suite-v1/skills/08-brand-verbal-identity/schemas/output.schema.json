@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brand Verbal Identity — RUN_RESULT",
+  "type": "object",
+  "required": ["status", "summary", "artifacts", "unresolved", "handoff", "quality"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["COMPLETE", "PARTIAL", "BLOCKED"]
+    },
+    "summary": { "type": "string" },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "VERBAL_IDENTITY.md",
+          "MESSAGE_HIERARCHY.md",
+          "VOICE_EXAMPLES.md"
+        ]
+      },
+      "description": "On status COMPLETE, must contain all three."
+    },
+    "decisions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "unresolved": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "handoff": {
+      "type": "object",
+      "properties": {
+        "next_skill": { "type": "string" },
+        "reason": { "type": "string" }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "properties": {
+        "principles_behavioral_and_traced": { "type": "boolean" },
+        "do_dont_examples_present": { "type": "boolean" },
+        "prohibited_claims_present_if_required": { "type": "boolean" },
+        "pillars_trace_to_strategy": { "type": "boolean" },
+        "not_founder_dependent": { "type": "boolean" },
+        "stress_test_passed": { "type": "boolean" }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "COMPLETE" } } },
+      "then": {
+        "properties": {
+          "artifacts": {
+            "type": "array",
+            "minItems": 3
+          }
+        }
+      }
+    }
+  ]
+}

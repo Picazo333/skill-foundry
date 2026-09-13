@@ -1,0 +1,113 @@
+registry_version: '0.1'
+baseline_suite:
+  name: agentic-skill-suite
+  version: 1.0.1
+  status: implemented
+  source: baseline/agentic-skill-suite-v1/
+skills:
+- order: 1
+  id: canonical-context-builder
+  name: Canonical Context Builder
+  family: cross-functional
+  status: published_baseline
+  purpose: Build/update canonical truth from fragmented context.
+  canonical_path: baseline/agentic-skill-suite-v1/skills/01-canonical-context-builder
+- order: 2
+  id: research-architect
+  name: Research Architect
+  family: cross-functional
+  status: published_baseline
+  purpose: Architect exhaustive research; stops before deep research execution.
+  canonical_path: baseline/agentic-skill-suite-v1/skills/02-research-architect
+- order: 3
+  id: product-auditor
+  name: Product Auditor & Implementation Architect
+  family: cross-functional
+  status: published_baseline
+  purpose: Audit a product/repo and produce executable implementation architecture.
+  canonical_path: baseline/agentic-skill-suite-v1/skills/03-product-auditor
+- order: 4
+  id: rapid-capture-triage
+  name: Rapid Capture & Triage
+  family: cross-functional
+  status: published_baseline
+  purpose: Convert chaotic capture into structured operational delta.
+  canonical_path: baseline/agentic-skill-suite-v1/skills/04-rapid-capture-triage
+- order: 5
+  id: ai-resource-router
+  name: AI Resource Router
+  family: cross-functional
+  status: published_baseline
+  purpose: Route work to the best available AI/tool under capability and resource
+    constraints.
+  canonical_path: baseline/agentic-skill-suite-v1/skills/05-ai-resource-router
+- order: 6
+  id: brand-discovery
+  name: Brand Discovery
+  family: brand-creative
+  status: published_baseline
+  purpose: Convert raw brand context into a canonical discovery brief.
+  canonical_path: baseline/agentic-skill-suite-v1/skills/06-brand-discovery
+- order: 7
+  id: brand-strategy
+  name: Brand Strategy
+  family: brand-creative
+  status: published_baseline
+  purpose: Define positioning, category, audience, proposition and differentiation.
+  canonical_path: baseline/agentic-skill-suite-v1/skills/07-brand-strategy
+- order: 8
+  id: brand-verbal-identity
+  name: Brand Verbal Identity
+  family: brand-creative
+  status: published_baseline
+  purpose: Operationalize voice, language and messaging.
+  canonical_path: baseline/agentic-skill-suite-v1/skills/08-brand-verbal-identity
+- order: 9
+  id: brand-visual-direction
+  name: Brand Visual Direction
+  family: brand-creative
+  status: published_baseline
+  purpose: Define creative territories and visual grammar.
+  canonical_path: baseline/agentic-skill-suite-v1/skills/09-brand-visual-direction
+- order: 10
+  id: brand-identity-system
+  name: Brand Identity System
+  family: brand-creative
+  status: published_baseline
+  purpose: Operationalize identity rules, tokens and consistency.
+  canonical_path: baseline/agentic-skill-suite-v1/skills/10-brand-identity-system
+- order: 11
+  id: brand-book-builder
+  name: Brand Book Builder
+  family: brand-creative
+  status: published_baseline
+  purpose: Compile approved brand canon into a usable brand book.
+  canonical_path: baseline/agentic-skill-suite-v1/skills/11-brand-book-builder
+- order: 12
+  id: creative-brief-generator
+  name: Creative Brief Generator
+  family: brand-creative
+  status: published_baseline
+  purpose: Translate canon plus objective into an execution brief.
+  canonical_path: baseline/agentic-skill-suite-v1/skills/12-creative-brief-generator
+- order: 13
+  id: brand-content-system
+  name: Brand Content System
+  family: brand-creative
+  status: published_baseline
+  purpose: Create a repeatable content architecture.
+  canonical_path: baseline/agentic-skill-suite-v1/skills/13-brand-content-system
+- order: 14
+  id: brand-quality-auditor
+  name: Brand Quality Auditor
+  family: brand-creative
+  status: published_baseline
+  purpose: Detect brand drift, regression and low-quality generative artifacts.
+  canonical_path: baseline/agentic-skill-suite-v1/skills/14-brand-quality-auditor
+- order: 15
+  id: brand-skill-orchestrator
+  name: Brand Skill Orchestrator
+  family: brand-creative
+  status: published_baseline
+  purpose: Route and resume the established Brand Skill workflow.
+  canonical_path: baseline/agentic-skill-suite-v1/skills/15-brand-skill-orchestrator

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brand Identity System — RUN_REQUEST",
+  "type": "object",
+  "required": ["objective", "source_artifacts", "mode"],
+  "properties": {
+    "objective": { "type": "string" },
+    "source_artifacts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Must include BRAND_STRATEGY.md and APPROVED_VISUAL_DIRECTION.md (or paths to them)."
+    },
+    "known_context": {
+      "type": "string",
+      "description": "Licensing constraints, existing mark geometry, production channels in scope, VERBAL_IDENTITY.md if available."
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "e.g. \"web + native app only, no print\", \"must extend to 3 sub-brands\"."
+    },
+    "desired_output": {
+      "type": "string",
+      "enum": ["full_system", "tokens_only", "application_rules_only"],
+      "default": "full_system"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["QUICK", "STANDARD", "DEEP", "UPDATE"]
+    },
+    "prior_run": {
+      "type": "string",
+      "description": "Path to prior IDENTITY_SYSTEM.md / DESIGN_TOKENS.json. Required when mode is UPDATE."
+    }
+  },
+  "if": {
+    "properties": { "mode": { "const": "UPDATE" } }
+  },
+  "then": {
+    "required": ["prior_run"]
+  }
+}

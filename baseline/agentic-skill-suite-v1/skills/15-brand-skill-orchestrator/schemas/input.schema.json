@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brand Skill Orchestrator — RUN_REQUEST",
+  "type": "object",
+  "required": ["objective", "mode"],
+  "properties": {
+    "objective": { "type": "string" },
+    "source_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "artifact": { "type": "string" },
+          "owning_skill": { "type": "string" },
+          "path": { "type": "string" },
+          "approval_state": {
+            "type": "string",
+            "enum": ["approved", "pending", "rejected", "unknown"]
+          }
+        },
+        "required": ["artifact"]
+      }
+    },
+    "known_context": { "type": "string" },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "desired_output": {
+      "type": "string",
+      "enum": ["workflow_state_and_next_run", "full_completion_report"],
+      "default": "workflow_state_and_next_run"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["STANDARD", "RESUME"]
+    },
+    "prior_run": {
+      "type": "string",
+      "description": "Path to prior BRAND_WORKFLOW_STATE.md. Required when mode is RESUME."
+    }
+  },
+  "if": {
+    "properties": { "mode": { "const": "RESUME" } }
+  },
+  "then": {
+    "required": ["prior_run"]
+  }
+}

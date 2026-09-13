@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brand Strategy — RUN_REQUEST",
+  "type": "object",
+  "required": ["objective", "source_artifacts", "mode"],
+  "properties": {
+    "objective": { "type": "string" },
+    "source_artifacts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Must include BRAND_DISCOVERY_BRIEF.md; may include research findings, competitor map, VoC, business model docs."
+    },
+    "known_context": { "type": "string" },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "desired_output": {
+      "type": "string",
+      "enum": ["full_strategy_set", "specific_artifact"],
+      "default": "full_strategy_set"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["STANDARD", "UPDATE"]
+    },
+    "prior_run": {
+      "type": "string",
+      "description": "Path to prior BRAND_STRATEGY.md / POSITIONING_SYSTEM.md. Required when mode is UPDATE."
+    }
+  },
+  "if": {
+    "properties": { "mode": { "const": "UPDATE" } }
+  },
+  "then": {
+    "required": ["prior_run"]
+  }
+}

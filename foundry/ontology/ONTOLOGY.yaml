@@ -1,0 +1,63 @@
+version: 0.3
+status: canonical_operational_v5
+source_of_truth:
+  constitutional: FOUNDRY_CANON.md
+  operational: FOUNDRY_OPERATING_MODEL.md
+entities:
+  WorkflowIntake:
+    purpose: Human-provided description of a recurrent activity, need or workflow before Skill assumptions.
+  Workflow:
+    purpose: Reconstructed ordered process including actors, decisions, artifacts and handoffs.
+  Capability:
+    purpose: Bounded ability mined from a workflow; it may or may not deserve a Skill.
+  SkillCandidate:
+    purpose: Capability or family under architectural evaluation.
+  HumanDecision:
+    purpose: Explicit G6 approval, correction, rejection or request for more research.
+  SkillSpec:
+    purpose: Human-approved implementation contract for a buildable capability change.
+  Skill:
+    purpose: Published reusable bounded agentic capability.
+  SkillFamily:
+    purpose: Coherent group of related Skills.
+  Orchestrator:
+    purpose: Router/coordinator over sufficiently defined worker Skills.
+  Contract:
+    purpose: Shared structured interface or policy.
+  Artifact:
+    purpose: Persistent input/output passed across stages.
+  Eval:
+    purpose: Behavioral verification case for one Skill or Foundry lifecycle behavior.
+  IntegrationEval:
+    purpose: Verification across multiple Skills/handoffs or Foundry stages.
+  Adapter:
+    purpose: Thin platform-specific wrapper around canonical Skill core.
+  Checkpoint:
+    purpose: Compact recoverable state for interrupted work.
+relationships:
+  - decomposes_into
+  - reuses
+  - extends
+  - mode_of
+  - depends_on
+  - handoff_from
+  - handoff_to
+  - member_of
+  - orchestrates
+  - produces
+  - consumes
+  - validated_by
+  - adapted_by
+  - approved_by
+  - specified_by
+decision_precedence:
+  - REUSE
+  - EXTEND
+  - MODE
+  - DEPENDENT_SKILL
+  - NEW_SKILL
+  - NO_SKILL
+notes:
+  - Capability is deliberately distinct from Skill; mining never implies creation.
+  - Workflow stages are process states, not automatic meta-Skills.
+  - Add ontology concepts only when they improve classification, deduplication, routing, lifecycle control or auditability.
