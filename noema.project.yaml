@@ -6,15 +6,13 @@ noema:
 project:
   id: skill-foundry
   name: Skill Foundry
-  type: agentic-capability-foundry
+  type: library
   status: active
 
 traits:
   - agentic
-  - multi-agent
-  - deterministic
-  - eval-backed
-  - portable
+  - reusable
+  - research-heavy
   - human-gated
 
 authority:
@@ -109,9 +107,11 @@ context:
 
 quality_claims:
   - contract-conformance
+  - capability-trigger-accuracy
+  - portability
   - context-efficiency
   - provenance
-  - delivery-integrity
+  - recoverability
 
 relations:
   - type: governed-by
