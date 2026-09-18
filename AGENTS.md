@@ -2,8 +2,8 @@
 
 Start with **this file + `noema.project.yaml` + the current task**. Do not recursively preload the repository.
 
-## Authority
-Skill Foundry owns its taxonomy, ontology, registry, G0–G10 lifecycle, Skill contracts, evals, packages, candidate state and Foundry handoffs. Noema governs repository-level conformance, context routing and interoperability only; it does not redefine Foundry semantics.
+## Scope and authority
+This repository exists only to discover, classify, specify, build, validate, audit and package reusable agentic Skills. Skill Foundry owns its taxonomy, ontology, registry, G0–G10 lifecycle, Skill contracts, evals, packages, candidate state and Foundry handoffs. Noema governs repository-level conformance, context routing and interoperability only; it does not redefine Foundry semantics.
 
 ## Context routing
 Choose the task mode in `noema.project.yaml` (`patch`, `build`, `audit`, `research`, `architect`, or `recover`) and load only that mode's required files. Optional files are loaded only when the task needs them.
@@ -11,12 +11,15 @@ Choose the task mode in `noema.project.yaml` (`patch`, `build`, `audit`, `resear
 After routed context, load only the **current** candidate/spec/build/handoff named by the task. Never load the full baseline suite or full history by default.
 
 ## Invariants
+- `FOUNDRY_OPERATING_MODEL.md` + `foundry/workflows/SF-WF-001_SKILL_GENESIS.md` remain the canonical executable process. Do not replace them with another framework during ordinary work.
+- A workflow node or mined capability is not automatically a Skill; creating a new Skill is never the default outcome.
 - Baseline `baseline/agentic-skill-suite-v1/` is immutable unless an explicit migration is approved.
 - Decision precedence: `REUSE → EXTEND → MODE → DEPENDENT_SKILL → NEW_SKILL → NO_SKILL`.
 - G6 human decision remains mandatory for architecture/closure.
 - `SKILL.md` is the portable canonical Skill core; platform adapters stay thin.
+- Reuse proven shared contracts before inventing new ones.
 - Unrelated personal/project context must not enter Foundry unless supplied as cycle input.
-- `main` is stable canon; never force-push.
+- `main` is stable canon; never force-push. Commit/push meaningful completed work to the assigned work branch.
 
 ## Validation
 For Foundry-domain changes run:

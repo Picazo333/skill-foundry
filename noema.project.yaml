@@ -31,7 +31,6 @@ authority:
     - external-platform-runtime
     - secrets
     - personal-operational-state
-    - agency-domain-rules
 
 sources_of_truth:
   constitutional:
@@ -122,4 +121,4 @@ exceptions: []
 extensions:
   x-foundry-authority: taxonomy-ontology-registry-workflows-evals
   x-baseline-policy: immutable-unless-explicitly-approved
-  x-migration-stage: pre-merge-review
+  x-noema-adoption: rc0-conformant

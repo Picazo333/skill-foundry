@@ -1,6 +1,6 @@
 # Skill Foundry checkpoint
 
-phase: noema_rc0_migration_pre_merge_review
+phase: v5_foundation_complete_noema_rc0_conformant
 
 completed:
 - original Kickstart preserved verbatim as FOUNDRY_CANON.md
@@ -12,16 +12,16 @@ completed:
 - five Foundry lifecycle architecture evals recorded
 - V1 capability coverage, foundation gap map and lifecycle audit present
 - Noema pre-migration baseline captured at main commit 42fe23e5645facb1e132bbc2f9addfde49393e2e
-- Noema RC0 governance/context migration prepared on branch migration/noema-rc0
+- Noema RC0 governance/context integration passes both Noema and Foundry-native validation on this tree
 
 partial:
-- Noema migration is intentionally unmerged pending human review of the diff and before/after measurements
+- no active Skill Genesis candidate
 
 blocked: []
 
 active_candidate_id: null
 
 next_exact_action:
-- Review PR for migration/noema-rc0.
-- Confirm that Foundry-owned taxonomy, ontology, registry, lifecycle, evals, baseline and canonical workflows did not move.
-- Merge only if Noema conformance and Foundry validation are green and the context before/after result is accepted.
+- Treat Git/PR state as authority for whether this tree is still under review or already merged.
+- If not merged: review PR #4 and merge only after human approval.
+- If merged: start the next Foundry work unit through AGENTS.md + noema.project.yaml task routing; refresh this checkpoint when an active candidate begins.
