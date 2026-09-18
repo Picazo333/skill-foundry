@@ -1,0 +1,124 @@
+noema:
+  protocol: "0.1.0-rc.0"
+  contracts:
+    project_manifest: 1
+
+project:
+  id: skill-foundry
+  name: Skill Foundry
+  type: library
+  status: active
+
+traits:
+  - agentic
+  - reusable
+  - research-heavy
+  - human-gated
+
+authority:
+  owns:
+    - skill-taxonomy
+    - skill-ontology
+    - skill-registry
+    - skill-genesis-lifecycle
+    - skill-contracts
+    - skill-evals
+    - skill-packages
+    - foundry-candidate-state
+    - foundry-handoffs
+  does_not_own:
+    - noema-protocol
+    - external-platform-runtime
+    - secrets
+    - personal-operational-state
+
+sources_of_truth:
+  constitutional:
+    scheme: repo
+    locator: FOUNDRY_CANON.md
+  operating_model:
+    scheme: repo
+    locator: FOUNDRY_OPERATING_MODEL.md
+  genesis_workflow:
+    scheme: repo
+    locator: foundry/workflows/SF-WF-001_SKILL_GENESIS.md
+  collaboration:
+    scheme: repo
+    locator: COLLABORATION_PROTOCOL.md
+  taxonomy:
+    scheme: repo
+    locator: foundry/taxonomy/TAXONOMY.yaml
+  ontology:
+    scheme: repo
+    locator: foundry/ontology/ONTOLOGY.yaml
+  skill_registry:
+    scheme: repo
+    locator: foundry/registry/SKILL_REGISTRY.yaml
+  state:
+    scheme: repo
+    locator: foundry/state/CHECKPOINT.md
+  validator:
+    scheme: repo
+    locator: tools/validate_foundry.py
+
+context:
+  entrypoint: AGENTS.md
+  default_mode: recover
+  modes:
+    patch:
+      required:
+        - repo://FOUNDRY_OPERATING_MODEL.md
+      optional:
+        - repo://COLLABORATION_PROTOCOL.md
+    build:
+      required:
+        - repo://FOUNDRY_OPERATING_MODEL.md
+      optional:
+        - repo://COLLABORATION_PROTOCOL.md
+        - repo://foundry/workflows/SF-WF-001_SKILL_GENESIS.md
+    audit:
+      required:
+        - repo://FOUNDRY_OPERATING_MODEL.md
+      optional:
+        - repo://COLLABORATION_PROTOCOL.md
+        - repo://foundry/workflows/SF-WF-001_SKILL_GENESIS.md
+    research:
+      required:
+        - repo://FOUNDRY_OPERATING_MODEL.md
+      optional:
+        - repo://FOUNDRY_CANON.md
+        - repo://foundry/registry/SKILL_REGISTRY.yaml
+    architect:
+      required:
+        - repo://FOUNDRY_CANON.md
+        - repo://FOUNDRY_OPERATING_MODEL.md
+        - repo://foundry/registry/SKILL_REGISTRY.yaml
+        - repo://foundry/taxonomy/TAXONOMY.yaml
+        - repo://foundry/ontology/ONTOLOGY.yaml
+      optional:
+        - repo://COLLABORATION_PROTOCOL.md
+    recover:
+      required:
+        - repo://foundry/state/CHECKPOINT.md
+      optional:
+        - repo://FOUNDRY_OPERATING_MODEL.md
+        - repo://foundry/handoffs/README.md
+
+quality_claims:
+  - contract-conformance
+  - capability-trigger-accuracy
+  - portability
+  - context-efficiency
+  - provenance
+  - recoverability
+
+relations:
+  - type: governed-by
+    target: project:noema
+
+exceptions: []
+
+extensions:
+  x-foundry-authority: taxonomy-ontology-registry-workflows-evals
+  x-baseline-policy: immutable-unless-explicitly-approved
+  x-noema-adoption: rc0-conformant

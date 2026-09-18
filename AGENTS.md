@@ -1,39 +1,29 @@
-# Skill Foundry — Repository Instructions V5
+# Skill Foundry — Agent Entry Map
 
-Read in this order before Foundry work:
-1. `FOUNDRY_CANON.md`
-2. `FOUNDRY_OPERATING_MODEL.md`
-3. `COLLABORATION_PROTOCOL.md`
-4. current task prompt/handoff
-5. current candidate + compact registry/taxonomy/ontology
-6. only relevant V1 baseline pieces
+Start with **this file + `noema.project.yaml` + the current task**. Do not recursively preload the repository.
 
-## Scope lock
-This repository exists only to discover, classify, specify, build, validate, audit and package reusable agentic Skills. Do not import unrelated project/personal context. Examples or vertical names inside the original canon/baseline are illustrative/test evidence, not current-cycle facts.
+## Scope and authority
+This repository exists only to discover, classify, specify, build, validate, audit and package reusable agentic Skills. Skill Foundry owns its taxonomy, ontology, registry, G0–G10 lifecycle, Skill contracts, evals, packages, candidate state and Foundry handoffs. Noema governs repository-level conformance, context routing and interoperability only; it does not redefine Foundry semantics.
 
-## Baseline lock
-`baseline/agentic-skill-suite-v1/` is an exact implemented precedent of 15 Skills. Do not modify it unless an explicit migration is approved.
+## Context routing
+Choose the task mode in `noema.project.yaml` (`patch`, `build`, `audit`, `research`, `architect`, or `recover`) and load only that mode's required files. Optional files are loaded only when the task needs them.
 
-## Operating lifecycle
-`FOUNDRY_OPERATING_MODEL.md` + `foundry/workflows/SF-WF-001_SKILL_GENESIS.md` are the canonical executable process. Do not replace them with a different abstract framework during ordinary work.
+After routed context, load only the **current** candidate/spec/build/handoff named by the task. Never load the full baseline suite or full history by default.
 
-## Decision precedence
-`REUSE → EXTEND → MODE → DEPENDENT_SKILL → NEW_SKILL → NO_SKILL`.
-A workflow node is not automatically a Skill. A new Skill is not the default output.
+## Invariants
+- `FOUNDRY_OPERATING_MODEL.md` + `foundry/workflows/SF-WF-001_SKILL_GENESIS.md` remain the canonical executable process. Do not replace them with another framework during ordinary work.
+- A workflow node or mined capability is not automatically a Skill; creating a new Skill is never the default outcome.
+- Baseline `baseline/agentic-skill-suite-v1/` is immutable unless an explicit migration is approved.
+- Decision precedence: `REUSE → EXTEND → MODE → DEPENDENT_SKILL → NEW_SKILL → NO_SKILL`.
+- G6 human decision remains mandatory for architecture/closure.
+- `SKILL.md` is the portable canonical Skill core; platform adapters stay thin.
+- Reuse proven shared contracts before inventing new ones.
+- Unrelated personal/project context must not enter Foundry unless supplied as cycle input.
+- `main` is stable canon; never force-push. Commit/push meaningful completed work to the assigned work branch.
 
-## Human gate
-G6 is mandatory for every architecture/closure proposal. Do not self-approve buildable architecture or silently close REUSE/NO_SKILL before the human decision.
+## Validation
+For Foundry-domain changes run:
+`python tools/validate_foundry.py`
+`python -m unittest tests.test_validate_foundry -v`
 
-## Skill package architecture
-`SKILL.md` is the universal core. Platform behavior belongs in thin adapters. Reuse shared contracts before inventing new ones.
-
-## Git
-- `main` stable canon.
-- Cursor `agent/cursor`.
-- Antigravity `agent/antigravity`.
-- Sync latest `origin/main` before each work unit.
-- Never force-push.
-- Push meaningful completed work.
-
-## Context efficiency
-Prefer current candidate artifacts, registry entries, manifests, diffs and checkpoints over full-history reloads. Do not duplicate canonical policy into every artifact.
+Noema conformance is a separate repository-governance gate and does not replace Foundry evals or quality gates.

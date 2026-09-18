@@ -1,3 +1,5 @@
+> **Historical bootstrap document.** Do not treat these one-time installation steps as current project state. Agents start at `AGENTS.md` + `noema.project.yaml`.
+
 # EJECUTA ESTO — DESDE CERO
 
 No uses Bash. No crees ramas manualmente.

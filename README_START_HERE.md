@@ -2,6 +2,10 @@
 
 Skill Foundry is the system for discovering, classifying, specifying, building, evaluating, auditing and publishing reusable agentic Skills.
 
+## Agent entrypoint
+
+Agents start at `AGENTS.md` + `noema.project.yaml` + the current task. The manifest routes progressive context. The bootstrap documents below are retained as installation history and are **not** mandatory agent cold-start context.
+
 ## Start here
 If you are installing from zero, follow `00_START_HERE.md` or `EXECUTE_THIS.md`.
 
