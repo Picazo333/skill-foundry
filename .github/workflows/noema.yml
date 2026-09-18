@@ -1,0 +1,14 @@
+name: Noema Conformance
+
+on:
+  push:
+    branches:
+      - main
+      - migration/noema-rc0
+  pull_request:
+
+jobs:
+  noema:
+    uses: Picazo333/noema/.github/workflows/reusable-conformance.yml@5fa715b90aabd23715b0a15fad4b9538d1e55a95
+    with:
+      project_root: "."

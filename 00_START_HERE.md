@@ -1,3 +1,5 @@
+> **Historical bootstrap document.** The repository already exists and has completed its V5 foundation reconciliation. Agents must start at `AGENTS.md` + `noema.project.yaml`, not here. Retained for provenance/reinstallation only.
+
 # SKILL FOUNDRY — START FROM ZERO
 
 This is the complete, repository-ready Skill Foundry package.

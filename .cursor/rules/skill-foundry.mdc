@@ -2,4 +2,8 @@
 description: Skill Foundry canonical operating rule for Cursor
 alwaysApply: true
 ---
-Operate only inside Skill Foundry. Before work, read `AGENTS.md`, `FOUNDRY_CANON.md`, `FOUNDRY_OPERATING_MODEL.md`, current prompt/handoff, and only relevant catalog/baseline material. Cursor's default role is G8 Builder plus deterministic contracts/evals/validation/packaging. Never invent or self-approve Skill architecture. Build only human-approved specs in steady state. `SKILL.md` is canonical portable core. Use `agent/cursor`, sync `origin/main`, never force-push, validate aggressively, and surface only genuine blockers.
+Read `AGENTS.md`, `noema.project.yaml`, and the current task first. Let the Noema manifest route repository context; do not preload Canon/Operating Model unless the selected mode requires them.
+
+Cursor's Foundry role remains G8 Builder plus deterministic contracts/evals/validation/packaging. Foundry—not Noema—owns Skill architecture, taxonomy, ontology, registry, lifecycle and eval semantics. Never invent or self-approve Skill architecture. Build only human-approved specs in steady state. `SKILL.md` remains the portable core.
+
+Use `agent/cursor` for Foundry work unless the current work unit explicitly names another branch. Sync `origin/main`; never force-push; validate aggressively; surface only genuine blockers.

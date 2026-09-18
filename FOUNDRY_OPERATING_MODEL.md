@@ -161,11 +161,15 @@ A cycle stops only as:
 - **BLOCKED** — indispensable input/decision is absent and exact next action is recorded.
 
 ## 6. Context discipline
-Default loading order:
-1. operating model + current task prompt;
-2. current candidate artifacts;
-3. compact Skill Registry;
+Repository-level cold-start and static context routing are governed by `AGENTS.md` + `noema.project.yaml`. This operating model remains the **Foundry process authority**; Noema does not own or redefine taxonomy, ontology, registry, lifecycle, Skill contracts or eval semantics.
+
+After the selected Noema mode loads its required stable files, Foundry work loads dynamically:
+1. the current task/handoff;
+2. only the current candidate artifacts;
+3. compact Skill Registry when overlap/routing is relevant;
 4. relevant existing Skill manifest/`SKILL.md` only;
-5. deeper baseline files only when necessary.
+5. deeper baseline evidence only when necessary.
 
 Do not load the whole suite by default. Baseline examples are evidence/test fixtures, not current project facts. Unrelated personal/project context must not enter a Foundry cycle unless the human explicitly supplies it as that cycle's input.
+
+Noema conformance is a repository-governance gate. It never substitutes for Foundry's own contracts, evals, G6 approval, G9 audit or publish gates.
