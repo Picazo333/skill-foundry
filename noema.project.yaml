@@ -74,14 +74,14 @@ context:
     build:
       required:
         - repo://FOUNDRY_OPERATING_MODEL.md
-        - repo://COLLABORATION_PROTOCOL.md
       optional:
+        - repo://COLLABORATION_PROTOCOL.md
         - repo://foundry/workflows/SF-WF-001_SKILL_GENESIS.md
     audit:
       required:
         - repo://FOUNDRY_OPERATING_MODEL.md
-        - repo://COLLABORATION_PROTOCOL.md
       optional:
+        - repo://COLLABORATION_PROTOCOL.md
         - repo://foundry/workflows/SF-WF-001_SKILL_GENESIS.md
     research:
       required:
