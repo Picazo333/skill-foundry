@@ -1,6 +1,6 @@
 # Skill Foundry checkpoint
 
-phase: vnext_g2_pass_pending_merge
+phase: vnext_g3_architecture_redteam
 
 completed:
 - original Kickstart preserved verbatim as FOUNDRY_CANON.md
@@ -18,6 +18,7 @@ completed:
 partial:
 - VNext G0 baseline gate merged and is canonical
 - VNext G1 authority/contract reconciliation merged and is canonical
+- VNext G2 targeted research merged and is canonical
 - no active Skill Genesis candidate
 
 blocked: []
@@ -32,6 +33,7 @@ active_program:
 - deviations: foundry/plans/VNEXT_DEVIATIONS.md
 
 next_exact_action:
-- Merge PR #9 after final branch checks remain green.
-- Then start G3 minimal VNext architecture + pre-code red-team from latest main.
+- Evaluate G3 architecture and red-team claims.
+- Merge G3 only after Noema Conformance + Foundry Validation remain green and every mandatory G3 claim is PASS.
+- Then start G4 single-capability vertical slice from latest main.
 - Final operator intervention occurs after G7 release evidence is complete.
