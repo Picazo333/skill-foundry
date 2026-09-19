@@ -69,7 +69,7 @@ gates:
     terminal_condition: REQUIRED_ARCHITECTURE_UNKNOWNS_DECIDED_OR_DEFERRED
   - id: G3
     name: minimal_architecture_and_redteam
-    status: EVALUATING
+    status: PASS
     depends_on: [G2]
     terminal_condition: VERTICAL_SLICE_ARCHITECTURE_FROZEN_NO_CRITICAL_DEFECT
   - id: G4
