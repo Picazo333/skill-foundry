@@ -111,3 +111,16 @@ skills:
   status: published_baseline
   purpose: Route and resume the established Brand Skill workflow.
   canonical_path: baseline/agentic-skill-suite-v1/skills/15-brand-skill-orchestrator
+
+- order: 16
+  id: skill-foundry
+  name: Skill Foundry
+  family: foundry-system
+  status: published
+  purpose: Provide a thin portable entry point that routes capability-engineering requests into canonical Skill Foundry workflows.
+  canonical_path: catalog/skills/skill-foundry
+  origin:
+    type: foundry_generated
+    candidate_id: sf-cand-20260919-skill-foundry-front-door
+    program: skill-foundry-vnext
+    gate: G4
