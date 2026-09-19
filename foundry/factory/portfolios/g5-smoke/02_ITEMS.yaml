@@ -5,6 +5,7 @@ items:
     item_type: CAPABILITY
     family: context
     disposition: REUSE
+    lifecycle: CLOSED
     target_skill_id: canonical-context-builder
     merged_into: null
     effort: E1
@@ -17,6 +18,7 @@ items:
     item_type: DETERMINISTIC_UTILITY
     family: infrastructure
     disposition: NO_SKILL
+    lifecycle: CLOSED
     target_skill_id: null
     merged_into: null
     effort: E0
@@ -29,6 +31,7 @@ items:
     item_type: CAPABILITY
     family: foundry-system
     disposition: REUSE
+    lifecycle: CLOSED
     target_skill_id: skill-foundry
     merged_into: null
     effort: E1
@@ -41,6 +44,7 @@ items:
     item_type: SKILL_CANDIDATE
     family: research
     disposition: DEFERRED
+    lifecycle: DEFERRED
     target_skill_id: null
     merged_into: null
     effort: E3
@@ -53,6 +57,7 @@ items:
     item_type: CAPABILITY
     family: brand-creative
     disposition: REUSE
+    lifecycle: CLOSED
     target_skill_id: brand-skill-orchestrator
     merged_into: null
     effort: E1
@@ -65,6 +70,7 @@ items:
     item_type: SKILL_CANDIDATE
     family: decision-support
     disposition: NEW_SKILL
+    lifecycle: READY_FOR_PUBLISH
     target_skill_id: null
     merged_into: null
     effort: E2
@@ -77,6 +83,7 @@ items:
     item_type: UNKNOWN
     family: null
     disposition: UNRESOLVED
+    lifecycle: UNRESOLVED
     target_skill_id: null
     merged_into: null
     effort: E0
