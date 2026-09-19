@@ -59,7 +59,7 @@ gates:
     terminal_condition: BASELINE_EVIDENCE_GREEN
   - id: G1
     name: reconcile_authority_contracts_non_regression
-    status: EVALUATING
+    status: PASS
     depends_on: [G0]
     terminal_condition: NO_REQUIRED_AUTHORITY_COLLISION
   - id: G2
