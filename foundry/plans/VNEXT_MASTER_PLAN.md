@@ -42,7 +42,34 @@ Non-material implementation details may be adjusted and recorded in `foundry/pla
 
 A **material deviation** must stop the affected workstream, be recorded with evidence, and remain unresolved until operator review. Independent unaffected work may continue.
 
-### 0.4 Branch policy
+### 0.4 Closed-loop gate evaluation
+
+Every G0→G7 gate is governed by `foundry/evals/vnext/`.
+
+Mandatory rules:
+- a gate advances only when every mandatory claim has positive evidence and resolves to PASS;
+- missing evidence is UNASSESSED, never PASS;
+- no aggregate score may cancel a mandatory FAIL or UNASSESSED;
+- failed claims produce structured defects routed to the responsible stage/owner;
+- rework is followed by selective re-evaluation plus required regression checks;
+- circuit breakers stop the affected workstream immediately;
+- protected holdout/eval weakening is a circuit breaker;
+- model-based evaluators require calibration evidence when used for critical gates;
+- gate certificates are derived from evidence, not free-form builder assertions.
+
+Noema coordinates conformance, authority, context, executor routing and evidence/provenance envelopes. Skill Foundry owns the semantic quality claims and their PASS/FAIL meaning.
+
+Evidence priority:
+1. deterministic;
+2. runtime/behavioral;
+3. independent audit;
+4. Shadow/adversarial;
+5. model judgment;
+6. narrative assertion.
+
+`NOEMA PASS` is never sufficient for `FOUNDRY PASS`.
+
+### 0.5 Branch policy
 - `main` = stable canon.
 - One implementation branch per gate: `vnext/g0-baseline`, `vnext/g1-boundaries`, ..., `vnext/g7-release`.
 - Each branch starts from current `origin/main`.
@@ -460,6 +487,10 @@ No Portfolio Router project begins before this review.
 # Program-wide acceptance rules
 
 ## Required on every gate merge
+- gate eval suite executed from `foundry/evals/vnext/gates/<GATE>.yaml`;
+- all mandatory gate claims evidenced as PASS;
+- gate certificate or equivalent evidence artifact produced;
+- any rework/defect loop closed or explicitly blocked;
 - branch based on latest `main`;
 - no force-push;
 - relevant Noema conformance green;
