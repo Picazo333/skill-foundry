@@ -42,6 +42,9 @@ sources_of_truth:
   genesis_workflow:
     scheme: repo
     locator: foundry/workflows/SF-WF-001_SKILL_GENESIS.md
+  factory_workflow:
+    scheme: repo
+    locator: foundry/workflows/SF-WF-003_PORTFOLIO_FACTORY.md
   collaboration:
     scheme: repo
     locator: COLLABORATION_PROTOCOL.md
@@ -60,6 +63,9 @@ sources_of_truth:
   validator:
     scheme: repo
     locator: tools/validate_foundry.py
+  factory_validator:
+    scheme: repo
+    locator: tools/validate_factory.py
   vnext_program:
     scheme: repo
     locator: foundry/plans/VNEXT_MASTER_PLAN.md
@@ -83,26 +89,25 @@ context:
       optional:
         - repo://COLLABORATION_PROTOCOL.md
     build:
-      required:        - repo://foundry/workflows/SF-WF-003_PORTFOLIO_FACTORY.md
-
+      required:
         - repo://FOUNDRY_OPERATING_MODEL.md
       optional:
         - repo://COLLABORATION_PROTOCOL.md
         - repo://foundry/workflows/SF-WF-001_SKILL_GENESIS.md
+        - repo://foundry/workflows/SF-WF-003_PORTFOLIO_FACTORY.md
         - repo://foundry/plans/VNEXT_MASTER_PLAN.md
         - repo://foundry/plans/VNEXT_EXECUTION_MANIFEST.yaml
         - repo://foundry/evals/vnext/GATE_CLAIMS.yaml
     audit:
-      required:        - repo://foundry/workflows/SF-WF-003_PORTFOLIO_FACTORY.md
-
+      required:
         - repo://FOUNDRY_OPERATING_MODEL.md
       optional:
         - repo://COLLABORATION_PROTOCOL.md
         - repo://foundry/workflows/SF-WF-001_SKILL_GENESIS.md
+        - repo://foundry/workflows/SF-WF-003_PORTFOLIO_FACTORY.md
         - repo://foundry/plans/VNEXT_MASTER_PLAN.md
         - repo://foundry/plans/VNEXT_ACCEPTANCE_GATES.md
         - repo://foundry/evals/vnext/GATE_EVAL_MODEL.md
-        - repo://foundry/evals/vnext/GATE_CLAIMS.yaml
         - repo://foundry/evals/vnext/GATE_CLAIMS.yaml
         - repo://foundry/evals/vnext/CIRCUIT_BREAKERS.yaml
     research:
@@ -111,9 +116,9 @@ context:
       optional:
         - repo://FOUNDRY_CANON.md
         - repo://foundry/registry/SKILL_REGISTRY.yaml
+        - repo://foundry/workflows/SF-WF-003_PORTFOLIO_FACTORY.md
     architect:
-      required:        - repo://foundry/workflows/SF-WF-003_PORTFOLIO_FACTORY.md
-
+      required:
         - repo://FOUNDRY_CANON.md
         - repo://FOUNDRY_OPERATING_MODEL.md
         - repo://foundry/registry/SKILL_REGISTRY.yaml
@@ -121,6 +126,7 @@ context:
         - repo://foundry/ontology/ONTOLOGY.yaml
       optional:
         - repo://COLLABORATION_PROTOCOL.md
+        - repo://foundry/workflows/SF-WF-003_PORTFOLIO_FACTORY.md
         - repo://foundry/plans/VNEXT_MASTER_PLAN.md
         - repo://foundry/plans/VNEXT_EXECUTION_MANIFEST.yaml
         - repo://foundry/plans/VNEXT_ACCEPTANCE_GATES.md
@@ -130,6 +136,7 @@ context:
       optional:
         - repo://FOUNDRY_OPERATING_MODEL.md
         - repo://foundry/handoffs/README.md
+        - repo://foundry/workflows/SF-WF-003_PORTFOLIO_FACTORY.md
         - repo://foundry/plans/VNEXT_EXECUTION_MANIFEST.yaml
         - repo://foundry/plans/VNEXT_DEVIATIONS.md
 
@@ -140,6 +147,9 @@ quality_claims:
   - context-efficiency
   - provenance
   - recoverability
+  - source-coverage
+  - portfolio-plan-fidelity
+  - composition-integrity
 
 relations:
   - type: governed-by
