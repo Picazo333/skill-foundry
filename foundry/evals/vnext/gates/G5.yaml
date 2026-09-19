@@ -1,0 +1,12 @@
+gate: G5
+name: factory
+claims:
+  - source_coverage_complete
+  - unknowns_not_invented
+  - semantic_dedup_operational
+  - plan_lock_fidelity
+  - dependency_graph_valid
+  - wave_order_valid
+  - canon_ownership_respected
+  - architecture_exceptions_traceable
+fail_route: factory_architecture
