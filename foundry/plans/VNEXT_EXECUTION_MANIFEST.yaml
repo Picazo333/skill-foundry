@@ -54,7 +54,7 @@ branch_policy:
 gates:
   - id: G0
     name: seal_baseline
-    status: EVALUATING
+    status: PASS
     depends_on: []
     terminal_condition: BASELINE_EVIDENCE_GREEN
   - id: G1
