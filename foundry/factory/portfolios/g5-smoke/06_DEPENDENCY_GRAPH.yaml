@@ -1,0 +1,6 @@
+portfolio_id: g5-smoke
+edges:
+  - dependency: i1
+    dependent: i6
+  - dependency: i6
+    dependent: i8
