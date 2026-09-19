@@ -10,3 +10,11 @@ candidates:
       - capability: portable Skill Foundry entry and intent routing
         treatment: NEW_SKILL
         target_skill_id: null
+
+  - id: sf-cand-20260919-skill-foundry-factory-mode
+    title: Skill Foundry Factory mode
+    status: BUILD_COMPLETE
+    decisions:
+      - capability: portfolio-scale Factory routing
+        treatment: EXTEND
+        target_skill_id: skill-foundry
