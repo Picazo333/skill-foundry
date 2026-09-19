@@ -13,7 +13,7 @@ candidates:
 
   - id: sf-cand-20260919-skill-foundry-factory-mode
     title: Skill Foundry Factory mode
-    status: BUILD_COMPLETE
+    status: READY_FOR_MERGE
     decisions:
       - capability: portfolio-scale Factory routing
         treatment: EXTEND
