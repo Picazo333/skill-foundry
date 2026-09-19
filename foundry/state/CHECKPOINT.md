@@ -1,6 +1,6 @@
 # Skill Foundry checkpoint
 
-phase: vnext_g5_pass_pending_merge
+phase: vnext_g5_pass
 
 completed:
 - G0 baseline sealed and reproducible
@@ -8,24 +8,22 @@ completed:
 - G2 targeted research PASS
 - G3 minimal VNext architecture + red-team PASS
 - G4 real single-capability vertical slice PASS and published
-- G5 R4/R5/R8 Factory research decisions completed
-- SF-WF-003 Portfolio Factory implemented
-- Factory schemas, policy, deterministic validator and mutation tests implemented
-- skill-foundry extended to v1.1.0 with operational FACTORY routing
-- mixed synthetic Factory smoke PASS with 100% source accounting
-- Noema Conformance PASS
-- Foundry Validation + V1 regression PASS
+- G5 Portfolio Factory control plane implemented and merged
+- skill-foundry v1.1.0 supports operational FACTORY routing
+- Factory smoke achieved 100% source accounting with no architecture drift
+- deterministic Factory validator/mutation suite PASS
 - G5 independent audit PASS
-- G5 CompletionCertificate derives PASS
-- observed G5 defects D001-D003 routed through explicit rework and closed
+- Noema Conformance PASS
+- Foundry Validation + V1 baseline regression PASS
+- Factory extension candidate PUBLISHED
+- G5 terminal condition SMALL_MIXED_PORTFOLIO_COMPLETES_WITHOUT_DRIFT satisfied
 
 partial:
-- G5 implementation and extension are READY_FOR_MERGE
-- candidate publication state changes to PUBLISHED only after merge to main
+- G6 double canary + hardening not yet completed
 
 blocked: []
 
-active_candidate_id: sf-cand-20260919-skill-foundry-factory-mode
+active_candidate_id: null
 
 active_program:
 - id: skill-foundry-vnext
@@ -35,7 +33,8 @@ active_program:
 - deviations: foundry/plans/VNEXT_DEVIATIONS.md
 
 next_exact_action:
-- Revalidate the current PR #13 head.
-- Merge PR #13 only if Foundry Validation and Noema Conformance are green.
-- Create a G5 close branch from latest main, mark the extension PUBLISHED, mark G5 PASS, issue terminal G5 gate certificate, validate and merge.
-- Then execute G6 double canary + hardening.
+- Validate and merge this G5 close branch.
+- Start VNext G6 from latest main.
+- Execute the predeclared adversarial synthetic canary.
+- Build a 15–25 item real canary from the already-mined corpus.
+- Stop only if a genuine human architecture decision or circuit breaker is reached.
