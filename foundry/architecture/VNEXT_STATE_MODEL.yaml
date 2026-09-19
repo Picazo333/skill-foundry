@@ -1,0 +1,44 @@
+version: 1
+status: FROZEN_CANDIDATE_G3
+program_gate_state:
+  values: [PENDING, EVALUATING, PASS, FAIL, BLOCKED]
+  authority: foundry/plans/VNEXT_EXECUTION_MANIFEST.yaml
+skill_genesis_state:
+  authority: FOUNDRY_OPERATING_MODEL.md
+  unchanged: true
+front_door_intent_state:
+  inputs:
+    - user_request
+    - available_repo_context
+  outputs:
+    - GENESIS
+    - MINING
+    - FACTORY
+    - MAINTENANCE
+    - AMBIGUOUS
+  ambiguity_rule: ask only the minimum architecture-blocking question; do not guess
+support_state_G4:
+  GENESIS: AVAILABLE
+  MINING: AVAILABLE
+  FACTORY: BLOCKED_NOT_IMPLEMENTED
+  MAINTENANCE: BLOCKED_NOT_IMPLEMENTED
+work_coordination:
+  noema_work_order: authoritative_generic_envelope
+  noema_handoff_status: [complete, partial, blocked, failed]
+  foundry_candidate_state: domain_lifecycle_authority
+recovery:
+  class: RECONSTRUCT_FROM_REPO
+  minimum:
+    - base_commit_or_branch
+    - work_order_ref
+    - candidate_or_spec_ref
+    - completed_set_or_last_gate
+    - evidence_refs
+    - remaining
+    - next_exact_action
+    - blockers
+    - side_effect_replay_note
+completion:
+  claim_states: [PASS, FAIL, UNASSESSED, BLOCKED]
+  gate_advance_rule: all_mandatory_claims_PASS
+  aggregate_score_override: forbidden
