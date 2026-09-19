@@ -1,5 +1,5 @@
 gate: G3
-status: PASS_PENDING_CI
+status: PASS
 claims:
   vertical_slice_semantically_complete:
     verdict: PASS
@@ -29,3 +29,6 @@ claims:
 notes:
   - G4 intentionally adds no new canonical ontology entity unless implementation evidence invalidates this decision.
   - Portfolio/Wave/ArchitectureException remain G5 concerns.
+ci_evidence:
+  foundry_validation_run: 35465564922
+  noema_conformance_run: 35465565330
