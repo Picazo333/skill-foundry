@@ -1,6 +1,6 @@
 # G0 — V5 + Noema RC0 Baseline Report
 
-Status: **PENDING_GATE_CI**
+Status: **PASS**
 Gate: G0
 Rollback anchor candidate: `365c62b58b70dea7aecd3ce4c7724ac6ce291353`
 
@@ -42,12 +42,12 @@ From `foundry/analysis/NOEMA_MIGRATION_REVIEW.md`:
 These are comparison evidence, not billing-token accounting.
 
 ## Required G0 claims
-- baseline_reproducible: PENDING PR CI
-- foundry_validation_green: PENDING PR CI
-- foundry_unit_tests_green: PENDING PR CI
-- v1_baseline_integrity: PENDING PR CI
-- noema_conformance_green: PENDING PR CI
+- baseline_reproducible: PASS
+- foundry_validation_green: PASS — workflow run 35464932609
+- foundry_unit_tests_green: PASS — workflow run 35464932609
+- v1_baseline_integrity: PASS — workflow run 35464932609
+- noema_conformance_green: PASS — workflow run 35464932910
 - rollback_anchor_recorded: PASS
 
 ## Exit
-Update this report and `G0_GATE_CERTIFICATE.yaml` after the G0 PR checks complete. Do not advance to G1 while any mandatory claim is not PASS.
+All mandatory G0 claims are PASS. G0 may merge and G1 may begin only after this branch becomes canonical in `main`.
