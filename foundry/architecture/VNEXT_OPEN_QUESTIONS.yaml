@@ -1,0 +1,51 @@
+version: 1
+gate: G1
+status: OPEN_FOR_G2
+questions:
+  - id: R1
+    topic: behavioral_completion
+    blocking_vertical_slice: true
+    question: What minimum runtime/behavioral evidence makes a Foundry completion claim robust against paper-PASS?
+    authority_collision: false
+  - id: R2
+    topic: eval_layering_holdouts
+    blocking_vertical_slice: true
+    question: How should builder evals, independent evaluator cases and protected holdouts be partitioned at minimum viable cost?
+    authority_collision: false
+  - id: R3
+    topic: recovery_semantics
+    blocking_vertical_slice: true
+    question: What recoverability can VNext honestly guarantee using Noema WorkOrder/Handoff plus Git-persisted Foundry state without a persistent runtime?
+    authority_collision: false
+  - id: R4
+    topic: portfolio_scale
+    blocking_vertical_slice: false
+    question: What portfolio representation scales from 1 to 1000 items while preserving source accounting and avoiding premature graph infrastructure?
+    authority_collision: false
+  - id: R5
+    topic: ontology_facets
+    blocking_vertical_slice: false
+    question: Which minimum Foundry-owned facets materially improve dedup, routing and maintenance?
+    authority_collision: false
+  - id: R6
+    topic: packaging
+    blocking_vertical_slice: false
+    question: What is the minimum canonical package that preserves Foundry richness while allowing portable Agent Skills/platform exports?
+    authority_collision: false
+  - id: R7
+    topic: routing_metadata
+    blocking_vertical_slice: false
+    question: What metadata must VNext emit now so a future Portfolio Router can select capabilities without rebuilding the catalog?
+    authority_collision: false
+  - id: R8
+    topic: concurrency
+    blocking_vertical_slice: false
+    question: What ownership/wave constraints preserve quality as Factory parallelism grows?
+    authority_collision: false
+resolved_by_g1:
+  - generic WorkOrder ownership: Noema core, Foundry domain binding
+  - generic Handoff ownership: Noema core, Foundry lifecycle semantics
+  - generic EvalResult ownership: Noema core evidence envelope, Foundry quality semantics
+  - generic Decision ownership: Noema core decision envelope, Foundry architecture semantics
+  - generic artifact/provenance/storage refs: Noema core
+  - standalone generic Run entity: deferred; not required by vertical slice

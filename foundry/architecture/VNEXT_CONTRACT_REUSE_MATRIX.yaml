@@ -1,0 +1,73 @@
+version: 1
+gate: G1
+noema_reference_commit: 5b282ae358bc300fbc385c41050566bbe30cf6e3
+contracts:
+  work_order:
+    authority: NOEMA_CORE
+    schema: urn:noema:schema:work-order:1
+    schema_sha: 0934ad2c451f98cb63b34ccf178828b548a4f1a0
+    reuse: direct
+    foundry_binding:
+      required: true
+      implementation_form: companion Foundry domain artifact, not inline Noema schema mutation
+      candidate_fields:
+        - candidate_id
+        - portfolio_id
+        - skill_id
+        - spec_ref
+        - gate_obligations
+    validator_authority:
+      noema: envelope conformance
+      foundry: binding semantics and lifecycle
+    versioning:
+      noema: Noema schema major
+      foundry: Foundry binding version
+  handoff:
+    authority: NOEMA_CORE
+    schema: urn:noema:schema:handoff:1
+    schema_sha: 181d9bacf71b3caee57ab4f92240f9105d96b8e8
+    reuse: direct
+    foundry_extension: lifecycle semantics remain in Foundry artifacts/state; use status/remaining/next_action for cross-executor coordination
+  eval_result:
+    authority: NOEMA_CORE
+    schema: urn:noema:schema:eval-result:1
+    schema_sha: 2bb4831081e25ed4019658d5adfd2d36206f6625
+    reuse: direct evidence envelope
+    foundry_extension:
+      - Foundry claim IDs
+      - Foundry evaluator/fixture policy
+      - holdout protection
+      - gate certificate derivation
+    invariant: Noema conformance does not define Foundry claim quality
+  decision:
+    authority: NOEMA_CORE
+    schema: urn:noema:schema:decision:1
+    schema_sha: 7155e14a9bc2135eba1736735de4cbd0707eee5a
+    reuse: direct for human/frozen architecture decision records
+    foundry_extension: decision statement/rationale references Foundry candidate/portfolio semantics
+  artifact:
+    authority: NOEMA_CORE
+    schema: urn:noema:schema:artifact:1
+    schema_sha: 8b13d447c98fa54af20571516c1a52632d37f048
+    reuse: direct for material cross-project/persistent artifacts where proportional provenance is justified
+  storage_ref:
+    authority: NOEMA_CORE
+    schema: urn:noema:schema:common:1#/$defs/storageRef
+    reuse: direct
+  capability_reference:
+    authority: NOEMA_CORE_WITH_FOUNDRY_EXTENSION
+    upstream_location: work-order capability_requirements
+    reuse: Foundry publishes stable capability IDs/metadata; Noema carries references for routing
+  recovery:
+    authority: NOEMA_CORE_WITH_FOUNDRY_EXTENSION
+    upstream_location: handoff status + remaining + next_action
+    reuse: no standalone generic recovery schema in VNext vertical slice
+    foundry_domain_state: G0-G10/candidate checkpoint remains Foundry-owned
+forbidden_duplicates:
+  - FoundryProjectManifest
+  - FoundryStorageRef
+  - FoundryExecutorDescriptor
+  - FoundryExecutorRouter
+  - FoundryGenericArtifact
+  - FoundryGenericProvenance
+  - FoundryGenericDecision
