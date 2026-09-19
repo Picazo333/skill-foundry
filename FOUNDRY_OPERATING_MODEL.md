@@ -173,3 +173,18 @@ After the selected Noema mode loads its required stable files, Foundry work load
 Do not load the whole suite by default. Baseline examples are evidence/test fixtures, not current project facts. Unrelated personal/project context must not enter a Foundry cycle unless the human explicitly supplies it as that cycle's input.
 
 Noema conformance is a repository-governance gate. It never substitutes for Foundry's own contracts, evals, G6 approval, G9 audit or publish gates.
+
+
+## 7. Portfolio Factory mode
+Portfolio-scale input is governed by `foundry/workflows/SF-WF-003_PORTFOLIO_FACTORY.md`.
+
+Factory does not replace G0–G10. It:
+1. preserves and normalizes many source items;
+2. performs cross-item/catalog overlap and portfolio architecture;
+3. obtains explicit Portfolio Review / Plan Lock;
+4. schedules dependency-safe work units;
+5. invokes ordinary Foundry build/audit semantics for buildable items;
+6. serializes canonical publication;
+7. re-runs overlap against the updated catalog between waves.
+
+No real portfolio build may start before Plan Lock. Post-lock architecture-changing findings must become explicit ArchitectureExceptions instead of silent plan mutation.
