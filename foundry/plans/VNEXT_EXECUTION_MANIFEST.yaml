@@ -37,6 +37,16 @@ deviation_policy:
   silent_material_deviation_allowed: false
   material_deviation_action: STOP_AFFECTED_WORKSTREAM_AND_RECORD
   unaffected_work_may_continue: true
+eval_loop:
+  model: foundry/evals/vnext/GATE_EVAL_MODEL.md
+  claims: foundry/evals/vnext/GATE_CLAIMS.yaml
+  rework_routing: foundry/evals/vnext/REWORK_ROUTING.yaml
+  circuit_breakers: foundry/evals/vnext/CIRCUIT_BREAKERS.yaml
+  evaluator_calibration: foundry/evals/vnext/EVALUATOR_CALIBRATION.md
+  mandatory_for_gates: [G0, G1, G2, G3, G4, G5, G6, G7]
+  missing_evidence_is_pass: false
+  aggregate_score_can_override_mandatory_failure: false
+  noema_pass_equals_foundry_pass: false
 branch_policy:
   main_is_stable_canon: true
   force_push_allowed: false
