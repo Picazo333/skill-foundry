@@ -1,0 +1,34 @@
+gate: G3
+status: PASS
+claims:
+  vertical_slice_semantically_complete:
+    verdict: PASS
+    evidence:
+      - repo://foundry/architecture/VNEXT_ARCHITECTURE_1_0.md
+      - repo://foundry/architecture/VNEXT_VERTICAL_SLICE_SPEC.md
+      - repo://foundry/architecture/VNEXT_STATE_MODEL.yaml
+  no_duplicate_noema_responsibility:
+    verdict: PASS
+    evidence:
+      - repo://foundry/architecture/VNEXT_ENTITY_MODEL.yaml
+      - repo://foundry/architecture/VNEXT_AUTHORITY_MATRIX.yaml
+      - repo://foundry/architecture/VNEXT_CONTRACT_REUSE_MATRIX.yaml
+  complexity_pays_rent:
+    verdict: PASS
+    evidence:
+      - repo://foundry/architecture/VNEXT_ENTITY_MODEL.yaml
+      - repo://foundry/reviews/VNEXT_ARCHITECTURE_REDTEAM.md
+  no_open_critical_redteam_defect:
+    verdict: PASS
+    evidence:
+      - repo://foundry/reviews/VNEXT_ARCHITECTURE_REDTEAM.md
+  architecture_freeze_recorded:
+    verdict: PASS
+    evidence:
+      - repo://foundry/architecture/VNEXT_ARCHITECTURE_1_0.md
+notes:
+  - G4 intentionally adds no new canonical ontology entity unless implementation evidence invalidates this decision.
+  - Portfolio/Wave/ArchitectureException remain G5 concerns.
+ci_evidence:
+  foundry_validation_run: 35465564922
+  noema_conformance_run: 35465565330

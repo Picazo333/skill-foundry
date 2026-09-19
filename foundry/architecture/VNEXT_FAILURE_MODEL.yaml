@@ -1,0 +1,68 @@
+version: 1
+status: FROZEN_CANDIDATE_G3
+failures:
+  FD-01:
+    name: false_completion
+    severity: CRITICAL
+    detection: required evidence missing while completion asserted
+    action: circuit_breaker
+  FD-02:
+    name: human_gate_bypass
+    severity: CRITICAL
+    detection: buildable architecture progresses without explicit G6 Decision
+    action: circuit_breaker
+  FD-03:
+    name: test_gaming
+    severity: CRITICAL
+    detection: protected holdout/eval weakened or mutated without authorization
+    action: circuit_breaker
+  FD-04:
+    name: noema_foundry_quality_confusion
+    severity: CRITICAL
+    detection: Noema conformance used as sole Foundry quality evidence
+    action: fail_gate
+  FD-05:
+    name: prompt_context_privilege_escalation
+    severity: CRITICAL
+    detection: external/generated input changes governance or scope authority
+    action: circuit_breaker
+  FD-06:
+    name: unsupported_factory_fabrication
+    severity: MAJOR
+    detection: G4 front door claims Factory completion before G5 implementation
+    action: return_BLOCKED
+  FD-07:
+    name: architecture_drift
+    severity: CRITICAL
+    detection: build changes approved Skill responsibility/scope
+    action: architecture_exception_or_rework
+  FD-08:
+    name: false_resume
+    severity: MAJOR
+    detection: recovery restarts closed work without dependency invalidation
+    action: reconstruct_from_repo_and_resume_next_action
+  FD-09:
+    name: missing_dependency_green
+    severity: MAJOR
+    detection: required dependency unavailable while PASS asserted
+    action: BLOCKED_or_FAIL
+  FD-10:
+    name: provider_identity_architecture
+    severity: MAJOR
+    detection: Skill logic hardcodes executor/provider where capability requirement suffices
+    action: architecture_rework
+  FD-11:
+    name: context_overload
+    severity: MAJOR
+    detection: full repo/baseline loaded without task need
+    action: context_policy_rework
+  FD-12:
+    name: duplicate_skill_alias
+    severity: MAJOR
+    detection: semantically covered capability proposed as NEW_SKILL
+    action: return_to_overlap_analysis
+  FD-13:
+    name: blocked_but_mutating
+    severity: CRITICAL
+    detection: blocked work changes canon/scope beyond allowed evidence recording
+    action: circuit_breaker

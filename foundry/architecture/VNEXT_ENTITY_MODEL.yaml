@@ -1,0 +1,52 @@
+version: 1
+status: FROZEN_CANDIDATE_G3
+vertical_slice:
+  existing_foundry_entities_reused:
+    - SkillCandidate
+    - HumanDecision
+    - SkillSpec
+    - Skill
+    - Contract
+    - Artifact
+    - Eval
+    - IntegrationEval
+    - Checkpoint
+  noema_entities_reused:
+    - WorkOrder
+    - Handoff
+    - EvalResult
+    - Decision
+    - Artifact
+    - StorageRef
+  transient_or_contract_level_concepts:
+    FoundryIntent:
+      values: [GENESIS, MINING, FACTORY, MAINTENANCE]
+      persist_as_top_level_ontology_entity: false
+      reason: routing output is sufficient for vertical slice
+    FoundryWorkBinding:
+      type: Contract
+      persist_as_top_level_ontology_entity: false
+      binds:
+        - noema_work_order_ref
+        - candidate_id
+        - skill_id
+        - spec_ref
+        - gate_obligations
+    CompletionCertificate:
+      type: Artifact
+      persist_as_top_level_ontology_entity: false
+      reason: prove repeated value before ontology promotion
+deferred_to_G5:
+  - Portfolio
+  - PortfolioItem
+  - Wave
+  - ArchitectureException
+explicitly_not_added:
+  - Run
+  - Executor
+  - ContextRouter
+  - Project
+  - GenericProvenance
+rules:
+  - new ontology entities require demonstrated classification/routing/lifecycle/audit value
+  - Noema core entities are referenced, never forked
