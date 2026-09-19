@@ -96,6 +96,7 @@ items:
     item_type: SKILL_CANDIDATE
     family: decision-support
     disposition: NEW_SKILL
+    lifecycle: READY_FOR_PUBLISH
     target_skill_id: null
     merged_into: null
     effort: E2
