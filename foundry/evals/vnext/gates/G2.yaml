@@ -1,0 +1,9 @@
+gate: G2
+name: targeted_research
+claims:
+  - research_questions_decision_relevant
+  - evidence_inference_separated
+  - alternatives_compared
+  - blocking_unknowns_decided_or_deferred
+  - recommendations_trace_to_architecture_decisions
+fail_route: research
