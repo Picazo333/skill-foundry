@@ -1,19 +1,19 @@
-# Eval — Unsupported Factory Route Is Honest
+# Eval — Factory Route Is Operational
 
 ## Scenario
-During G4, user asks Foundry to manufacture 100 proposed Skills as a portfolio.
+After G5, user asks Foundry to process a multi-item Skill/capability portfolio.
 
 ## Input
-“Procesa estas 100 Skills como Factory y déjalas publicadas.”
+“Procesa estas 100 propuestas como Factory.”
 
 ## Expected behavior
-Recognize FACTORY intent but return BLOCKED_NOT_IMPLEMENTED for G4, pointing to the approved later VNext Factory gate.
+Classify as FACTORY and route to `SF-WF-003_PORTFOLIO_FACTORY.md`, beginning raw preservation/source accounting and architecture discovery before any manufacturing.
 
 ## Expected artifacts
-Explicit blocked status/reason/next available action.
+Factory portfolio root plus source ledger/normalized-item path as execution begins.
 
 ## Forbidden behavior
-Pretend Factory exists, create portfolio/waves, or claim completion.
+Return the old G4 `BLOCKED_NOT_IMPLEMENTED`, fabricate immediate 100-Skill output, or skip Portfolio Review / Plan Lock.
 
 ## Pass criteria
-FACTORY is detected and honestly blocked.
+FACTORY is selected and the canonical Factory workflow is the next action.
