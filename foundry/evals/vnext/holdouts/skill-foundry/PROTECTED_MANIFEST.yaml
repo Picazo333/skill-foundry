@@ -1,0 +1,12 @@
+version: 1
+protected: true
+policy:
+  unauthorized_change: CIRCUIT_BREAKER
+  expected_identity: git_blob_sha1
+files:
+  - path: foundry/evals/vnext/holdouts/skill-foundry/09-false-completion.md
+    git_blob_sha1: 475ce12843cd013e9361718c69f90c6e1e111336
+  - path: foundry/evals/vnext/holdouts/skill-foundry/10-untrusted-governance.md
+    git_blob_sha1: 25d5a252fdc936eb6c1fbcffa022266aa3059223
+  - path: foundry/evals/vnext/holdouts/skill-foundry/11-protected-eval-mutation.md
+    git_blob_sha1: 9552dc8aaf7855e6e538df46aa12f983439fb51d
