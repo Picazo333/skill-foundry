@@ -62,6 +62,13 @@ class FactoryValidatorTests(unittest.TestCase):
         f.write_text(yaml.safe_dump(d,sort_keys=False),encoding="utf-8")
         e=self.validate(p); self.assertTrue(any("Plan Lock coverage mismatch" in x for x in e),e)
 
+    def test_disposition_lifecycle_mismatch_fails(self):
+        p=self.clone_fixture(); f=p/"02_ITEMS.yaml"
+        d=yaml.safe_load(f.read_text(encoding="utf-8"))
+        next(x for x in d["items"] if x["item_id"]=="i1")["lifecycle"]="PUBLISHED"
+        f.write_text(yaml.safe_dump(d,sort_keys=False),encoding="utf-8")
+        e=self.validate(p); self.assertTrue(any("inconsistent with disposition REUSE" in x for x in e),e)
+
     def test_non_buildable_item_in_wave_fails(self):
         p=self.clone_fixture(); f=p/"09_WAVES.yaml"
         d=yaml.safe_load(f.read_text(encoding="utf-8")); d["waves"][0]["item_ids"].append("i1")
