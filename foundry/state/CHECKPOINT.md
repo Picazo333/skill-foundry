@@ -1,6 +1,6 @@
 # Skill Foundry checkpoint
 
-phase: v5_foundation_complete_noema_rc0_conformant
+phase: vnext_program_canonicalization
 
 completed:
 - original Kickstart preserved verbatim as FOUNDRY_CANON.md
@@ -12,16 +12,26 @@ completed:
 - five Foundry lifecycle architecture evals recorded
 - V1 capability coverage, foundation gap map and lifecycle audit present
 - Noema pre-migration baseline captured at main commit 42fe23e5645facb1e132bbc2f9addfde49393e2e
-- Noema RC0 governance/context integration passes both Noema and Foundry-native validation on this tree
+- Noema RC0 governance/context integration merged at a471a1b9f82faf221eeb3d89aa06a828a9f3a0cc
+- canonical VNext execution program authored under foundry/plans/
 
 partial:
+- VNext G0 has not yet executed
 - no active Skill Genesis candidate
 
 blocked: []
 
 active_candidate_id: null
 
+active_program:
+- id: skill-foundry-vnext
+- plan: foundry/plans/VNEXT_MASTER_PLAN.md
+- manifest: foundry/plans/VNEXT_EXECUTION_MANIFEST.yaml
+- acceptance: foundry/plans/VNEXT_ACCEPTANCE_GATES.md
+- deviations: foundry/plans/VNEXT_DEVIATIONS.md
+
 next_exact_action:
-- Treat Git/PR state as authority for whether this tree is still under review or already merged.
-- If not merged: review PR #4 and merge only after human approval.
-- If merged: start the next Foundry work unit through AGENTS.md + noema.project.yaml task routing; refresh this checkpoint when an active candidate begins.
+- Merge the planning branch only after plan-file review confirms no unintended Foundry semantic change.
+- Once canonical in main, execute VNext Gate G0 exactly as specified in the master plan.
+- Continue G0→G7 without routine operator confirmation; stop the affected workstream only for a material deviation as defined by the plan.
+- Final operator intervention occurs after G7 release evidence is complete.

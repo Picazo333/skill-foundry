@@ -60,6 +60,12 @@ sources_of_truth:
   validator:
     scheme: repo
     locator: tools/validate_foundry.py
+  vnext_program:
+    scheme: repo
+    locator: foundry/plans/VNEXT_MASTER_PLAN.md
+  vnext_execution:
+    scheme: repo
+    locator: foundry/plans/VNEXT_EXECUTION_MANIFEST.yaml
 
 context:
   entrypoint: AGENTS.md
@@ -76,12 +82,16 @@ context:
       optional:
         - repo://COLLABORATION_PROTOCOL.md
         - repo://foundry/workflows/SF-WF-001_SKILL_GENESIS.md
+        - repo://foundry/plans/VNEXT_MASTER_PLAN.md
+        - repo://foundry/plans/VNEXT_EXECUTION_MANIFEST.yaml
     audit:
       required:
         - repo://FOUNDRY_OPERATING_MODEL.md
       optional:
         - repo://COLLABORATION_PROTOCOL.md
         - repo://foundry/workflows/SF-WF-001_SKILL_GENESIS.md
+        - repo://foundry/plans/VNEXT_MASTER_PLAN.md
+        - repo://foundry/plans/VNEXT_ACCEPTANCE_GATES.md
     research:
       required:
         - repo://FOUNDRY_OPERATING_MODEL.md
@@ -97,12 +107,17 @@ context:
         - repo://foundry/ontology/ONTOLOGY.yaml
       optional:
         - repo://COLLABORATION_PROTOCOL.md
+        - repo://foundry/plans/VNEXT_MASTER_PLAN.md
+        - repo://foundry/plans/VNEXT_EXECUTION_MANIFEST.yaml
+        - repo://foundry/plans/VNEXT_ACCEPTANCE_GATES.md
     recover:
       required:
         - repo://foundry/state/CHECKPOINT.md
       optional:
         - repo://FOUNDRY_OPERATING_MODEL.md
         - repo://foundry/handoffs/README.md
+        - repo://foundry/plans/VNEXT_EXECUTION_MANIFEST.yaml
+        - repo://foundry/plans/VNEXT_DEVIATIONS.md
 
 quality_claims:
   - contract-conformance

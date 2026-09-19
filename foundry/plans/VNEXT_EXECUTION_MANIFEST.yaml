@@ -1,0 +1,99 @@
+program_id: skill-foundry-vnext
+status: OPERATOR_AUTHORIZED_PENDING_G0
+repo: Picazo333/skill-foundry
+baseline:
+  expected_commit: a471a1b9f82faf221eeb3d89aa06a828a9f3a0cc
+  label: sf-v5-noema-rc0-baseline
+authority:
+  noema:
+    owns:
+      - repository_conformance
+      - project_authority
+      - progressive_context
+      - interoperability
+      - executor_descriptors
+      - executor_routing
+      - project_relations
+      - general_storage_refs
+      - general_provenance_contracts
+  foundry:
+    owns:
+      - skill_taxonomy
+      - skill_ontology
+      - skill_registry
+      - skill_genesis_lifecycle
+      - capability_mining
+      - portfolio_architecture
+      - skill_contracts
+      - skill_evals
+      - skill_packages
+      - skill_candidate_state
+      - foundry_handoffs
+operator:
+  intermediate_confirmation_required: false
+  final_review_required: true
+  actual_skill_g6_still_required: true
+deviation_policy:
+  silent_material_deviation_allowed: false
+  material_deviation_action: STOP_AFFECTED_WORKSTREAM_AND_RECORD
+  unaffected_work_may_continue: true
+branch_policy:
+  main_is_stable_canon: true
+  force_push_allowed: false
+  gate_branch_pattern: "vnext/g<gate>-<slug>"
+gates:
+  - id: G0
+    name: seal_baseline
+    status: PENDING
+    depends_on: []
+    terminal_condition: BASELINE_EVIDENCE_GREEN
+  - id: G1
+    name: reconcile_authority_contracts_non_regression
+    status: PENDING
+    depends_on: [G0]
+    terminal_condition: NO_REQUIRED_AUTHORITY_COLLISION
+  - id: G2
+    name: targeted_research
+    status: PENDING
+    depends_on: [G1]
+    terminal_condition: REQUIRED_ARCHITECTURE_UNKNOWNS_DECIDED_OR_DEFERRED
+  - id: G3
+    name: minimal_architecture_and_redteam
+    status: PENDING
+    depends_on: [G2]
+    terminal_condition: VERTICAL_SLICE_ARCHITECTURE_FROZEN_NO_CRITICAL_DEFECT
+  - id: G4
+    name: single_capability_vertical_slice
+    status: PENDING
+    depends_on: [G3]
+    terminal_condition: END_TO_END_CANDIDATE_PUBLISHED_WITH_EVIDENCE
+  - id: G5
+    name: generalize_to_factory
+    status: PENDING
+    depends_on: [G4]
+    terminal_condition: SMALL_MIXED_PORTFOLIO_COMPLETES_WITHOUT_DRIFT
+  - id: G6
+    name: double_canary_and_hardening
+    status: PENDING
+    depends_on: [G5]
+    terminal_condition: SYNTHETIC_AND_REAL_CANARY_PASS
+  - id: G7
+    name: release_and_first_productive_portfolio
+    status: PENDING
+    depends_on: [G6]
+    terminal_condition: RELEASE_EVIDENCE_COMPLETE_AWAITING_FINAL_OPERATOR_REVIEW
+global_forbidden:
+  - second_project_manifest
+  - second_context_router
+  - second_executor_router
+  - duplicate_generic_provenance_system
+  - duplicate_project_relation_model
+  - unapproved_framework_dependency
+  - portfolio_router_implementation_before_vnext_release
+  - silent_weakening_of_tests_or_holdouts
+  - silent_architecture_change_after_plan_lock
+required_existing_gates:
+  - noema_conformance
+  - foundry_validator
+  - foundry_unit_tests
+  - v1_baseline_integrity
