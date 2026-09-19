@@ -1,0 +1,31 @@
+version: 1
+routes:
+  deterministic_or_code_defect:
+    owner_role: BUILDER
+    return_to: IMPLEMENTATION
+  architecture_defect:
+    owner_role: ARCHITECT
+    return_to: ARCHITECTURE
+  missing_research_evidence:
+    owner_role: RESEARCH
+    return_to: RESEARCH
+  noema_contract_violation:
+    owner_role: STEWARD
+    return_to: AUTHORITY_CONTRACT_RECONCILIATION
+  weak_or_invalid_eval:
+    owner_role: EVAL_AUTHOR
+    return_to: EVAL_DESIGN
+  evaluator_calibration_failure:
+    owner_role: AUDITOR
+    return_to: EVALUATOR_CALIBRATION
+  test_or_holdout_tampering:
+    owner_role: RED_TEAM
+    return_to: SECURITY_REVIEW
+    circuit_breaker: true
+  human_decision_invalidated:
+    owner_role: ARCHITECT
+    return_to: ARCHITECTURE_EXCEPTION
+  provenance_loss:
+    owner_role: STEWARD
+    return_to: PROVENANCE_REPAIR
+    circuit_breaker_if_critical: true
