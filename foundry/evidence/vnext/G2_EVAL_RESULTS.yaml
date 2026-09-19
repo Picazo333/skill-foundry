@@ -1,0 +1,31 @@
+gate: G2
+status: PASS_PENDING_CI
+claims:
+  research_questions_decision_relevant:
+    verdict: PASS
+    evidence:
+      - repo://foundry/architecture/VNEXT_OPEN_QUESTIONS.yaml
+      - repo://foundry/research/vnext/RESEARCH_DECISION_MATRIX.yaml
+  evidence_inference_separated:
+    verdict: PASS
+    evidence:
+      - repo://foundry/research/vnext/R1_BEHAVIORAL_COMPLETION.md
+      - repo://foundry/research/vnext/R2_EVAL_LAYERING_HOLDOUTS.md
+      - repo://foundry/research/vnext/R3_RECOVERY_SEMANTICS.md
+  alternatives_compared:
+    verdict: PASS
+    evidence:
+      - repo://foundry/research/vnext/R1_BEHAVIORAL_COMPLETION.md
+      - repo://foundry/research/vnext/R2_EVAL_LAYERING_HOLDOUTS.md
+      - repo://foundry/research/vnext/R3_RECOVERY_SEMANTICS.md
+  blocking_unknowns_decided_or_deferred:
+    verdict: PASS
+    evidence:
+      - repo://foundry/research/vnext/RESEARCH_DECISION_MATRIX.yaml
+  recommendations_trace_to_architecture_decisions:
+    verdict: PASS
+    evidence:
+      - repo://foundry/research/vnext/RESEARCH_DECISION_MATRIX.yaml
+notes:
+  - R1-R3 are decided and block G3/G4 architecture.
+  - R4-R8 are explicitly deferred with activation triggers; none blocks the vertical slice.
