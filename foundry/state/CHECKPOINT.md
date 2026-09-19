@@ -1,6 +1,6 @@
 # Skill Foundry checkpoint
 
-phase: vnext_g2_targeted_research
+phase: vnext_g2_pass_pending_merge
 
 completed:
 - original Kickstart preserved verbatim as FOUNDRY_CANON.md
@@ -32,7 +32,6 @@ active_program:
 - deviations: foundry/plans/VNEXT_DEVIATIONS.md
 
 next_exact_action:
-- Evaluate G2 research claims against the decision matrix and research artifacts.
-- Merge G2 only after Noema Conformance + Foundry Validation remain green and every mandatory G2 claim is PASS.
+- Merge PR #9 after final branch checks remain green.
 - Then start G3 minimal VNext architecture + pre-code red-team from latest main.
 - Final operator intervention occurs after G7 release evidence is complete.
