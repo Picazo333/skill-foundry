@@ -7,7 +7,7 @@ description: Invoke Skill Foundry to mine, design, audit, or maintain reusable a
 ## Identity
 - **ID:** `skill-foundry`
 - **Category:** `meta`
-- **Version:** `1.0.0`
+- **Version:** `1.1.0`
 - **Purpose:** Provide one thin, portable entry point into the canonical Skill Foundry system.
 
 ## Trigger
