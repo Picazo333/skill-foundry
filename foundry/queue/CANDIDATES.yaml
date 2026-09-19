@@ -2,4 +2,11 @@ queue_version: 0.3
 notes:
   - Empty is valid before the human submits the first real workflow.
   - Foundation audit/hardening is defined by SF-WF-002_BOOTSTRAP_V5 and does not depend on this queue.
-candidates: []
+candidates:
+  - id: sf-cand-20260919-skill-foundry-front-door
+    title: Skill Foundry thin front door
+    status: READY_FOR_MERGE
+    decisions:
+      - capability: portable Skill Foundry entry and intent routing
+        treatment: NEW_SKILL
+        target_skill_id: null

@@ -23,5 +23,6 @@ jobs:
           cache-dependency-path: requirements-dev.txt
       - run: python -m pip install -r requirements-dev.txt
       - run: python tools/validate_foundry.py
-      - run: python -m unittest tests.test_validate_foundry -v
+      - run: python -m unittest tests.test_validate_foundry tests.test_vnext_evidence -v
+      - run: python tools/check_protected_evals.py
       - run: python -X utf8 baseline/agentic-skill-suite-v1/scripts/validate_suite.py

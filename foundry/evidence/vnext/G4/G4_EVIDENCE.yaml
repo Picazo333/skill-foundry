@@ -1,0 +1,25 @@
+gate: G4
+candidate_id: sf-cand-20260919-skill-foundry-front-door
+skill_id: skill-foundry
+open_critical_defects: 0
+claims:
+  structural_integrity: PASS
+  behavioral_correctness: PASS
+  approved_architecture_fidelity: PASS
+  independent_audit_pass: PASS
+  false_completion_resistance: PASS
+  test_integrity: PASS
+  baseline_non_regression: PASS
+  noema_conformance_green: PASS
+  completion_evidence_derived: PASS
+evidence_refs:
+  - repo://foundry/specs/skill-foundry.md
+  - repo://catalog/skills/skill-foundry/SKILL.md
+  - repo://foundry/evidence/vnext/G4/BEHAVIORAL_EVAL.md
+  - repo://foundry/evidence/vnext/G4/HOLDOUT_EVAL.md
+  - repo://foundry/reviews/skill-foundry_AUDIT.md
+  - github-actions://35468082345
+  - github-actions://35468082568
+notes:
+  - Skill Foundry Validation includes validator, VNext evidence unit tests, protected-eval integrity and immutable V1 baseline validation.
+  - Noema Conformance passed independently on the same branch head.

@@ -1,29 +1,26 @@
 # Skill Foundry checkpoint
 
-phase: vnext_g3_pass_pending_merge
+phase: vnext_g4_build_pass_pending_merge
 
 completed:
-- original Kickstart preserved verbatim as FOUNDRY_CANON.md
-- exact V1 15-Skill baseline preserved and verified
-- G0-G10 lifecycle defined with mandatory G6 for all architecture/closure outcomes
-- Antigravity V5 foundation audit merged to main
-- Cursor V5 deterministic hardening reconciled and merged to main
-- deterministic Foundry contracts/template/validator/tests present
-- five Foundry lifecycle architecture evals recorded
-- V1 capability coverage, foundation gap map and lifecycle audit present
-- Noema pre-migration baseline captured at main commit 42fe23e5645facb1e132bbc2f9addfde49393e2e
-- Noema RC0 governance/context integration merged at a471a1b9f82faf221eeb3d89aa06a828a9f3a0cc
-- canonical VNext execution program authored under foundry/plans/
+- V5 + Noema RC0 baseline sealed through G0
+- G1 Noema/Foundry authority and contract reconciliation PASS
+- G2 targeted research PASS
+- G3 minimal VNext architecture + pre-code red-team PASS
+- front-door candidate completed G0–G7 with explicit G6 Decision
+- G8 skill-foundry implementation complete
+- G9 independent audit PASS
+- G4 behavioral and protected holdout evidence PASS
+- Foundry Validation and Noema Conformance green on implementation branch
+- deterministic G4 CompletionCertificate derives PASS
 
 partial:
-- VNext G0 baseline gate merged and is canonical
-- VNext G1 authority/contract reconciliation merged and is canonical
-- VNext G2 targeted research merged and is canonical
-- no active Skill Genesis candidate
+- G4 candidate implementation is READY_FOR_MERGE
+- G10 registry/canon publication must occur only after implementation merge
 
 blocked: []
 
-active_candidate_id: null
+active_candidate_id: sf-cand-20260919-skill-foundry-front-door
 
 active_program:
 - id: skill-foundry-vnext
@@ -33,6 +30,7 @@ active_program:
 - deviations: foundry/plans/VNEXT_DEVIATIONS.md
 
 next_exact_action:
-- Merge PR #10 after final branch checks remain green.
-- Then start G4 single-capability vertical slice from latest main using candidate sf-cand-20260919-skill-foundry-front-door.
-- Final operator intervention occurs after G7 release evidence is complete.
+- Merge PR #11 only if current head CI remains green.
+- Create the G4 publish/canon follow-up from latest main.
+- Add skill-foundry to Skill Registry, mark candidate PUBLISHED, finalize G4 gate certificate/manifest/checkpoint, validate, and merge.
+- Then execute VNext G5.

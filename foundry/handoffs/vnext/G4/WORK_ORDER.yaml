@@ -1,0 +1,65 @@
+work_order_id: sf-vnext-g4-build-front-door
+project_id: skill-foundry
+objective: Build and prove the approved thin skill-foundry front-door package for VNext G4.
+scope:
+  allowed:
+    - approved candidate artifacts for sf-cand-20260919-skill-foundry-front-door
+    - foundry/specs/skill-foundry.md
+    - catalog/skills/skill-foundry/**
+    - G4-specific Foundry contracts, evidence, tests and tooling
+  excluded:
+    - V1 baseline mutation
+    - Factory implementation
+    - Maintenance implementation
+    - Noema schema changes
+    - taxonomy or ontology redesign
+inputs:
+  - scheme: repo
+    locator: foundry/architecture/VNEXT_VERTICAL_SLICE_SPEC.md
+  - scheme: repo
+    locator: foundry/candidates/sf-cand-20260919-skill-foundry-front-door/DECISION.md
+context_mode: build
+capability_requirements:
+  - id: repository_write
+  - id: code_generation
+  - id: test_execution
+allowed_writes:
+  - foundry/candidates/sf-cand-20260919-skill-foundry-front-door/**
+  - foundry/specs/skill-foundry.md
+  - catalog/skills/skill-foundry/**
+  - foundry/contracts/foundry-work-binding.schema.json
+  - foundry/contracts/completion-certificate.schema.json
+  - foundry/evals/vnext/holdouts/skill-foundry/**
+  - foundry/evidence/vnext/G4/**
+  - foundry/reviews/skill-foundry_AUDIT.md
+  - foundry/handoffs/vnext/G4/**
+  - tools/issue_completion_certificate.py
+  - tools/check_protected_evals.py
+  - tests/test_vnext_evidence.py
+  - .github/workflows/foundry-validation.yml
+  - foundry/queue/CANDIDATES.yaml
+forbidden_effects:
+  - modify baseline/agentic-skill-suite-v1
+  - modify Noema protocol or schemas
+  - silently change approved architecture
+  - weaken protected evals or holdouts
+  - publish registry entry before G9 PASS and G10
+expected_artifacts:
+  - catalog/skills/skill-foundry/SKILL.md
+  - catalog/skills/skill-foundry/manifest.json
+  - catalog/skills/skill-foundry/evals/cases/
+  - foundry/contracts/completion-certificate.schema.json
+  - foundry/evidence/vnext/G4/
+  - foundry/reviews/skill-foundry_AUDIT.md
+quality_claims:
+  - structural_integrity
+  - behavioral_correctness
+  - approved_architecture_fidelity
+  - independent_audit_pass
+  - false_completion_resistance
+  - test_integrity
+  - baseline_non_regression
+  - noema_conformance_green
+  - completion_evidence_derived
+human_gates:
+  - candidate G6 Decision.md must exist before build

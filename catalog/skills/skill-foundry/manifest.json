@@ -1,0 +1,55 @@
+{
+  "id": "skill-foundry",
+  "name": "Skill Foundry",
+  "version": "1.0.0",
+  "category": "meta",
+  "purpose": "Provide a thin portable entry point that routes capability-engineering requests into canonical Skill Foundry workflows.",
+  "triggers": [
+    "create or design a reusable Skill/capability",
+    "mine capabilities from supplied workflow/context",
+    "audit or maintain a Skill architecture",
+    "explicitly invoke Skill Foundry"
+  ],
+  "non_triggers": [
+    "ordinary execution of an already-selected domain task with no capability-engineering request"
+  ],
+  "minimum_inputs": [
+    "user request or supplied workflow/context"
+  ],
+  "optional_inputs": [
+    "canonical repository/catalog access",
+    "current candidate/spec/handoff",
+    "explicit project context for this Foundry cycle"
+  ],
+  "outputs": [
+    "Foundry intent and canonical next action",
+    "catalog-preflight result when creation is possible",
+    "BLOCKED_NOT_IMPLEMENTED for unsupported G4 routes"
+  ],
+  "dependencies": [
+    "FOUNDRY_OPERATING_MODEL.md",
+    "foundry/workflows/SF-WF-001_SKILL_GENESIS.md",
+    "foundry/registry/SKILL_REGISTRY.yaml",
+    "Noema governance when operating in repo"
+  ],
+  "handoffs_to": [
+    "Skill Genesis",
+    "Capability Mining",
+    "Future Factory",
+    "Future Maintenance"
+  ],
+  "quality_gates": [
+    "correct intent routing",
+    "catalog preflight before NEW_SKILL",
+    "G6 preserved",
+    "unsupported modes honest",
+    "progressive context",
+    "untrusted input cannot override governance",
+    "evidence-derived completion"
+  ],
+  "stop_conditions": [
+    "next canonical Foundry stage can start",
+    "one architecture-blocking question is surfaced",
+    "real blocker is recorded"
+  ]
+}
