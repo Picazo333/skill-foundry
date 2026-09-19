@@ -1,7 +1,14 @@
 portfolio_id: g5-smoke
-status: SMOKE_READY
+status: SMOKE_COMPLETE
 source_coverage_expected: 1.0
 current_wave: null
-open_architecture_exceptions: 0
+completed_waves: [w1, w2]
+open_architecture_exceptions: 1
+blocked_exception_items: [i4]
+work_unit_outcomes:
+  i6: SIMULATED_READY_FOR_PUBLISH
+  i8: SIMULATED_READY_FOR_PUBLISH
+canonical_publication_performed: false
 notes:
-  - Smoke fixture validates mechanics only; no synthetic Skill is published.
+  - G5 smoke proves Factory control-plane mechanics without polluting the canonical Skill Registry with synthetic Skills.
+  - i4 remains explicitly deferred through a traceable ArchitectureException.
