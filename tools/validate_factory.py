@@ -125,6 +125,8 @@ def validate(root: Path, portfolio: Path):
     unscheduled=buildable-set(wave_map)
     if unscheduled: errors.append(f"buildable items missing from waves: {sorted(unscheduled)}")
     for item_id in buildable:
+        if item_id not in wave_map:
+            continue
         for dep in deps.get(item_id,[]):
             if dep in wave_map and wave_map[dep]>=wave_map[item_id]:
                 errors.append(f"wave order invalid: {item_id} depends on {dep} at same/later sequence")
