@@ -49,6 +49,7 @@ def validate(root: Path, portfolio: Path):
     plan=load_yaml(portfolio/"08_PLAN.yaml")
     waves=load_yaml(portfolio/"09_WAVES.yaml")
     graph=load_yaml(portfolio/"06_DEPENDENCY_GRAPH.yaml")
+    policy=load_yaml(root/"foundry/factory/FACTORY_POLICY.yaml")
 
     schemas={
       "ledger":load_json(root/"foundry/contracts/factory-source-ledger.schema.json"),
@@ -110,14 +111,21 @@ def validate(root: Path, portfolio: Path):
         errors.append(f"Plan Lock coverage mismatch missing={sorted(item_ids-locked)} extra={sorted(locked-item_ids)}")
 
     wave_map={}; seen=set()
+    max_builders=int((policy.get("parallelism") or {}).get("max_parallel_builders",2))
     for w in waves.get("waves") or []:
         if w.get("shared_canon_write") is not False:
             errors.append(f"wave {w.get('wave_id')} permits shared canon write")
         if w.get("publisher_serialized") is not True:
             errors.append(f"wave {w.get('wave_id')} lacks serialized publisher")
+        if int(w.get("max_parallel_builders",0))>max_builders:
+            errors.append(f"wave {w.get('wave_id')} exceeds Factory parallel builder limit {max_builders}")
         seq=w.get("sequence")
         for item_id in w.get("item_ids") or []:
-            if item_id not in item_ids: errors.append(f"wave {w.get('wave_id')} has unknown item {item_id}")
+            if item_id not in item_ids:
+                errors.append(f"wave {w.get('wave_id')} has unknown item {item_id}")
+                continue
+            if by_id[item_id].get("disposition") not in BUILDABLE:
+                errors.append(f"wave {w.get('wave_id')} schedules non-buildable item {item_id}")
             if item_id in seen: errors.append(f"item {item_id} scheduled more than once")
             seen.add(item_id); wave_map[item_id]=seq
 
@@ -135,7 +143,12 @@ def validate(root: Path, portfolio: Path):
     if exceptions_dir.exists():
         ex_schema=load_json(root/"foundry/contracts/architecture-exception.schema.json")
         for p in exceptions_dir.glob("*.yaml"):
-            validate_schema(load_yaml(p),ex_schema,f"architecture exception {p.name}",errors)
+            ex=load_yaml(p)
+            validate_schema(ex,ex_schema,f"architecture exception {p.name}",errors)
+            if ex.get("blocks_affected_items") and ex.get("status") in {"OPEN","DEFERRED"}:
+                for item_id in ex.get("item_ids") or []:
+                    if item_id in wave_map:
+                        errors.append(f"blocked architecture-exception item scheduled: {item_id}")
 
     metrics={
       "raw_sources":len(raw_ids),
