@@ -1,0 +1,22 @@
+gate: G4
+candidate_id: sf-cand-20260919-skill-foundry-front-door
+skill_id: skill-foundry
+verdict: PASS
+terminal_condition: END_TO_END_CANDIDATE_PUBLISHED_WITH_EVIDENCE
+implementation_merge: 4b8d94a1641cc0f44dfdc3e7b7e851c88edd4340
+mandatory_claims:
+  structural_integrity: PASS
+  behavioral_correctness: PASS
+  approved_architecture_fidelity: PASS
+  independent_audit_pass: PASS
+  false_completion_resistance: PASS
+  test_integrity: PASS
+  baseline_non_regression: PASS
+  noema_conformance_green: PASS
+  completion_evidence_derived: PASS
+publication:
+  registry_entry: repo://foundry/registry/SKILL_REGISTRY.yaml#skill-foundry
+  candidate_status: PUBLISHED
+  canonical_path: repo://catalog/skills/skill-foundry
+open_critical_defects: 0
+next_gate: G5

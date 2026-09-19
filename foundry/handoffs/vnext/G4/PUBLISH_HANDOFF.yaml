@@ -1,0 +1,29 @@
+handoff_id: sf-vnext-g4-publish-handoff
+work_order_ref: repo://foundry/handoffs/vnext/G4/WORK_ORDER.yaml
+status: complete
+summary: Published the audited skill-foundry front door to canonical registry after implementation merge.
+changes:
+  - added skill-foundry registry entry
+  - marked candidate PUBLISHED
+  - marked VNext G4 PASS
+  - advanced checkpoint to G5
+artifacts:
+  - scheme: repo
+    locator: foundry/registry/SKILL_REGISTRY.yaml
+  - scheme: repo
+    locator: catalog/skills/skill-foundry
+evidence:
+  - scheme: repo
+    locator: foundry/evidence/vnext/G4/G4_GATE_CERTIFICATE.yaml
+  - scheme: repo
+    locator: foundry/evidence/vnext/G4/G4_COMPLETION_CERTIFICATE.json
+decisions:
+  - no taxonomy or ontology change required because router/meta concepts already exist
+remaining:
+  - execute VNext G5 Factory generalization
+next_action: Start G5 from latest main after this publication PR passes validation and merges.
+intentionally_unchanged:
+  - baseline/agentic-skill-suite-v1
+  - foundry/taxonomy/TAXONOMY.yaml
+  - foundry/ontology/ONTOLOGY.yaml
+  - Noema protocol and schemas
