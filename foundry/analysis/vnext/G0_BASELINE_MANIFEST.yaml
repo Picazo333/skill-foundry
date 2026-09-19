@@ -1,0 +1,27 @@
+gate: G0
+name: seal_baseline
+status: PENDING_CI
+rollback_anchor: 365c62b58b70dea7aecd3ce4c7724ac6ce291353
+noema_protocol: 0.1.0-rc.0
+baseline:
+  registry_version: "0.1"
+  suite: agentic-skill-suite
+  suite_version: 1.0.1
+  published_skill_count: 15
+  source: baseline/agentic-skill-suite-v1/
+domain_blob_shas:
+  FOUNDRY_CANON.md: f72e2eba22706c0df2b704455a9c1ad91a6e6d07
+  foundry/taxonomy/TAXONOMY.yaml: 8b16ad655669f627315f0ef367b7fbd848ccdd12
+  foundry/ontology/ONTOLOGY.yaml: 621650353de50da7e47e49b63436ccc22c735413
+  foundry/registry/SKILL_REGISTRY.yaml: a489eaa09ee98088d24c942c62e8e524a12f30ff
+  foundry/workflows/SF-WF-001_SKILL_GENESIS.md: f96692fc183f5f63bf32fd117dfae81ea18374a1
+  foundry/workflows/SF-WF-002_BOOTSTRAP_V5.md: b48161f90a00806373fbfa83f6a010f27d689105
+  tools/validate_foundry.py: dade4d1e95a71811324a6793ea0c57a59a8be18d
+  tests/test_validate_foundry.py: 99bca7ec85004e412536c8684d762e2130e99d98
+claims:
+  baseline_reproducible: PENDING
+  foundry_validation_green: PENDING
+  foundry_unit_tests_green: PENDING
+  v1_baseline_integrity: PENDING
+  noema_conformance_green: PENDING
+  rollback_anchor_recorded: PASS
