@@ -5,7 +5,7 @@ notes:
 candidates:
   - id: sf-cand-20260919-skill-foundry-front-door
     title: Skill Foundry thin front door
-    status: READY_FOR_MERGE
+    status: PUBLISHED
     decisions:
       - capability: portable Skill Foundry entry and intent routing
         treatment: NEW_SKILL
