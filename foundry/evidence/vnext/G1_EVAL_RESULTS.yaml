@@ -1,5 +1,5 @@
 gate: G1
-status: PASS_PENDING_CI
+status: PASS
 claims:
   authority_unique_for_required_concepts:
     verdict: PASS
@@ -24,3 +24,6 @@ claims:
 notes:
   - No blocking G1 unknown remains an authority collision.
   - Research questions remain for G2 but are domain-design questions, not ownership conflicts.
+ci_evidence:
+  foundry_validation_run: 35465146293
+  noema_conformance_run: 35465146629
