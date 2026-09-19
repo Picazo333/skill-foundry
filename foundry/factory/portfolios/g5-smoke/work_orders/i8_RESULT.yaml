@@ -1,0 +1,13 @@
+work_order_id: g5-smoke-i8
+status: complete
+wave_id: w2
+item_id: i8
+result: SIMULATED_READY_FOR_PUBLISH
+dependency_receipts:
+  - item_id: i6
+    wave_id: w1
+shared_canon_written: false
+evidence:
+  - repo://foundry/factory/portfolios/g5-smoke/09_WAVES.yaml#w2
+notes:
+  - Synthetic execution receipt only; dependency order is preserved and no canonical Skill package was published.
