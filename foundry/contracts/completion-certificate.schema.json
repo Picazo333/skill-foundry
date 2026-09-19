@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Foundry Completion Certificate v1",
+  "type": "object",
+  "required": [
+    "certificate_version",
+    "gate",
+    "claims",
+    "open_critical_defects",
+    "verdict",
+    "evidence_refs"
+  ],
+  "properties": {
+    "certificate_version": {
+      "const": 1
+    },
+    "gate": {
+      "type": "string",
+      "pattern": "^G[0-7]$"
+    },
+    "candidate_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "skill_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "claims": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "enum": [
+          "PASS",
+          "FAIL",
+          "UNASSESSED",
+          "BLOCKED"
+        ]
+      }
+    },
+    "open_critical_defects": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "PASS",
+        "FAIL",
+        "UNASSESSED",
+        "BLOCKED"
+      ]
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "generated_by": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}
