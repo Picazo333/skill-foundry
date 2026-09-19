@@ -1,0 +1,32 @@
+portfolio_id: g5-smoke
+sources:
+  - source_id: s1
+    source_ref: inline://g5-smoke/s1
+    raw_label: Canonical context builder
+  - source_id: s2
+    source_ref: inline://g5-smoke/s2
+    raw_label: Context canonizer
+  - source_id: s3
+    source_ref: inline://g5-smoke/s3
+    raw_label: Deterministic checksum utility
+  - source_id: s4
+    source_ref: inline://g5-smoke/s4
+    raw_label: Skill Foundry entry
+  - source_id: s5
+    source_ref: inline://g5-smoke/s5
+    raw_label: Research Executor
+  - source_id: s6
+    source_ref: inline://g5-smoke/s6
+    raw_label: Brand workflow orchestrator
+  - source_id: s7
+    source_ref: inline://g5-smoke/s7
+    raw_label: Decision Brief Composer
+  - source_id: s8
+    source_ref: inline://g5-smoke/s8
+    raw_label: Decision Summary Writer
+  - source_id: s9
+    source_ref: inline://g5-smoke/s9
+    raw_label: Magic helper
+  - source_id: s10
+    source_ref: inline://g5-smoke/s10
+    raw_label: Decision Brief Quality Auditor
