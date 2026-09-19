@@ -1,0 +1,26 @@
+certificate_type: GATE_CERTIFICATE
+gate: G0
+run_ref: pr-7
+verdict: PASS
+claims:
+  baseline_reproducible:
+    verdict: PASS
+    evidence: foundry/analysis/vnext/G0_BASELINE_MANIFEST.yaml
+  foundry_validation_green:
+    verdict: PASS
+    evidence: github-actions:35464932609
+  foundry_unit_tests_green:
+    verdict: PASS
+    evidence: github-actions:35464932609
+  v1_baseline_integrity:
+    verdict: PASS
+    evidence: github-actions:35464932609
+  noema_conformance_green:
+    verdict: PASS
+    evidence: github-actions:35464932910
+  rollback_anchor_recorded:
+    verdict: PASS
+    evidence: git:365c62b58b70dea7aecd3ce4c7724ac6ce291353
+open_critical_defects: 0
+notes:
+  - This certificate is valid only for the exact G0 baseline lineage recorded in the manifest.
