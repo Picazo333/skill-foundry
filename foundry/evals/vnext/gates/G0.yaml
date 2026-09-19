@@ -1,0 +1,10 @@
+gate: G0
+name: baseline
+claims:
+  - baseline_reproducible
+  - foundry_validation_green
+  - foundry_unit_tests_green
+  - v1_baseline_integrity
+  - noema_conformance_green
+  - rollback_anchor_recorded
+fail_route: baseline_repair

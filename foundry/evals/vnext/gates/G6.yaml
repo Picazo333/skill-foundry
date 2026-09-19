@@ -1,0 +1,12 @@
+gate: G6
+name: canary
+claims:
+  - synthetic_canary_pass
+  - real_canary_pass
+  - composition_integrity
+  - recovery_demonstrated
+  - zero_critical_false_pass
+  - zero_test_tampering
+  - zero_critical_provenance_loss
+  - zero_authority_collision
+fail_route: owning_stage

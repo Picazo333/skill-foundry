@@ -36,4 +36,7 @@ The operator-authorized VNext migration is governed by:
 - `foundry/plans/VNEXT_ACCEPTANCE_GATES.md`
 - `foundry/plans/VNEXT_DEVIATIONS.md`
 
-For any VNext migration task, load the master plan and execution manifest after the normal Noema-routed context. Follow gate order G0→G7. Do not silently change scope, authority ownership, gate semantics, or acceptance criteria. A material deviation stops the affected workstream and must be recorded.
+For any VNext migration task, load the master plan, execution manifest and relevant gate eval contract after the normal Noema-routed context. Follow gate order G0→G7. Do not silently change scope, authority ownership, gate semantics, or acceptance criteria. A material deviation stops the affected workstream and must be recorded.
+
+## VNext gate quality loop
+G0→G7 work must use `foundry/evals/vnext/`. A task is not gate-complete because artifacts exist or an agent says PASS. Mandatory claims require evidence; failures route through `REWORK_ROUTING.yaml`; circuit breakers in `CIRCUIT_BREAKERS.yaml` stop the affected workstream. `NOEMA PASS` remains conformance evidence only.

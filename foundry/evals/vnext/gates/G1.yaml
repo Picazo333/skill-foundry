@@ -1,0 +1,9 @@
+gate: G1
+name: authority_contract_reconciliation
+claims:
+  - authority_unique_for_required_concepts
+  - no_duplicate_coordination_contract
+  - mixed_contract_direction_explicit
+  - non_regression_coverage_complete
+  - no_required_authority_collision
+fail_route: architecture

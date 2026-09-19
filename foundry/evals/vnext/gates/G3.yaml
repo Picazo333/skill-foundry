@@ -1,0 +1,9 @@
+gate: G3
+name: architecture
+claims:
+  - vertical_slice_semantically_complete
+  - no_duplicate_noema_responsibility
+  - complexity_pays_rent
+  - no_open_critical_redteam_defect
+  - architecture_freeze_recorded
+fail_route: architecture

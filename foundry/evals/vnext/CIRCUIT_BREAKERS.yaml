@@ -1,0 +1,18 @@
+version: 1
+immediate_stop:
+  - human_gate_bypass
+  - protected_test_or_holdout_manipulation
+  - critical_false_pass
+  - critical_provenance_loss
+  - trust_boundary_violation
+  - canonical_corruption
+  - silent_material_architecture_change
+pause_next_wave:
+  - repeated_same_major_defect
+  - repeated_contract_integration_failure
+  - unexpected_canonical_merge_collision
+  - repeated_context_contamination
+rules:
+  affected_workstream_stops: true
+  unaffected_work_may_continue: true
+  all_breakers_require_recorded_evidence: true

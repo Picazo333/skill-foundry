@@ -2,6 +2,8 @@
 
 This document is the compact operational checklist for `VNEXT_MASTER_PLAN.md`.
 
+All gates additionally use the closed-loop contracts in `foundry/evals/vnext/`. The table below is the human-readable summary; `GATE_CLAIMS.yaml` and each gate YAML are the machine-readable claim source.
+
 | Gate | Mandatory evidence | Hard fail conditions |
 |---|---|---|
 | G0 | baseline commit, Foundry validator, unit tests, V1 baseline, Noema conformance | any current baseline regression |
@@ -21,6 +23,19 @@ python -m unittest tests.test_validate_foundry -v
 ```
 
 Noema conformance must use the protocol version pinned by `noema.project.yaml`.
+
+## Closed-loop semantics
+For each gate:
+1. produce gate outputs;
+2. execute deterministic checks;
+3. execute required behavioral/independent/adversarial evaluators;
+4. materialize claim evidence;
+5. derive PASS/FAIL/UNASSESSED/BLOCKED;
+6. on FAIL, create structured defect and route rework;
+7. rerun only affected checks plus required regression;
+8. advance only after every mandatory claim is PASS.
+
+Circuit breakers are defined in `foundry/evals/vnext/CIRCUIT_BREAKERS.yaml`.
 
 ## Evidence semantics
 - `PASS` may not be inferred from artifact presence.
