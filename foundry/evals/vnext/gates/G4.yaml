@@ -1,0 +1,13 @@
+gate: G4
+name: vertical_slice
+claims:
+  - structural_integrity
+  - behavioral_correctness
+  - approved_architecture_fidelity
+  - independent_audit_pass
+  - false_completion_resistance
+  - test_integrity
+  - baseline_non_regression
+  - noema_conformance_green
+  - completion_evidence_derived
+fail_route: claim_specific
