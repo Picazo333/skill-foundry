@@ -1,6 +1,6 @@
 gate: G0
 name: seal_baseline
-status: PENDING_CI
+status: PASS
 rollback_anchor: 365c62b58b70dea7aecd3ce4c7724ac6ce291353
 noema_protocol: 0.1.0-rc.0
 baseline:
@@ -19,9 +19,12 @@ domain_blob_shas:
   tools/validate_foundry.py: dade4d1e95a71811324a6793ea0c57a59a8be18d
   tests/test_validate_foundry.py: 99bca7ec85004e412536c8684d762e2130e99d98
 claims:
-  baseline_reproducible: PENDING
-  foundry_validation_green: PENDING
-  foundry_unit_tests_green: PENDING
-  v1_baseline_integrity: PENDING
-  noema_conformance_green: PENDING
+  baseline_reproducible: PASS
+  foundry_validation_green: PASS
+  foundry_unit_tests_green: PASS
+  v1_baseline_integrity: PASS
+  noema_conformance_green: PASS
   rollback_anchor_recorded: PASS
+ci_evidence:
+  foundry_validation_run: 35464932609
+  noema_conformance_run: 35464932910
