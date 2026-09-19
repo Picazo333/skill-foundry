@@ -62,6 +62,24 @@ class FactoryValidatorTests(unittest.TestCase):
         f.write_text(yaml.safe_dump(d,sort_keys=False),encoding="utf-8")
         e=self.validate(p); self.assertTrue(any("Plan Lock coverage mismatch" in x for x in e),e)
 
+    def test_non_buildable_item_in_wave_fails(self):
+        p=self.clone_fixture(); f=p/"09_WAVES.yaml"
+        d=yaml.safe_load(f.read_text(encoding="utf-8")); d["waves"][0]["item_ids"].append("i1")
+        f.write_text(yaml.safe_dump(d,sort_keys=False),encoding="utf-8")
+        e=self.validate(p); self.assertTrue(any("schedules non-buildable item i1" in x for x in e),e)
+
+    def test_blocked_exception_item_cannot_be_scheduled(self):
+        p=self.clone_fixture(); f=p/"09_WAVES.yaml"
+        d=yaml.safe_load(f.read_text(encoding="utf-8")); d["waves"][0]["item_ids"].append("i4")
+        f.write_text(yaml.safe_dump(d,sort_keys=False),encoding="utf-8")
+        e=self.validate(p); self.assertTrue(any("blocked architecture-exception item scheduled: i4" in x for x in e),e)
+
+    def test_parallelism_above_policy_fails(self):
+        p=self.clone_fixture(); f=p/"09_WAVES.yaml"
+        d=yaml.safe_load(f.read_text(encoding="utf-8")); d["waves"][0]["max_parallel_builders"]=3
+        f.write_text(yaml.safe_dump(d,sort_keys=False),encoding="utf-8")
+        e=self.validate(p); self.assertTrue(any("exceeds Factory parallel builder limit" in x for x in e),e)
+
     def test_shared_canon_write_fails_schema(self):
         p=self.clone_fixture(); f=p/"09_WAVES.yaml"
         d=yaml.safe_load(f.read_text(encoding="utf-8")); d["waves"][0]["shared_canon_write"]=True
