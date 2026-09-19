@@ -1,0 +1,10 @@
+gate: G7
+name: release
+claims:
+  - release_reconciliation_complete
+  - all_source_items_terminal_or_explicitly_unresolved
+  - zero_unaudited_published_skills
+  - zero_critical_open_exceptions
+  - release_evidence_complete
+  - final_operator_review_is_only_remaining_gate
+fail_route: affected_subsystem
