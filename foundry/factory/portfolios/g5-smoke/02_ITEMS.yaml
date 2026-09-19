@@ -1,0 +1,98 @@
+portfolio_id: g5-smoke
+items:
+  - item_id: i1
+    title: Canonical context construction
+    item_type: CAPABILITY
+    family: context
+    disposition: REUSE
+    target_skill_id: canonical-context-builder
+    merged_into: null
+    effort: E1
+    risk: R1
+    source_refs: [s1, s2]
+    dependencies: []
+    notes: [Existing baseline Skill covers the capability.]
+  - item_id: i2
+    title: Deterministic checksum utility
+    item_type: DETERMINISTIC_UTILITY
+    family: infrastructure
+    disposition: NO_SKILL
+    target_skill_id: null
+    merged_into: null
+    effort: E0
+    risk: R0
+    source_refs: [s3]
+    dependencies: []
+    notes: [Better implemented as deterministic code.]
+  - item_id: i3
+    title: Skill Foundry entry
+    item_type: CAPABILITY
+    family: foundry-system
+    disposition: REUSE
+    target_skill_id: skill-foundry
+    merged_into: null
+    effort: E1
+    risk: R1
+    source_refs: [s4]
+    dependencies: []
+    notes: [Published in VNext G4.]
+  - item_id: i4
+    title: Research Executor
+    item_type: SKILL_CANDIDATE
+    family: research
+    disposition: DEFERRED
+    target_skill_id: null
+    merged_into: null
+    effort: E3
+    risk: R2
+    source_refs: [s5]
+    dependencies: []
+    notes: [Known unresolved architecture question; do not fabricate.]
+  - item_id: i5
+    title: Brand workflow orchestration
+    item_type: CAPABILITY
+    family: brand-creative
+    disposition: REUSE
+    target_skill_id: brand-skill-orchestrator
+    merged_into: null
+    effort: E1
+    risk: R1
+    source_refs: [s6]
+    dependencies: []
+    notes: [Existing baseline orchestrator covers the capability.]
+  - item_id: i6
+    title: Decision Brief Composer
+    item_type: SKILL_CANDIDATE
+    family: decision-support
+    disposition: NEW_SKILL
+    target_skill_id: null
+    merged_into: null
+    effort: E2
+    risk: R2
+    source_refs: [s7, s8]
+    dependencies: [i1]
+    notes: [Synthetic buildable fixture.]
+  - item_id: i7
+    title: Magic helper
+    item_type: UNKNOWN
+    family: null
+    disposition: UNRESOLVED
+    target_skill_id: null
+    merged_into: null
+    effort: E0
+    risk: R0
+    source_refs: [s9]
+    dependencies: []
+    notes: [Quarantined rather than invented.]
+  - item_id: i8
+    title: Decision Brief Quality Auditor
+    item_type: SKILL_CANDIDATE
+    family: decision-support
+    disposition: NEW_SKILL
+    target_skill_id: null
+    merged_into: null
+    effort: E2
+    risk: R2
+    source_refs: [s10]
+    dependencies: [i6]
+    notes: [Synthetic downstream buildable fixture for wave-order validation.]
