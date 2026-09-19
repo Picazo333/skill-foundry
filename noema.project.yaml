@@ -137,11 +137,6 @@ quality_claims:
   - context-efficiency
   - provenance
   - recoverability
-  - architecture-fidelity
-  - behavioral-correctness
-  - source-coverage
-  - eval-integrity
-  - composition-integrity
 
 relations:
   - type: governed-by
