@@ -29,3 +29,17 @@ defects:
       - Noema Conformance
     status: REWORK_APPLIED
     evidence: github-actions://35468667465
+  - defect_id: G5-D003
+    failed_claim: structural_factory_fixture_integrity
+    severity: MINOR
+    owner_role: BUILDER
+    return_to: FIXTURE
+    problem: The downstream synthetic item i8 lacked the newly-required lifecycle field after lifecycle/disposition separation was introduced.
+    acceptance_criteria:
+      - i8 records READY_FOR_PUBLISH lifecycle
+      - valid smoke portfolio passes schema validation
+    rerun_scope:
+      - tests.test_validate_factory
+      - factory smoke validator
+    status: REWORK_APPLIED
+    evidence: github-actions://35468893380
