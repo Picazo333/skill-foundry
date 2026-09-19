@@ -1,0 +1,79 @@
+version: 1
+verdicts: [PASS, FAIL, UNASSESSED, BLOCKED]
+evidence_priority:
+  - deterministic
+  - runtime_behavioral
+  - independent_audit
+  - shadow_adversarial
+  - model_judgment
+  - narrative_assertion
+
+gates:
+  G0:
+    mandatory_claims:
+      - baseline_reproducible
+      - foundry_validation_green
+      - foundry_unit_tests_green
+      - v1_baseline_integrity
+      - noema_conformance_green
+      - rollback_anchor_recorded
+  G1:
+    mandatory_claims:
+      - authority_unique_for_required_concepts
+      - no_duplicate_coordination_contract
+      - mixed_contract_direction_explicit
+      - non_regression_coverage_complete
+      - no_required_authority_collision
+  G2:
+    mandatory_claims:
+      - research_questions_decision_relevant
+      - evidence_inference_separated
+      - alternatives_compared
+      - blocking_unknowns_decided_or_deferred
+      - recommendations_trace_to_architecture_decisions
+  G3:
+    mandatory_claims:
+      - vertical_slice_semantically_complete
+      - no_duplicate_noema_responsibility
+      - complexity_pays_rent
+      - no_open_critical_redteam_defect
+      - architecture_freeze_recorded
+  G4:
+    mandatory_claims:
+      - structural_integrity
+      - behavioral_correctness
+      - approved_architecture_fidelity
+      - independent_audit_pass
+      - false_completion_resistance
+      - test_integrity
+      - baseline_non_regression
+      - noema_conformance_green
+      - completion_evidence_derived
+  G5:
+    mandatory_claims:
+      - source_coverage_complete
+      - unknowns_not_invented
+      - semantic_dedup_operational
+      - plan_lock_fidelity
+      - dependency_graph_valid
+      - wave_order_valid
+      - canon_ownership_respected
+      - architecture_exceptions_traceable
+  G6:
+    mandatory_claims:
+      - synthetic_canary_pass
+      - real_canary_pass
+      - composition_integrity
+      - recovery_demonstrated
+      - zero_critical_false_pass
+      - zero_test_tampering
+      - zero_critical_provenance_loss
+      - zero_authority_collision
+  G7:
+    mandatory_claims:
+      - release_reconciliation_complete
+      - all_source_items_terminal_or_explicitly_unresolved
+      - zero_unaudited_published_skills
+      - zero_critical_open_exceptions
+      - release_evidence_complete
+      - final_operator_review_is_only_remaining_gate
