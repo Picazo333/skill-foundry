@@ -1,0 +1,36 @@
+{
+  "certificate_version": 1,
+  "gate": "G5",
+  "candidate_id": null,
+  "skill_id": null,
+  "claims": {
+    "source_coverage_complete": "PASS",
+    "unknowns_not_invented": "PASS",
+    "semantic_dedup_operational": "PASS",
+    "plan_lock_fidelity": "PASS",
+    "dependency_graph_valid": "PASS",
+    "wave_order_valid": "PASS",
+    "canon_ownership_respected": "PASS",
+    "architecture_exceptions_traceable": "PASS"
+  },
+  "open_critical_defects": 0,
+  "verdict": "PASS",
+  "evidence_refs": [
+    "repo://foundry/factory/portfolios/g5-smoke/01_SOURCE_LEDGER.yaml",
+    "repo://foundry/factory/portfolios/g5-smoke/02_ITEMS.yaml",
+    "repo://foundry/factory/portfolios/g5-smoke/06_DEPENDENCY_GRAPH.yaml",
+    "repo://foundry/factory/portfolios/g5-smoke/08_PLAN.yaml",
+    "repo://foundry/factory/portfolios/g5-smoke/09_WAVES.yaml",
+    "repo://foundry/factory/portfolios/g5-smoke/exceptions/ex-001.yaml",
+    "repo://foundry/evidence/vnext/G5/FACTORY_SMOKE_REPORT.md",
+    "repo://foundry/evidence/vnext/G5/DEFECTS.yaml",
+    "repo://foundry/reviews/VNEXT_G5_FACTORY_AUDIT.md",
+    "github-actions://35468943739",
+    "github-actions://35468944034"
+  ],
+  "generated_by": "tools/issue_completion_certificate.py",
+  "notes": [
+    "G5 synthetic fixture proves control-plane mechanics without publishing fake Skills.",
+    "All three observed G5 defects were routed through explicit rework and closed."
+  ]
+}
