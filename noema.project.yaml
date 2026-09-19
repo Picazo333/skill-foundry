@@ -66,6 +66,12 @@ sources_of_truth:
   vnext_execution:
     scheme: repo
     locator: foundry/plans/VNEXT_EXECUTION_MANIFEST.yaml
+  vnext_gate_claims:
+    scheme: repo
+    locator: foundry/evals/vnext/GATE_CLAIMS.yaml
+  vnext_gate_eval_model:
+    scheme: repo
+    locator: foundry/evals/vnext/GATE_EVAL_MODEL.md
 
 context:
   entrypoint: AGENTS.md
@@ -84,6 +90,7 @@ context:
         - repo://foundry/workflows/SF-WF-001_SKILL_GENESIS.md
         - repo://foundry/plans/VNEXT_MASTER_PLAN.md
         - repo://foundry/plans/VNEXT_EXECUTION_MANIFEST.yaml
+        - repo://foundry/evals/vnext/GATE_CLAIMS.yaml
     audit:
       required:
         - repo://FOUNDRY_OPERATING_MODEL.md
@@ -92,6 +99,10 @@ context:
         - repo://foundry/workflows/SF-WF-001_SKILL_GENESIS.md
         - repo://foundry/plans/VNEXT_MASTER_PLAN.md
         - repo://foundry/plans/VNEXT_ACCEPTANCE_GATES.md
+        - repo://foundry/evals/vnext/GATE_EVAL_MODEL.md
+        - repo://foundry/evals/vnext/GATE_CLAIMS.yaml
+        - repo://foundry/evals/vnext/GATE_CLAIMS.yaml
+        - repo://foundry/evals/vnext/CIRCUIT_BREAKERS.yaml
     research:
       required:
         - repo://FOUNDRY_OPERATING_MODEL.md
@@ -126,6 +137,11 @@ quality_claims:
   - context-efficiency
   - provenance
   - recoverability
+  - architecture-fidelity
+  - behavioral-correctness
+  - source-coverage
+  - eval-integrity
+  - composition-integrity
 
 relations:
   - type: governed-by
