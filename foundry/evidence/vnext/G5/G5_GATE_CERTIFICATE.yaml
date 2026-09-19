@@ -1,0 +1,26 @@
+gate: G5
+verdict: PASS
+terminal_condition: SMALL_MIXED_PORTFOLIO_COMPLETES_WITHOUT_DRIFT
+implementation_merge: 8517015359bfc5537a9bbb6d8d2c86e07459998e
+mandatory_claims:
+  source_coverage_complete: PASS
+  unknowns_not_invented: PASS
+  semantic_dedup_operational: PASS
+  plan_lock_fidelity: PASS
+  dependency_graph_valid: PASS
+  wave_order_valid: PASS
+  canon_ownership_respected: PASS
+  architecture_exceptions_traceable: PASS
+validation:
+  foundry_validation: github-actions://35470631569
+  noema_conformance: github-actions://35470631842
+publication:
+  skill_foundry_version: 1.1.0
+  factory_workflow: repo://foundry/workflows/SF-WF-003_PORTFOLIO_FACTORY.md
+  extension_candidate_status: PUBLISHED
+open_critical_defects: 0
+closed_rework:
+  - G5-D001
+  - G5-D002
+  - G5-D003
+next_gate: G6
