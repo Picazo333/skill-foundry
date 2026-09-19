@@ -1,6 +1,6 @@
 # Skill Foundry checkpoint
 
-phase: vnext_g1_authority_reconciliation
+phase: vnext_g1_pass_pending_merge
 
 completed:
 - original Kickstart preserved verbatim as FOUNDRY_CANON.md
@@ -31,7 +31,6 @@ active_program:
 - deviations: foundry/plans/VNEXT_DEVIATIONS.md
 
 next_exact_action:
-- Complete G1 authority/contract/non-regression reconciliation and gate evaluation.
-- Merge G1 only after Noema Conformance + Foundry Validation remain green and every mandatory G1 claim is PASS.
-- Then start G2 targeted research from latest main.
+- Merge PR #8 after final branch checks remain green.
+- Then start G2 targeted research from latest main using only VNext open questions that survived G1.
 - Final operator intervention occurs after G7 release evidence is complete.
