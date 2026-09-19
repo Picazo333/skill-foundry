@@ -1,5 +1,5 @@
 program_id: skill-foundry-vnext
-status: OPERATOR_AUTHORIZED_PENDING_G0
+status: OPERATOR_AUTHORIZED_IN_PROGRESS
 repo: Picazo333/skill-foundry
 baseline:
   expected_commit: a471a1b9f82faf221eeb3d89aa06a828a9f3a0cc
@@ -74,7 +74,7 @@ gates:
     terminal_condition: VERTICAL_SLICE_ARCHITECTURE_FROZEN_NO_CRITICAL_DEFECT
   - id: G4
     name: single_capability_vertical_slice
-    status: EVALUATING
+    status: PASS
     depends_on: [G3]
     terminal_condition: END_TO_END_CANDIDATE_PUBLISHED_WITH_EVIDENCE
   - id: G5
