@@ -1,0 +1,36 @@
+handoff_id: sf-vnext-g4-build-handoff
+work_order_ref: repo://foundry/handoffs/vnext/G4/WORK_ORDER.yaml
+status: complete
+summary: Built the approved thin skill-foundry front door and its G4 evidence/verification support.
+changes:
+  - added approved front-door Skill package
+  - added builder-visible evals and protected holdouts
+  - added FoundryWorkBinding and CompletionCertificate contracts
+  - added evidence-derived certificate and holdout-integrity tooling
+  - added VNext evidence tests to Foundry CI
+artifacts:
+  - scheme: repo
+    locator: catalog/skills/skill-foundry/SKILL.md
+  - scheme: repo
+    locator: foundry/specs/skill-foundry.md
+  - scheme: repo
+    locator: foundry/contracts/completion-certificate.schema.json
+evidence:
+  - scheme: repo
+    locator: foundry/evidence/vnext/G4/BEHAVIORAL_EVAL.md
+  - scheme: repo
+    locator: foundry/evidence/vnext/G4/HOLDOUT_EVAL.md
+  - scheme: repo
+    locator: foundry/reviews/skill-foundry_AUDIT.md
+decisions:
+  - build follows explicit candidate G6 Decision.md
+remaining:
+  - verify PR CI remains green
+  - derive final G4 certificate after Noema conformance evidence is green
+  - merge implementation then perform G10 registry publication
+next_action: Verify CI and finalize G4 gate evidence.
+intentionally_unchanged:
+  - baseline/agentic-skill-suite-v1
+  - foundry/taxonomy/TAXONOMY.yaml
+  - foundry/ontology/ONTOLOGY.yaml
+  - Noema protocol and schemas
