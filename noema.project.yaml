@@ -83,7 +83,8 @@ context:
       optional:
         - repo://COLLABORATION_PROTOCOL.md
     build:
-      required:
+      required:        - repo://foundry/workflows/SF-WF-003_PORTFOLIO_FACTORY.md
+
         - repo://FOUNDRY_OPERATING_MODEL.md
       optional:
         - repo://COLLABORATION_PROTOCOL.md
@@ -92,7 +93,8 @@ context:
         - repo://foundry/plans/VNEXT_EXECUTION_MANIFEST.yaml
         - repo://foundry/evals/vnext/GATE_CLAIMS.yaml
     audit:
-      required:
+      required:        - repo://foundry/workflows/SF-WF-003_PORTFOLIO_FACTORY.md
+
         - repo://FOUNDRY_OPERATING_MODEL.md
       optional:
         - repo://COLLABORATION_PROTOCOL.md
@@ -110,7 +112,8 @@ context:
         - repo://FOUNDRY_CANON.md
         - repo://foundry/registry/SKILL_REGISTRY.yaml
     architect:
-      required:
+      required:        - repo://foundry/workflows/SF-WF-003_PORTFOLIO_FACTORY.md
+
         - repo://FOUNDRY_CANON.md
         - repo://FOUNDRY_OPERATING_MODEL.md
         - repo://foundry/registry/SKILL_REGISTRY.yaml
