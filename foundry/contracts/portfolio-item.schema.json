@@ -7,6 +7,7 @@
     "title",
     "item_type",
     "disposition",
+    "lifecycle",
     "effort",
     "risk",
     "source_refs",
@@ -105,6 +106,20 @@
       "items": {
         "type": "string"
       }
+    },
+    "lifecycle": {
+      "enum": [
+        "DISCOVERED",
+        "PLANNED",
+        "BUILDING",
+        "AUDITING",
+        "READY_FOR_PUBLISH",
+        "PUBLISHED",
+        "CLOSED",
+        "DEFERRED",
+        "UNRESOLVED",
+        "BLOCKED"
+      ]
     }
   },
   "additionalProperties": false,
