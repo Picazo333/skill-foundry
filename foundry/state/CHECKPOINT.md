@@ -1,6 +1,6 @@
 # Skill Foundry checkpoint
 
-phase: vnext_program_canonicalization
+phase: vnext_g0_pass_pending_merge
 
 completed:
 - original Kickstart preserved verbatim as FOUNDRY_CANON.md
@@ -16,7 +16,7 @@ completed:
 - canonical VNext execution program authored under foundry/plans/
 
 partial:
-- VNext G0 has not yet executed
+- VNext G0 baseline evidence is PASS on PR #7 and awaits merge to main
 - no active Skill Genesis candidate
 
 blocked: []
@@ -31,7 +31,7 @@ active_program:
 - deviations: foundry/plans/VNEXT_DEVIATIONS.md
 
 next_exact_action:
-- Merge the planning branch only after plan-file review confirms no unintended Foundry semantic change.
-- Once canonical in main, execute VNext Gate G0 exactly as specified in the master plan.
-- Continue G0→G7 without routine operator confirmation; stop the affected workstream only for a material deviation as defined by the plan.
+- Merge PR #7 only after the final branch checks remain green.
+- After merge, start VNext Gate G1 from latest main.
+- Continue G1→G7 without routine operator confirmation; stop the affected workstream only for a material deviation as defined by the plan.
 - Final operator intervention occurs after G7 release evidence is complete.
