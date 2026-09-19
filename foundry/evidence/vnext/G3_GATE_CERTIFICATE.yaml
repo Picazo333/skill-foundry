@@ -1,0 +1,26 @@
+certificate_type: GATE_CERTIFICATE
+gate: G3
+run_ref: pr-10
+verdict: PASS
+claims:
+  vertical_slice_semantically_complete:
+    verdict: PASS
+    evidence: repo://foundry/architecture/VNEXT_VERTICAL_SLICE_SPEC.md
+  no_duplicate_noema_responsibility:
+    verdict: PASS
+    evidence:
+      - repo://foundry/architecture/VNEXT_ENTITY_MODEL.yaml
+      - repo://foundry/architecture/VNEXT_CONTRACT_REUSE_MATRIX.yaml
+  complexity_pays_rent:
+    verdict: PASS
+    evidence: repo://foundry/reviews/VNEXT_ARCHITECTURE_REDTEAM.md
+  no_open_critical_redteam_defect:
+    verdict: PASS
+    evidence: repo://foundry/reviews/VNEXT_ARCHITECTURE_REDTEAM.md
+  architecture_freeze_recorded:
+    verdict: PASS
+    evidence: repo://foundry/architecture/VNEXT_ARCHITECTURE_1_0.md
+ci_evidence:
+  foundry_validation: github-actions:35465564922
+  noema_conformance: github-actions:35465565330
+open_critical_defects: 0
