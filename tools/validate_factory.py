@@ -90,6 +90,12 @@ def validate(root: Path, portfolio: Path):
             errors.append(f"source {src.get('source_id')} disposition {disp} requires reason")
 
     for item in items:
+        disp=item.get("disposition"); life=item.get("lifecycle")
+        expected_terminal={"REUSE":"CLOSED","NO_SKILL":"CLOSED","MERGED":"CLOSED","REJECTED":"CLOSED","DEFERRED":"DEFERRED","UNRESOLVED":"UNRESOLVED"}
+        if disp in expected_terminal and life!=expected_terminal[disp]:
+            errors.append(f"item {item['item_id']} lifecycle {life} inconsistent with disposition {disp}")
+        if life in {"READY_FOR_PUBLISH","PUBLISHED"} and disp not in BUILDABLE:
+            errors.append(f"item {item['item_id']} lifecycle {life} requires buildable disposition")
         for src in item.get("source_refs") or []:
             if src not in set(raw_ids): errors.append(f"item {item['item_id']} references unknown source {src}")
         for dep in item.get("dependencies") or []:
