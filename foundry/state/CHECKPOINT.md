@@ -1,6 +1,6 @@
 # Skill Foundry checkpoint
 
-phase: vnext_g3_architecture_redteam
+phase: vnext_g3_pass_pending_merge
 
 completed:
 - original Kickstart preserved verbatim as FOUNDRY_CANON.md
@@ -33,7 +33,6 @@ active_program:
 - deviations: foundry/plans/VNEXT_DEVIATIONS.md
 
 next_exact_action:
-- Evaluate G3 architecture and red-team claims.
-- Merge G3 only after Noema Conformance + Foundry Validation remain green and every mandatory G3 claim is PASS.
-- Then start G4 single-capability vertical slice from latest main.
+- Merge PR #10 after final branch checks remain green.
+- Then start G4 single-capability vertical slice from latest main using candidate sf-cand-20260919-skill-foundry-front-door.
 - Final operator intervention occurs after G7 release evidence is complete.
