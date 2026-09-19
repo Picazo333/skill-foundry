@@ -1,0 +1,71 @@
+version: 1
+gate: G2
+status: DECISIONS_READY
+decisions:
+  R1:
+    topic: behavioral_completion
+    vertical_slice_blocking: true
+    status: DECIDED
+    choice: conjunctive_evidence_completion
+    architecture_implication:
+      - Foundry CompletionCertificate
+      - deterministic + behavioral + independent + protected holdout evidence
+      - Noema EvalResult/Artifact refs reused
+    confidence: high
+    source: repo://foundry/research/vnext/R1_BEHAVIORAL_COMPLETION.md
+  R2:
+    topic: eval_layering_holdouts
+    vertical_slice_blocking: true
+    status: DECIDED
+    choice: layered_eval_architecture
+    architecture_implication:
+      - deterministic infrastructure tests
+      - builder-visible acceptance evals
+      - independent auditor evals
+      - protected risk-targeted holdouts
+      - evaluator calibration
+    confidence: high
+    source: repo://foundry/research/vnext/R2_EVAL_LAYERING_HOLDOUTS.md
+  R3:
+    topic: recovery_semantics
+    vertical_slice_blocking: true
+    status: DECIDED
+    choice: RECONSTRUCT_FROM_REPO
+    architecture_implication:
+      - reuse Noema WorkOrder and Handoff
+      - persist completed state, artifacts, remaining and next_action
+      - no persistent runtime dependency
+      - idempotency/replay-safe side effects
+    confidence: high
+    source: repo://foundry/research/vnext/R3_RECOVERY_SEMANTICS.md
+  R4:
+    topic: portfolio_scale
+    vertical_slice_blocking: false
+    status: DEFERRED
+    revisit_at: G5
+    trigger: vertical slice proven and Factory generalization begins
+  R5:
+    topic: ontology_facets
+    vertical_slice_blocking: false
+    status: DEFERRED
+    revisit_at: G3_or_G5
+    trigger: existing Foundry ontology cannot express a required vertical-slice or Factory relation without hacks
+  R6:
+    topic: packaging
+    vertical_slice_blocking: false
+    status: DEFERRED
+    revisit_at: G7
+    trigger: VNext release packaging/export scope begins
+  R7:
+    topic: routing_metadata
+    vertical_slice_blocking: false
+    status: DEFERRED
+    revisit_at: G7
+    trigger: front-door release metadata is frozen; Portfolio Router remains out of scope
+  R8:
+    topic: concurrency
+    vertical_slice_blocking: false
+    status: DEFERRED
+    revisit_at: G5
+    trigger: Factory generalization introduces parallel work units
+research_stop_reason: all blocking G3/G4 architecture unknowns from G1 are decided; remaining questions have explicit later activation triggers

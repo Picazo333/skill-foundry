@@ -64,7 +64,7 @@ gates:
     terminal_condition: NO_REQUIRED_AUTHORITY_COLLISION
   - id: G2
     name: targeted_research
-    status: PENDING
+    status: PASS
     depends_on: [G1]
     terminal_condition: REQUIRED_ARCHITECTURE_UNKNOWNS_DECIDED_OR_DEFERRED
   - id: G3

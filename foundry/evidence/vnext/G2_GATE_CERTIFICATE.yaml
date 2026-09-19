@@ -1,0 +1,30 @@
+certificate_type: GATE_CERTIFICATE
+gate: G2
+run_ref: pr-9
+verdict: PASS
+claims:
+  research_questions_decision_relevant:
+    verdict: PASS
+    evidence: repo://foundry/research/vnext/RESEARCH_DECISION_MATRIX.yaml
+  evidence_inference_separated:
+    verdict: PASS
+    evidence:
+      - repo://foundry/research/vnext/R1_BEHAVIORAL_COMPLETION.md
+      - repo://foundry/research/vnext/R2_EVAL_LAYERING_HOLDOUTS.md
+      - repo://foundry/research/vnext/R3_RECOVERY_SEMANTICS.md
+  alternatives_compared:
+    verdict: PASS
+    evidence:
+      - repo://foundry/research/vnext/R1_BEHAVIORAL_COMPLETION.md
+      - repo://foundry/research/vnext/R2_EVAL_LAYERING_HOLDOUTS.md
+      - repo://foundry/research/vnext/R3_RECOVERY_SEMANTICS.md
+  blocking_unknowns_decided_or_deferred:
+    verdict: PASS
+    evidence: repo://foundry/research/vnext/RESEARCH_DECISION_MATRIX.yaml
+  recommendations_trace_to_architecture_decisions:
+    verdict: PASS
+    evidence: repo://foundry/research/vnext/RESEARCH_DECISION_MATRIX.yaml
+ci_evidence:
+  foundry_validation: github-actions:35465373788
+  noema_conformance: github-actions:35465374035
+open_critical_defects: 0
