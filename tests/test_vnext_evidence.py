@@ -37,6 +37,11 @@ class VNextEvidenceTests(unittest.TestCase):
             c=cert.derive(ROOT,"G4",p)
             self.assertEqual("PASS",c["verdict"])
 
+    def test_committed_g4_certificate_matches_derivation(self):
+        evidence=ROOT/"foundry/evidence/vnext/G4/G4_EVIDENCE.yaml"
+        committed=json.loads((ROOT/"foundry/evidence/vnext/G4/G4_COMPLETION_CERTIFICATE.json").read_text(encoding="utf-8"))
+        self.assertEqual(committed,cert.derive(ROOT,"G4",evidence))
+
     def test_git_blob_sha_matches_known_value(self):
         self.assertEqual("a9993e364706816aba3e25717850c26c9cd0d89d",__import__("hashlib").sha1(b"abc").hexdigest())
         # Git blob identity intentionally differs from raw SHA-1.
