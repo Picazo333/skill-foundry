@@ -1,0 +1,19 @@
+work_order_id: g5-smoke-i6
+project_id: skill-foundry
+objective: Synthetic smoke work unit for Decision Brief Composer.
+scope:
+  allowed: [fixture-only simulation]
+  excluded: [canonical Skill publication, registry writes]
+context_mode: build
+capability_requirements:
+  - id: code_generation
+allowed_writes:
+  - foundry/factory/portfolios/g5-smoke/**
+forbidden_effects:
+  - modify Skill Registry
+  - publish synthetic Skill
+expected_artifacts:
+  - fixture://i6-build-result
+quality_claims:
+  - wave_order_valid
+human_gates: []
