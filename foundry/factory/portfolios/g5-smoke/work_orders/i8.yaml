@@ -1,0 +1,19 @@
+work_order_id: g5-smoke-i8
+project_id: skill-foundry
+objective: Synthetic smoke work unit for Decision Brief Quality Auditor after i6.
+scope:
+  allowed: [fixture-only simulation]
+  excluded: [canonical Skill publication, registry writes]
+context_mode: build
+capability_requirements:
+  - id: quality_audit
+allowed_writes:
+  - foundry/factory/portfolios/g5-smoke/**
+forbidden_effects:
+  - modify Skill Registry
+  - publish synthetic Skill
+expected_artifacts:
+  - fixture://i8-audit-result
+quality_claims:
+  - wave_order_valid
+human_gates: []
