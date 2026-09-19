@@ -1,5 +1,5 @@
-version: 0.3
-status: canonical_operational_v5
+version: 0.4
+status: canonical_operational_vnext_factory
 source_of_truth:
   constitutional: FOUNDRY_CANON.md
   operational: FOUNDRY_OPERATING_MODEL.md
@@ -34,6 +34,14 @@ entities:
     purpose: Thin platform-specific wrapper around canonical Skill core.
   Checkpoint:
     purpose: Compact recoverable state for interrupted work.
+  Portfolio:
+    purpose: Bounded Factory intake, architecture and manufacturing program over many normalized items.
+  PortfolioItem:
+    purpose: Stable normalized workflow/capability observation under one explicit Factory disposition.
+  Wave:
+    purpose: Dependency-safe execution group with bounded parallelism and serialized canonical publication.
+  ArchitectureException:
+    purpose: Explicit post-Plan-Lock finding whose resolution would change approved portfolio meaning, scope or topology.
 relationships:
   - decomposes_into
   - reuses
@@ -50,6 +58,10 @@ relationships:
   - adapted_by
   - approved_by
   - specified_by
+  - contains
+  - scheduled_in
+  - exception_of
+  - merged_into
 decision_precedence:
   - REUSE
   - EXTEND
@@ -61,3 +73,5 @@ notes:
   - Capability is deliberately distinct from Skill; mining never implies creation.
   - Workflow stages are process states, not automatic meta-Skills.
   - Add ontology concepts only when they improve classification, deduplication, routing, lifecycle control or auditability.
+  - Portfolio, PortfolioItem, Wave and ArchitectureException were activated at VNext G5 after the proven G4 vertical slice required portfolio-scale semantics.
+  - Effort/risk profiles and Plan Lock remain contract/artifact fields rather than ontology entities until repeated use proves additional ontology value.
