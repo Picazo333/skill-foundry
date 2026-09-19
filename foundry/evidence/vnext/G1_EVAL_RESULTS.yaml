@@ -1,0 +1,26 @@
+gate: G1
+status: PASS_PENDING_CI
+claims:
+  authority_unique_for_required_concepts:
+    verdict: PASS
+    evidence:
+      - foundry/architecture/VNEXT_AUTHORITY_MATRIX.yaml
+  no_duplicate_coordination_contract:
+    verdict: PASS
+    evidence:
+      - foundry/architecture/VNEXT_CONTRACT_REUSE_MATRIX.yaml
+  mixed_contract_direction_explicit:
+    verdict: PASS
+    evidence:
+      - foundry/architecture/VNEXT_CONTRACT_REUSE_MATRIX.yaml
+  non_regression_coverage_complete:
+    verdict: PASS
+    evidence:
+      - foundry/architecture/VNEXT_NON_REGRESSION_CONTRACT.md
+  no_required_authority_collision:
+    verdict: PASS
+    evidence:
+      - foundry/architecture/VNEXT_OPEN_QUESTIONS.yaml
+notes:
+  - No blocking G1 unknown remains an authority collision.
+  - Research questions remain for G2 but are domain-design questions, not ownership conflicts.
