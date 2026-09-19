@@ -79,7 +79,7 @@ gates:
     terminal_condition: END_TO_END_CANDIDATE_PUBLISHED_WITH_EVIDENCE
   - id: G5
     name: generalize_to_factory
-    status: PENDING
+    status: EVALUATING
     depends_on: [G4]
     terminal_condition: SMALL_MIXED_PORTFOLIO_COMPLETES_WITHOUT_DRIFT
   - id: G6
