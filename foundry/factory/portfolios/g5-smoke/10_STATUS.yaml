@@ -1,0 +1,7 @@
+portfolio_id: g5-smoke
+status: SMOKE_READY
+source_coverage_expected: 1.0
+current_wave: null
+open_architecture_exceptions: 0
+notes:
+  - Smoke fixture validates mechanics only; no synthetic Skill is published.
