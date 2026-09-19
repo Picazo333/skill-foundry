@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Skill Foundry Factory Portfolio Plan",
+  "type": "object",
+  "required": [
+    "portfolio_id",
+    "plan_version",
+    "status",
+    "decision_ref",
+    "locked_item_ids",
+    "architecture_change_policy"
+  ],
+  "properties": {
+    "portfolio_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "plan_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "PROPOSED",
+        "PLAN_LOCKED"
+      ]
+    },
+    "decision_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "locked_item_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "architecture_change_policy": {
+      "const": "EXCEPTION_REQUIRED"
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

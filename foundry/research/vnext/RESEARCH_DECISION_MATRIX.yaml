@@ -41,15 +41,28 @@ decisions:
   R4:
     topic: portfolio_scale
     vertical_slice_blocking: false
-    status: DEFERRED
-    revisit_at: G5
-    trigger: vertical slice proven and Factory generalization begins
+    status: DECIDED
+    choice: git_native_normalized_ledgers_with_derived_views
+    architecture_implication:
+      - immutable raw/source accounting
+      - stable normalized item IDs
+      - derived family/dependency/wave views
+      - no graph database
+    confidence: high
+    source: repo://foundry/research/vnext/R4_PORTFOLIO_SCALE.md
   R5:
     topic: ontology_facets
     vertical_slice_blocking: false
-    status: DEFERRED
-    revisit_at: G3_or_G5
-    trigger: existing Foundry ontology cannot express a required vertical-slice or Factory relation without hacks
+    status: DECIDED
+    choice: minimal_factory_entities
+    architecture_implication:
+      - Portfolio
+      - PortfolioItem
+      - Wave
+      - ArchitectureException
+      - effort/risk remain contract fields
+    confidence: high
+    source: repo://foundry/research/vnext/R5_ONTOLOGY_FACETS.md
   R6:
     topic: packaging
     vertical_slice_blocking: false
@@ -65,7 +78,13 @@ decisions:
   R8:
     topic: concurrency
     vertical_slice_blocking: false
-    status: DEFERRED
-    revisit_at: G5
-    trigger: Factory generalization introduces parallel work units
+    status: DECIDED
+    choice: wave_bounded_parallelism_serialized_publication
+    architecture_implication:
+      - initial 2 builders + 1 auditor + 1 serialized publisher
+      - shared canon read-only to builders
+      - isolated work scopes
+      - increase parallelism only after two healthy waves
+    confidence: high
+    source: repo://foundry/research/vnext/R8_FACTORY_CONCURRENCY.md
 research_stop_reason: all blocking G3/G4 architecture unknowns from G1 are decided; remaining questions have explicit later activation triggers

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Skill Foundry Factory Wave Plan",
+  "type": "object",
+  "required": [
+    "portfolio_id",
+    "waves"
+  ],
+  "properties": {
+    "portfolio_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "waves": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "wave_id",
+          "sequence",
+          "item_ids",
+          "max_parallel_builders",
+          "shared_canon_write"
+        ],
+        "properties": {
+          "wave_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sequence": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "item_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "max_parallel_builders": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2
+          },
+          "shared_canon_write": {
+            "const": false
+          },
+          "publisher_serialized": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

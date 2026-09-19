@@ -1,0 +1,10 @@
+work_order_id: g5-smoke-i6
+status: complete
+wave_id: w1
+item_id: i6
+result: SIMULATED_READY_FOR_PUBLISH
+shared_canon_written: false
+evidence:
+  - repo://foundry/factory/portfolios/g5-smoke/09_WAVES.yaml#w1
+notes:
+  - Synthetic execution receipt only; no canonical Skill package was published.

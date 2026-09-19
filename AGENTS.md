@@ -40,3 +40,8 @@ For any VNext migration task, load the master plan, execution manifest and relev
 
 ## VNext gate quality loop
 G0→G7 work must use `foundry/evals/vnext/`. A task is not gate-complete because artifacts exist or an agent says PASS. Mandatory claims require evidence; failures route through `REWORK_ROUTING.yaml`; circuit breakers in `CIRCUIT_BREAKERS.yaml` stop the affected workstream. `NOEMA PASS` remains conformance evidence only.
+
+
+## Factory mode
+Portfolio-scale Foundry requests route through `foundry/workflows/SF-WF-003_PORTFOLIO_FACTORY.md`.
+Factory is a control plane over ordinary Foundry semantics, not a replacement lifecycle. Real portfolio manufacturing requires explicit Portfolio Review / Plan Lock before build work. After Plan Lock, routine execution may proceed autonomously within the approved architecture. Architecture-changing findings become explicit exceptions.

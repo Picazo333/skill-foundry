@@ -1,0 +1,8 @@
+portfolio_id: g5-smoke
+plan_version: 1
+status: PLAN_LOCKED
+decision_ref: repo://foundry/factory/portfolios/g5-smoke/07_PORTFOLIO_PROPOSAL.md#synthetic-fixture-expected-architecture
+locked_item_ids: [i1, i2, i3, i4, i5, i6, i7, i8]
+architecture_change_policy: EXCEPTION_REQUIRED
+notes:
+  - Synthetic fixture Plan Lock only; does not substitute for human approval in production portfolios.

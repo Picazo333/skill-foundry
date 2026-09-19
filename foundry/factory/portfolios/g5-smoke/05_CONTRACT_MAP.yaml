@@ -1,0 +1,8 @@
+portfolio_id: g5-smoke
+contracts:
+  - contract_id: decision-brief-v1
+    producer_items: [i6]
+    consumer_items: [i8]
+    status: PROPOSED_FIXTURE
+notes:
+  - This contract is synthetic smoke-test data and does not become canonical merely by appearing here.

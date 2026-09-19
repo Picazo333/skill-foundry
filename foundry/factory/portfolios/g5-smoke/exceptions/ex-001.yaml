@@ -1,0 +1,11 @@
+exception_id: ex-001
+portfolio_id: g5-smoke
+item_ids: [i4]
+severity: MAJOR
+finding: Research Executor remains semantically unresolved after Plan Lock and must not be manufactured from incomplete evidence.
+proposed_change: Keep i4 deferred until a future explicit architecture decision resolves whether it is a Skill, extension, mode, or no-Skill capability.
+status: DEFERRED
+blocks_affected_items: true
+evidence_refs:
+  - repo://foundry/factory/portfolios/g5-smoke/02_ITEMS.yaml#i4
+  - repo://foundry/research/vnext/RESEARCH_DECISION_MATRIX.yaml

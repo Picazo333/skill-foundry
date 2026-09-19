@@ -1,0 +1,10 @@
+version: 1
+parallelism:
+  max_parallel_builders: 2
+  increase_requires_consecutive_healthy_waves: 2
+publication:
+  serialized: true
+builder_permissions:
+  shared_canon_write: false
+architecture:
+  post_plan_lock_change_requires_exception: true

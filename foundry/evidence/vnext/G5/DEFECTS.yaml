@@ -1,0 +1,45 @@
+gate: G5
+defects:
+  - defect_id: G5-D001
+    failed_claim: wave_order_valid
+    severity: MAJOR
+    owner_role: BUILDER
+    return_to: IMPLEMENTATION
+    problem: Mutation test for an unscheduled buildable exposed a KeyError in wave-order validation instead of a targeted validation error.
+    acceptance_criteria:
+      - unscheduled buildable produces deterministic validation error
+      - validator does not crash
+      - wave-order checks still run for scheduled items
+    rerun_scope:
+      - tests.test_validate_factory
+      - factory smoke validator
+    status: REWORK_APPLIED
+    evidence: github-actions://35468667203
+  - defect_id: G5-D002
+    failed_claim: noema_conformance_green
+    severity: MAJOR
+    owner_role: STEWARD
+    return_to: AUTHORITY_CONTRACT_RECONCILIATION
+    problem: Foundry-domain Factory quality claims were incorrectly added to Noema project quality_claims, whose vocabulary is protocol-governed.
+    acceptance_criteria:
+      - remove unrecognized Factory domain claims from noema.project.yaml
+      - retain Factory quality semantics in Foundry G5 gate claims/contracts
+      - Noema conformance returns PASS
+    rerun_scope:
+      - Noema Conformance
+    status: REWORK_APPLIED
+    evidence: github-actions://35468667465
+  - defect_id: G5-D003
+    failed_claim: structural_factory_fixture_integrity
+    severity: MINOR
+    owner_role: BUILDER
+    return_to: FIXTURE
+    problem: The downstream synthetic item i8 lacked the newly-required lifecycle field after lifecycle/disposition separation was introduced.
+    acceptance_criteria:
+      - i8 records READY_FOR_PUBLISH lifecycle
+      - valid smoke portfolio passes schema validation
+    rerun_scope:
+      - tests.test_validate_factory
+      - factory smoke validator
+    status: REWORK_APPLIED
+    evidence: github-actions://35468893380

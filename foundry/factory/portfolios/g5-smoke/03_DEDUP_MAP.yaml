@@ -1,0 +1,8 @@
+portfolio_id: g5-smoke
+clusters:
+  - canonical_item: i1
+    source_ids: [s1, s2]
+    reason: Same context-canonicalization capability.
+  - canonical_item: i6
+    source_ids: [s7, s8]
+    reason: Same synthetic decision-brief generation capability.

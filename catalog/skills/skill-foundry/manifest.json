@@ -1,7 +1,7 @@
 {
   "id": "skill-foundry",
   "name": "Skill Foundry",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "category": "meta",
   "purpose": "Provide a thin portable entry point that routes capability-engineering requests into canonical Skill Foundry workflows.",
   "triggers": [
@@ -24,13 +24,15 @@
   "outputs": [
     "Foundry intent and canonical next action",
     "catalog-preflight result when creation is possible",
-    "BLOCKED_NOT_IMPLEMENTED for unsupported G4 routes"
+    "BLOCKED_NOT_IMPLEMENTED for unsupported G4 routes",
+    "Factory portfolio routing to SF-WF-003"
   ],
   "dependencies": [
     "FOUNDRY_OPERATING_MODEL.md",
     "foundry/workflows/SF-WF-001_SKILL_GENESIS.md",
     "foundry/registry/SKILL_REGISTRY.yaml",
-    "Noema governance when operating in repo"
+    "Noema governance when operating in repo",
+    "foundry/workflows/SF-WF-003_PORTFOLIO_FACTORY.md"
   ],
   "handoffs_to": [
     "Skill Genesis",

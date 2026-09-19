@@ -1,0 +1,62 @@
+portfolio_id: g5-smoke
+source_fragments:
+  - source_id: s1
+    source_ref: inline://g5-smoke/s1
+    raw_label: Canonical context builder
+    disposition: NORMALIZED
+    normalized_item_ids: [i1]
+    reason: null
+  - source_id: s2
+    source_ref: inline://g5-smoke/s2
+    raw_label: Context canonizer
+    disposition: DUPLICATE
+    normalized_item_ids: [i1]
+    reason: Semantic alias of s1.
+  - source_id: s3
+    source_ref: inline://g5-smoke/s3
+    raw_label: Deterministic checksum utility
+    disposition: NORMALIZED
+    normalized_item_ids: [i2]
+    reason: null
+  - source_id: s4
+    source_ref: inline://g5-smoke/s4
+    raw_label: Skill Foundry entry
+    disposition: NORMALIZED
+    normalized_item_ids: [i3]
+    reason: null
+  - source_id: s5
+    source_ref: inline://g5-smoke/s5
+    raw_label: Research Executor
+    disposition: NORMALIZED
+    normalized_item_ids: [i4]
+    reason: null
+  - source_id: s6
+    source_ref: inline://g5-smoke/s6
+    raw_label: Brand workflow orchestrator
+    disposition: NORMALIZED
+    normalized_item_ids: [i5]
+    reason: null
+  - source_id: s7
+    source_ref: inline://g5-smoke/s7
+    raw_label: Decision Brief Composer
+    disposition: NORMALIZED
+    normalized_item_ids: [i6]
+    reason: null
+  - source_id: s8
+    source_ref: inline://g5-smoke/s8
+    raw_label: Decision Summary Writer
+    disposition: DUPLICATE
+    normalized_item_ids: [i6]
+    reason: Synthetic semantic duplicate of Decision Brief Composer.
+  - source_id: s9
+    source_ref: inline://g5-smoke/s9
+    raw_label: Magic helper
+    disposition: UNRESOLVED
+    normalized_item_ids: [i7]
+    reason: Insufficient workflow signal to determine capability boundary.
+  - source_id: s10
+    source_ref: inline://g5-smoke/s10
+    raw_label: Decision Brief Quality Auditor
+    disposition: NORMALIZED
+    normalized_item_ids: [i8]
+    reason: null

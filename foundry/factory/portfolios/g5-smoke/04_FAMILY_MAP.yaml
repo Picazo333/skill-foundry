@@ -1,0 +1,9 @@
+portfolio_id: g5-smoke
+families:
+  context: [i1]
+  infrastructure: [i2]
+  foundry-system: [i3]
+  research: [i4]
+  brand-creative: [i5]
+  decision-support: [i6, i8]
+  unresolved: [i7]
