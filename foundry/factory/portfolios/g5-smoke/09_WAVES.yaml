@@ -1,0 +1,14 @@
+portfolio_id: g5-smoke
+waves:
+  - wave_id: w1
+    sequence: 1
+    item_ids: [i6]
+    max_parallel_builders: 1
+    shared_canon_write: false
+    publisher_serialized: true
+  - wave_id: w2
+    sequence: 2
+    item_ids: [i8]
+    max_parallel_builders: 1
+    shared_canon_write: false
+    publisher_serialized: true
