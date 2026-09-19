@@ -1,5 +1,5 @@
 gate: G2
-status: PASS_PENDING_CI
+status: PASS
 claims:
   research_questions_decision_relevant:
     verdict: PASS
@@ -29,3 +29,6 @@ claims:
 notes:
   - R1-R3 are decided and block G3/G4 architecture.
   - R4-R8 are explicitly deferred with activation triggers; none blocks the vertical slice.
+ci_evidence:
+  foundry_validation_run: 35465373788
+  noema_conformance_run: 35465374035
