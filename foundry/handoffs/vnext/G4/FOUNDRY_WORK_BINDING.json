@@ -1,0 +1,19 @@
+{
+  "binding_version": 1,
+  "noema_work_order_ref": "repo://foundry/handoffs/vnext/G4/WORK_ORDER.yaml",
+  "candidate_id": "sf-cand-20260919-skill-foundry-front-door",
+  "skill_id": "skill-foundry",
+  "spec_ref": "repo://foundry/specs/skill-foundry.md",
+  "gate_obligations": [
+    "structural_integrity",
+    "behavioral_correctness",
+    "approved_architecture_fidelity",
+    "independent_audit_pass",
+    "false_completion_resistance",
+    "test_integrity",
+    "baseline_non_regression",
+    "noema_conformance_green",
+    "completion_evidence_derived"
+  ],
+  "foundry_state": "APPROVED_FOR_BUILD"
+}
