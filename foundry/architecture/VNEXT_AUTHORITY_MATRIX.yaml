@@ -1,0 +1,84 @@
+version: 1
+gate: G1
+noema_protocol: 0.1.0-rc.0
+noema_reference_commit: 5b282ae358bc300fbc385c41050566bbe30cf6e3
+classifications:
+  Project:
+    authority: NOEMA_CORE
+    evidence: noema.project.yaml + Noema project-manifest schema
+  ProjectAuthority:
+    authority: NOEMA_CORE
+    evidence: Noema protocol invariant domain authority + project manifest authority
+  ContextMode:
+    authority: NOEMA_CORE
+    evidence: Noema work-order context_mode + noema.project.yaml context modes
+  StorageRef:
+    authority: NOEMA_CORE
+    evidence: urn:noema:schema:common:1#/$defs/storageRef
+  Artifact:
+    authority: NOEMA_CORE
+    evidence: urn:noema:schema:artifact:1
+  Provenance:
+    authority: NOEMA_CORE
+    evidence: urn:noema:schema:artifact:1 provenance
+  ExecutorDescriptor:
+    authority: NOEMA_CORE
+    evidence: Noema registry/executors.yaml + spec/05-capabilities-and-stack.md
+  ExecutorRouting:
+    authority: NOEMA_CORE
+    evidence: Noema registry/routing.yaml + spec/06-routing.md
+  ProjectRelation:
+    authority: NOEMA_CORE
+    evidence: Noema common relation + project manifest relations
+  WorkOrder:
+    authority: NOEMA_CORE_WITH_FOUNDRY_EXTENSION
+    noema_contract: urn:noema:schema:work-order:1
+    foundry_semantics: bind work order to candidate/portfolio/skill/spec and gate obligations without changing Noema schema
+  Run:
+    authority: DEFERRED_UNRESOLVED
+    reason: vertical slice can use WorkOrder + Handoff + EvalResult; a generic Run entity is not yet justified
+  Handoff:
+    authority: NOEMA_CORE_WITH_FOUNDRY_EXTENSION
+    noema_contract: urn:noema:schema:handoff:1
+    foundry_semantics: Foundry lifecycle/candidate semantics remain domain-owned
+  RecoveryState:
+    authority: NOEMA_CORE_WITH_FOUNDRY_EXTENSION
+    noema_contract: urn:noema:schema:handoff:1
+    foundry_semantics: candidate/checkpoint state remains Foundry-owned; cross-executor remaining/next_action uses Noema handoff
+  EvalEvidence:
+    authority: NOEMA_CORE_WITH_FOUNDRY_EXTENSION
+    noema_contract: urn:noema:schema:eval-result:1
+    foundry_semantics: claim catalogue, fixtures, grader obligations and semantic PASS/FAIL are Foundry-owned
+  Capability:
+    authority: NOEMA_CORE_WITH_FOUNDRY_EXTENSION
+    noema_contract: work-order capability_requirements
+    foundry_semantics: capability taxonomy, ontology, mining, boundaries and reuse decisions are Foundry-owned
+  Skill:
+    authority: FOUNDRY_DOMAIN
+  SkillCandidate:
+    authority: FOUNDRY_DOMAIN
+  SkillFamily:
+    authority: FOUNDRY_DOMAIN
+  SkillSpec:
+    authority: FOUNDRY_DOMAIN
+  Portfolio:
+    authority: FOUNDRY_DOMAIN
+  PortfolioItem:
+    authority: FOUNDRY_DOMAIN
+  PlanDecision:
+    authority: NOEMA_CORE_WITH_FOUNDRY_EXTENSION
+    noema_contract: urn:noema:schema:decision:1
+    foundry_semantics: portfolio/Skill decision types and architecture meaning remain Foundry-owned
+  ArchitectureException:
+    authority: FOUNDRY_DOMAIN
+    interoperability: repeated generic findings may be emitted as Noema harvest candidates
+  Wave:
+    authority: FOUNDRY_DOMAIN
+  CompletionCertificate:
+    authority: FOUNDRY_DOMAIN
+    interoperability: derived from Foundry claims with Noema EvalResult/Artifact evidence references
+rules:
+  - No Foundry schema may redefine a NOEMA_CORE concept.
+  - Mixed concepts compose Noema envelopes with Foundry domain semantics; they do not silently fork Noema schemas.
+  - Specialized Skill ontology remains Foundry-owned.
+  - Generic coordination discoveries may become Noema harvest candidates only after evidence.
